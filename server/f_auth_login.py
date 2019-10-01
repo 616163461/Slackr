@@ -9,6 +9,7 @@ def auth_login(email, password):
         raise Exception(f"Error, please enter a valid email")
     
     token = password
+    token = "1" + token 
     u_id = email
     return u_id, token
 
