@@ -9,10 +9,14 @@ def test_channels_create():
     token = dictionary["token"]
     
     #assumed all returned channel_id are 12345
-    #case public channel
-    assert channels_create(token, "study channel", True) == {"channel_id" : 12345}
-    #case private channel
-    assert channels_create(token, "study channel", False) == {"channel_id" : 12345}
+    #case public good/study channel
+    assert channels_create(token, "study channel", True) == {"channel_id" : 1111}
+    #case private good/study channel
+    assert channels_create(token, "study channel", False) == {"channel_id" : 1111}
+    #case public bad/gaming channel
+    assert channels_create(token, "gaming channel", True) == {"channel_id" : 0000}
+    #case private bad/gaming channel
+    assert channels_create(token, "gaming channel", False) == {"channel_id" : 0000}
     
 def test_channels_create_bad(): 
     #case where name is too long
