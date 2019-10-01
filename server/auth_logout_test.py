@@ -8,7 +8,7 @@ def test_auth_logout():
     #spaces
     assert auth_logout("1 ahklsdf") == " ahklsdf"
     
-    #I'm not sure how to assert these cases since there's no return
-    auth_logout("richardkang")
-    auth_logout("43124")
-    auth_logout(" ahklsdf")
+    #assumed that it returns an empty dictionary 
+    assert auth_logout("richardkang") == {}
+    assert auth_logout("43124") == {}
+    assert auth_logout(" ahklsdf") == {}

@@ -7,5 +7,8 @@ def auth_logout(token):
     else:
         pass
     
+    dictionary = {}
+    
+    return dictionary 
     
     
