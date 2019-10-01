@@ -16,7 +16,7 @@ def test_auth_login():
     assert auth_login("IC_THAT_IM_ICY@microsoftoutlook.com", "ITZY5") == {'u_id' : "IC_THAT_IM_ICY@microsoftoutlook.com", 'token' : "1ITZY5"}
     
 def test_auth_login_bad():
-    with pytest.raises(Exception):
+    with pytest.raises(ValueError):
         #short password
         auth_login("besthearthstoneplayer@gmail.com", "b")
         #capital short password
