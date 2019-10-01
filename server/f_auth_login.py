@@ -8,10 +8,11 @@ def auth_login(email, password):
     if check_valid_email(email) == False: 
         raise Exception(f"Error, please enter a valid email")
     
-    token = password
-    token = "1" + token 
-    u_id = email
-    return u_id, token
+    #assuming valid tokens begin with 1
+    dictionary = {}
+    dictionary["token"] = "1" + password
+    dictionary["u_id"] = email
+    return dictionary
 
     
 def check_valid_email(email): 
