@@ -1,8 +1,8 @@
 import re
 def admin_userperm_change(token, u_id, permission_id):        
-    if check_uid(u_id) == False:
+    if isinstance(u_id, str) == False: #check_uid(u_id): == False:
         raise ValueError(f"Error, User ID does not refer to a valid user")
-    if check_permid(permission_id) == False:
+    if isinstance(permission_id, int) == False: #check_permid(permission_id) == False:
         raise ValueError(f"Error, Permission ID does not refer to a valid value permission")
     if permission_id != 1 and permission_id != 2:
         # AccessError does not exist, SystemError for now as placeholder
@@ -21,7 +21,7 @@ def admin_userperm_change(token, u_id, permission_id):
     return return_dictionary
     
 def check_uid(u_id):
-    # check if the u_id is valid
+    # checking if the u_id is valid
     regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
     if(re.search(regex, u_id)):
         return True
@@ -38,7 +38,7 @@ def check_uid(u_id):
         #return False
     
 def check_permid(permission_id):
-    # check if the permission_id refer to a value permission
+    # checking if the permission_id refer to a value permission
     
     # for testing purposes, create a sample dictionary
     dictionary_permid = {}
