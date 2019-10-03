@@ -3,8 +3,11 @@
 #Return value: {}
 #ValueError: ValueError when: name_first is more than 50 characters, name_last is more than 50 characters
 #Description: Update the authorised user's first and last name
+
 import pytest
 from f_user_profile_setname import user_profile_setname
+from f_auth_register import auth_register
+from f_auth_logout import auth_logout
 
 def test_user_profile_setname():
     #SET UP BEGIN
