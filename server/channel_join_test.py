@@ -2,6 +2,8 @@ from f_channel_details import channel_details
 from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_channel_join import channel_join
+from f_channel_leave import channel_leave
+from f_auth_logout import auth_logout
 import pytest
 
 def test_channel_join(): 
