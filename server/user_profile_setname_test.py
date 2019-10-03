@@ -28,7 +28,9 @@ def test_user_profile_setname():
     auth_logout(invalid_token)
     
     #SET UP END
-   
+    #Testing the default case
+    assert user_profile_setname(token, name_first_good, name_last_good) == {}
+    
     with pytest.raises(ValueError):
         #testing user_profile_setname with bad name_first
         user_profile_setname(token, name_first_bad, name_last_good)
