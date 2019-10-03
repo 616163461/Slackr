@@ -34,14 +34,14 @@ def test_channel_details_bad():
 def test_channel_details_bad1(): 
     
     # SET UP BEGIN 
-    #creating user1 and channel1
+    # creating user1 and channel1
     authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    #creating user2 and channel2
+    # creating user2 and channel2
     authRegisterDic1 = auth_register("validemail", "validpassword", "firstname", "lastname")
     token1 = authRegisterDic['token']
     u_id1 = authRegisterDic['u_id']
