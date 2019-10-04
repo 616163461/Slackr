@@ -33,7 +33,7 @@ def test_channel_addowner():
     channel_addowner(token, channel_id, u_id1)
     
     # calling function with recently declared owner (token1) to check if he has owner permissions
-    assert channel_addowner(token1, channel_id, u_id2)
+    assert channel_addowner(token1, channel_id, u_id2) == {}
     
 def test_channel_addowner_bad(): 
     
