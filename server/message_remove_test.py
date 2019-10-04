@@ -3,14 +3,17 @@ from f_message_send import send_message
 from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_message_remove import remove_message
+from f_channel_messages import channel_messages
 
 def test_remove_message():
     
     # SETUP START (valid tests)
     
-    registerValidDict = auth_register("thombrowne@gmail.com", "feelspecial", "thom", "browne")
-    token = registerValidDict["token"]
-    message_id = 12345
+    registerUserDict = auth_register("thombrowne@gmail.com", "feelspecial", "thom", "browne")
+    token = registerUserDict["token"]
+    
+    channelMessagesDict = channel_messages(token, 12345, 0)
+    message_id = channelMessagesDict[messages]["message_id"]
     
     # SETUP END (valid test)
     
@@ -20,9 +23,11 @@ def test_invalid_remove_message():
     
     # SETUP START (valid tests)
     
-    registerValidDict = auth_register("thombrowne@gmail.com", "feelspecial", "thom", "browne")
-    token = registerValidDict["token"]
-    message_id = 12345
+    registerUserDict = auth_register("thombrowne@gmail.com", "feelspecial", "thom", "browne")
+    token = registerUserDict["token"]
+    
+    channelMessagesDict = channel_messages(token, 12345, 0)
+    message_id = channelMessagesDict[messages]["message_id"]
     
     # SETUP END (valid test)
     

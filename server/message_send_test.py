@@ -7,11 +7,11 @@ def test_message_send():
 
     # SETUP START (valid tests)
 
-    registerValidDict = auth_register("thombrowne@gmail.com", "feelspecial", "thom", "browne")
-    token = registerValidDict["token"]
+    registerUserDict = auth_register("thombrowne@gmail.com", "feelspecial", "thom", "browne")
+    token = registerUserDict["token"]
     
-    registerChannelDict = channels_create(token, "validchannel", True)
-    channel_id = registerChannelDict["channel_id"]
+    createChannelDict = channels_create(token, "validchannel", True)
+    channel_id = createChannelDict["channel_id"]
     
     message = "I Heart Hwang Yeji"
     
@@ -23,11 +23,11 @@ def test_invalid_message_send():
 
     # SETUP START (valid tests)
 
-    registerValidDict = auth_register("thombrowne@gmail.com", "feelspecial", "thom", "browne")
-    token = registerValidDict["token"]
+    registerUserDict = auth_register("thombrowne@gmail.com", "feelspecial", "thom", "browne")
+    token = registerUserDict["token"]
     
-    registerChannelDict = channels_create(token, "validchannel", True)
-    channel_id = registerChannelDict["channel_id"]
+    createChannelDict = channels_create(token, "validchannel", True)
+    channel_id = createChannelDict["channel_id"]
     
     message = "I Heart Hwang Yeji"
     
