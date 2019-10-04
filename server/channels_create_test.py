@@ -12,9 +12,9 @@ def test_channels_create():
     # SET UP END 
     
     assert channels_create(token, "validchannel", True) == {channel_id: "validchannel"}
-
+    assert channels_create(token, "validchannel1", False) == {channel_id: "validchannel1"}
     
-def test_channels_create_bad(): 
+def test_channels_create_bad():
    
     # SET UP BEGIN 
     authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
@@ -29,6 +29,13 @@ def test_channels_create_bad():
         # calling function with private channel name which is too long
         channels_create(token, "this name is way too long so it will cause an error", False)
         
+        
+    auth_logout(token)
+    with pytest.raises(ValueError): 
+        # calling function with invalid token to create public channel
+        channels_create(token, "validchannel", True)
+        # calling function with invalid token to create private channel
+        channels_create(token, "validchannel", False)
         
         
         
