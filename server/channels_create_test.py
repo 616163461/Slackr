@@ -1,5 +1,6 @@
 from f_channels_create import channels_create
 from f_auth_register import auth_register
+from f_auth_logout import auth_logout
 import pytest
 
 def test_channels_create(): 
