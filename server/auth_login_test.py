@@ -5,7 +5,7 @@ from f_auth_logout import auth_logout
 
 def test_auth_login(): 
     # SET UP BEGIN
-    authRegisterDic = auth_register("validemail", "validpassword")
+    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
