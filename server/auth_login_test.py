@@ -1,35 +1,50 @@
 import pytest
 from f_auth_login import auth_login
+from f_auth_register import auth_register
+from f_auth_logout import auth_logout
 
 def test_auth_login(): 
-    #no capitals
-    assert auth_login("besthearthstoneplayer@gmail.com", "bigpabo") == {'u_id' : "besthearthstoneplayer@gmail.com", 'token' : "1bigpabo"}
-    #capitals 
-    assert auth_login("BestHearthstonePlayer@gmail.com", "BigPabo") == {'u_id' : "BestHearthstonePlayer@gmail.com", 'token' : "1BigPabo"}
-    #numbers
-    assert auth_login("besthearthstoneplayer@gmail.com", "b1gp4b0") == {'u_id' : "besthearthstoneplayer@gmail.com", 'token' : "1b1gp4b0"}
-    #numbers in email
-    assert auth_login("rank87legend@gmail.com", "bigpabo") == {'u_id' : "rank87legend@gmail.com", 'token' : "1bigpabo"}
-    #special expressions in email
-    assert auth_login("Message.To.Daniel.Kang@gmail.com", "Jihyo") == {'u_id' : "Message.To.Daniel.Kang@gmail.com", 'token' : "1Jihyo"}
-    #non-gmail emails
-    assert auth_login("IC_THAT_IM_ICY@microsoftoutlook.com", "ITZY5") == {'u_id' : "IC_THAT_IM_ICY@microsoftoutlook.com", 'token' : "1ITZY5"}
+    # SET UP BEGIN
+    authRegisterDic = auth_register("validemail", "validpassword")
+    token = authRegisterDic['token']
+    u_id = authRegisterDic['u_id']
+    
+    # SET UP END
+    with pytest.raises(ValueError): 
+        # calling function with account which hasn't been logged out 
+        auth_login("validemail", "validpassword")
+     
+    auth_logout(token)
+    # calling function with account which has been logged out 
+    authLoginDic = auth_login("validemail", "validpassword")
+    token = authLoginDic['token']
+    u_id = authLoginDic['u_id']
+    
+    # checking we can logout using new token
+    auth_logout(token)
+    
     
 def test_auth_login_bad():
+    
+     # SET UP BEGIN
+    authRegisterDic = auth_register("validemail", "validpassword")
+    token = authRegisterDic['token']
+    u_id = authRegisterDic['u_id']
+    
+    authRegisterDic1 = auth_register("validemail1", "validpassword1")
+    token1 = authRegisterDic1['token']
+    u_id1 = authRegisterDic1['u_id']
+    
+    # SET UP END
+    
     with pytest.raises(ValueError):
-        #short password
-        auth_login("besthearthstoneplayer@gmail.com", "b")
-        #capital short password
-        auth_login("besthearthstoneplayer@gmail.com", "B")
-        #short numerical password
-        auth_login("besthearthstoneplayer@gmail.com", "87")
-        #invalid email
-        auth_login("besthearthstoneplayer.com", "bigpabo")
-        #special expression invalid email
-        auth_login("Message.To.Daniel.Kanggmail.com", "jihyo")
-        #numerical invalid email
-        auth_login("rank87legend.com", "bigpabo")
-        #short password and invalid email
-        auth_login("besthearthstoneplayer.com", "b")
+        # calling function with invalid email
+        auth_login("invalidemail", "validpassword")
+        # calling function with invalid password
+        auth_login("validemail", "invalidpassword")
+        # calling function with incorrect password
+        auth_login("validemail", "incorrectpassword")
+        # calling function with incorrect email
+        auth_login("validemail1", "validpassword")
         
         
