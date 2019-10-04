@@ -5,6 +5,7 @@ from f_channel_join import channel_join
 from f_channet_leave import channel_leave
 from f_channels_list import channels_list
 from f_auth_logout import auth_logout
+from f_channel_addowner import channel_addowner
 import pytest
 
 def test_channel_addowner(): 
