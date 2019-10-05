@@ -7,19 +7,19 @@ def test_admin_userperm_change():
     
     # SETUP START   
     
+    # Generate a valid user dictionary
     registerValidUserDict = auth_register("thom_browne@gmail.com", "password", "Thom", "Browne")
     token = registerValidUserDict["token"]
     u_id = registerValidUserDict["u_id"]    
     permission_id = 1    
     
-    invalid_first_name = "thisnameiswaytoolongforafirstnamesoitreturnsvalueerror"
-    invalid_last_name = "thisnameiswaytoolongforalastnamesoitreturnsvalueerror"
-    
+    # Generate an invalid user dictionary
     registerInvalidUserDict = auth_register("hwang_yeji@gmail.com", "feelspecial", "Hwang", "Yeji")
     invalid_token = registerInvalidUserDict["token"]
     invalid_uid = registerInvalidUserDict["u_id"]
     invalid_permission_id = "a"
     
+    # Invalidate the invalid user
     auth_logout(invalid_token)
     
     # SETUP END
