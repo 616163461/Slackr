@@ -7,13 +7,13 @@ from f_channel_details import channel_details
 
 def test_channel_invite(): 
     # SET UP BEGIN 
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDic1 = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDic1 = auth_register("valid@email1", "validpassword1", "firstname1", "lastname1")
     token1 = authRegisterDic1['token']
     u_id1 = authRegisterDic1['u_id']
     # SET UP END 
@@ -26,19 +26,19 @@ def test_channel_invite():
     
 def test_channel_invite_bad(): 
     # SET UP BEGIN 
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDic1 = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDic1 = auth_register("valid@email1", "validpassword1", "firstname1", "lastname1")
     token1 = authRegisterDic1['token']
     u_id1 = authRegisterDic1['u_id']
     channelsCreateDic1 = channels_create(token1, "validchannel1", True)
     channel_id1 = channelsCreateDic1['channel_id']
     
-    authRegisterDic2 = auth_register("validemail2", "validpassword2", "firstname2", "lastname2")
+    authRegisterDic2 = auth_register("valid@email2", "validpassword2", "firstname2", "lastname2")
     token2 = authRegisterDic2['token']
     u_id2 = authRegisterDic2['u_id']
     # SET UP END 
