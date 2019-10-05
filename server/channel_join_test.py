@@ -15,9 +15,9 @@ def test_channel_join():
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDic = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
-    token1 = authRegisterDic['token']
-    u_id1 = authRegisterDic['u_id']
+    authRegisterDic1 = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
+    token1 = authRegisterDic1['token']
+    u_id1 = authRegisterDic1['u_id']
     # SET UP END 
     
     channel_join(token1, channel_id)
