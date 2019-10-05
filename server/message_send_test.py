@@ -1,5 +1,5 @@
 import pytest
-from f_message_send import send_message
+from f_message_send import message_send
 from f_auth_register import auth_register
 from f_channels_create import channels_create
 
@@ -27,16 +27,16 @@ def test_message_send():
     # SETUP END 
     
     # Asserting that the default case works
-    assert send_message(token, channel_id, message) == {}
+    assert message_send(token, channel_id, message) == {}
     
     # Testing that ValueError is raised when invalid parameters are passed
     with pytest.raises(ValueError, match = r"*"): 
 
         # invalid token
-        send_message(invalid_token, channel_id, message)
+        message_send(invalid_token, channel_id, message)
         
         # invalid channel id
-        send_message(token, invalid_channelid, message)
+        message_send(token, invalid_channelid, message)
         
         # invalid message
-        send_message(token, channel_id, invalid_message)
+        message_send(token, channel_id, invalid_message)
