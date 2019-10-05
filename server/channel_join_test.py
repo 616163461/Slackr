@@ -2,7 +2,6 @@ from f_channel_details import channel_details
 from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_channel_join import channel_join
-from f_channel_leave import channel_leave
 from f_auth_logout import auth_logout
 import pytest
 
@@ -31,21 +30,6 @@ def test_channel_join_bad():
     authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
-    
-    authRegisterDic1 = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
-    token1 = authRegisterDic1['token']
-    u_id1 = authRegisterDic1['u_id']
-    # SET UP END 
-    
-    with pytest.raises(ValueError): 
-        channel_details(token, "invalidchannel_id")
-        
-def test_channel_join_bad1(): 
-    
-    # SET UP BEGIN 
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
-    token = authRegisterDic['token']
-    u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", False)
     channel_id = channelsCreateDic['channel_id']
     
@@ -54,15 +38,18 @@ def test_channel_join_bad1():
     u_id1 = authRegisterDic1['u_id']
     # SET UP END 
     
+    with pytest.raises(ValueError): 
+        # calling function with invalid channel_id
+        channel_join(token, "invalidchannel_id")
+        # calling function with unauthorised token when channel is private
+        channel_join(token1, channel_id)
+    
     # invalidate token
     auth_logout(token)
     
-    with pytest.raises(AccessError): 
-        # calling function using a token which isn't admin
-        channel_details(token1, channel_id)
-        
-        # calling function using a token which was invalidated 
-        channel_details(token, channel_id)
+    with pytest.raises(ValueError): 
+        # calling function with invalid token
+        channel_join(token, channel_id)
         
         
     
