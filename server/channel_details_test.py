@@ -15,7 +15,7 @@ def test_channel_details():
     
     # SET UP END 
     
-    assert channel_details(token, channel_id) = {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{}]}
+    assert channel_details(token, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{}]}
     
     
 def test_channel_details_bad(): 
