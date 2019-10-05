@@ -4,6 +4,7 @@ from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_channel_messages import channel_messages
 from f_message_pin import message_pin
+from f_message_unpin import message_unpin
 
 
 def test_message_pin(): 
