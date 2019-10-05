@@ -7,18 +7,17 @@
 import pytest
 from f_user_profile import user_profile
 from f_auth_register import auth_register
-from auth
+from f_auth_logout import auth_logout
 
 def test_user_profile():
 
     #BEGIN SET UP
     validAuthRegisterDic = auth_register("richard123@gmail.com", "validpassword", "Richard", "Jiang")
-    token = authRegisterDic['token']
+    goodtoken = authRegisterDic['token']
     goodu_id = authRegisterDic['u_id']
     
     invalidAuthRegisterDic = auth_register("richard2@gmail.com", "validpassword", "firstname", "lastname")
     invalid_token = invalidAuthRegisterDic['token']
-    invalid_u_id = invalidAuthRegisterDic['u_id']
     auth_logout(invalid_token) #Creates an Invalid Token
     badu_id = "invaliduserid"
     #SET UP END
@@ -29,9 +28,9 @@ def test_user_profile():
     
     with pytest.raises(ValueError):
         #Testing a bad token with a good user_id
-        user_profile(badtoken, goodu_id)
+        user_profile(invalid_token, goodu_id)
         #Testing a good token with a bad user_id
-        auth_login(goodtoken, badu_id)
+        auth_profile(invalid_token, badu_id)
         #Testing both a bad token and bad user_id
-        auth_login(badtoken, badu_id)
+        auth_profile(invalid_token, badu_id)
         
