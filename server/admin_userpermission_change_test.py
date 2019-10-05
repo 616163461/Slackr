@@ -24,16 +24,19 @@ def test_admin_userperm_change():
     
     # SETUP END
     
-    # Asserting that default case works
+    # Asserting that the default case works
     assert admin_userperm_change(token, u_id, permission_id) == {}
     
+    # Testing that ValueError is raised when invalid parameters are passed
     with pytest.raises(ValueError, match = r"*"):
    
         # invalid token
         admin_userperm_change(invalid_token, u_id, permission_id)
+        
         # invalid u_id
         admin_userperm_change(token, invalid_uid, permission_id)
         
+    # Testing that SystemError is raised when invalid parameters are passed    
     with pytest.raises(SystemError):
     
         # invalid permission_id
