@@ -5,39 +5,66 @@ from f_channels_create import channels_create
 
 def test_channel_invite(): 
     # SET UP BEGIN 
-    dictionary = auth_register("geoffrey.he777@gmail.com", "Bigpabo", "Geoffrey", "He")
-    u_id = "valid u_id"
-    token = dictionary["token"]
+    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    token = authRegisterDic['token']
+    u_id = authRegisterDic['u_id']
+    channelsCreateDic = channels_create(token, "validchannel", True)
+    channel_id = channelsCreateDic['channel_id']
     
-    channel = channels_create(token, "study channel", True)
-    channel_id = channel["channel_id"]
+    authRegisterDic1 = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
+    token1 = authRegisterDic1['token']
+    u_id1 = authRegisterDic1['u_id']
     # SET UP END 
     
-    assert channel_invite(token, channel_id, u_id) == {}
+    channel_invite(token, channel_id, u_id1)
+    # asserting that the invited user is now a member of the channel
+    assert channel_details(token1, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{"u_id": u_id, "name_first": "firstname1", "name_last": "lastname1"}]}
+    # calling leave to check that he's a member of the channel
+    channel_leave(token1, channel_id)
     
 def test_channel_invite_bad(): 
     # SET UP BEGIN 
-    dictionary = auth_register("geoffrey.he777@gmail.com", "Bigpabo", "Geoffrey", "He")
-    u_id = "valid u_id"
-    token = dictionary["token"]
+    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    token = authRegisterDic['token']
+    u_id = authRegisterDic['u_id']
+    channelsCreateDic = channels_create(token, "validchannel", True)
+    channel_id = channelsCreateDic['channel_id']
     
-    channel = channels_create(token, "gaming channel", True)
-    channel_id = channel["channel_id"]
+    authRegisterDic1 = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
+    token1 = authRegisterDic1['token']
+    u_id1 = authRegisterDic1['u_id']
+    channelsCreateDic1 = channels_create(token1, "validchannel1", True)
+    channel_id1 = channelsCreateDic1['channel_id']
+    
+    authRegisterDic2 = auth_register("validemail2", "validpassword2", "firstname2", "lastname2")
+    token2 = authRegisterDic2['token']
+    u_id2 = authRegisterDic2['u_id']
     # SET UP END 
     
-    #case where channel id does not refer to a valid channel that the authorised user is part of
-    with pytest.raises(ValueError, match = r"*"):
-        channel_invite(token, channel_id, u_id) 
+    with pytest.raises(ValueError): 
+        # calling function with invalid channel_id
+        channel_invite(token, "invalidchannel_id", u_id1)
+        # calling function with channel_id which the authorised user isn't a member of
+        channel_invite(token, channel_id1, u_id2)
+        # calling function with an invalid u_id
+        channel_invite(token, channel_id, "invalidu_id")
         
-    # SET UP BEGIN 
-    dictionary = auth_register("geoffrey.he777@gmail.com", "Bigpabo", "Geoffrey", "He")
-    u_id = "bad u_id"
-    token = dictionary["token"]
-    
-    channel = channels_create(token, "study channel", True)
-    channel_id = channel["channel_id"]
-    # SET UP END 
-    
-    #case where the u_id does not refer to a valid user
-    with pytest.raises(ValueError, match = r"*"): 
-        channel_invite(token, channel_id, u_id)
+    auth_logout(token1)
+    with pytest.raises(ValueError): 
+        # calling function with invalid token
+        channel_invite(token1, channel_id1, u_id2)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
