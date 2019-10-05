@@ -32,7 +32,7 @@ def test_message_pin():
     with pytest.raises(ValueError):
         message_pin(token, message_id)
         
-    assert messsage_unpin(token, message_id) == {}
+    assert message_unpin(token, message_id) == {}
     # calling message_pin to check the message was successfully unpinned 
     message_pin(token, message_id)
     
