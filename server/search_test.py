@@ -10,6 +10,7 @@ from f_message_send import message_send
 from f_channels_create import channels_create
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
+from f_channel_invite import channel_invite
 
 def test_search():
     
@@ -29,6 +30,8 @@ def test_search():
     auth_logout(invalid_token) #Creates an Invalid Token
     
     channel_id = channels_create(token, "Channel Nine", True)
+    channel_invite(token_user_one, channel_id, u_id_one)
+    channel_invite(token_user_two, channel_id, u_id_two)
     message_send(token_user_one, channel_id, "Hello")
     message_send(token_user_two, channel_id, "Hellomydude")
     message_send(token_user_one, channel_id, "Hellomyman")
