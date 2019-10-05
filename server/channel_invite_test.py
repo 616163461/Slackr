@@ -2,6 +2,8 @@ import pytest
 from f_channel_invite import channel_invite
 from f_auth_register import auth_register
 from f_channels_create import channels_create
+from f_auth_logout import auth_logout
+from f_channel_details import channel_details
 
 def test_channel_invite(): 
     # SET UP BEGIN 
