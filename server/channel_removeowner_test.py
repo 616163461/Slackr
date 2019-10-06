@@ -24,17 +24,17 @@ from f_channel_addowner import channel_addowner
 def test_channel_removeowner():
     
     # SET UP BEGIN
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     
-    authRegisterDicTwo = auth_register("validemail2", "validpassword2", "firstname2", "lastname2")
+    authRegisterDicTwo = auth_register("valid3@email.com", "validpassword2", "firstname2", "lastname2")
     token_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     # SETUP END
@@ -49,21 +49,21 @@ def test_channel_removeowner():
 
 def test_channel_removeowner_bad():
     # SET UP BEGIN
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     
-    authRegisterDicTwo = auth_register("validemail2", "validpassword2", "firstname2", "lastname2")
+    authRegisterDicTwo = auth_register("valid3@email.com", "validpassword2", "firstname2", "lastname2")
     token_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     
-    authRegisterDicThree = auth_register("validemail3", "validpassword3", "firstname3", "lastname3")
+    authRegisterDicThree = auth_register("valid4@email.com", "validpassword3", "firstname3", "lastname3")
     token_three = authRegisterDicThree['token']
     u_id_three = authRegisterDicThree['u_id']
     # SETUP END
