@@ -23,7 +23,7 @@ def test_message_edit():
     # SETUP BEGIN
     
     # Token creates the channel so it should be the owner
-    registerValidUserDict = auth_register("hwangyeji@gmail.com", "feelspecial", "Thom", "Browne")
+    registerValidUserDict = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = registerValidUserDict["token"]
     u_id = registerValidUserDict["u_id"]
     createValidChannelDict = channels_create(token, "validchannel", True)
@@ -37,7 +37,7 @@ def test_message_edit():
     message_id = message_dict["message_id"]
 
     # A member in the channel
-    authRegisterDicOne = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid2@email.com", "validpassword2", "firstname2", "lastname2")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     channel_invite(token, channel_id, u_id_one)
@@ -48,6 +48,7 @@ def test_message_edit():
     invalid_messagelist = channelValidMessagesDict["messages"]
     invalid_messagedict = invalid_messagelist[1]
     invalid_messageid = invalid_messagedict["message_id"]
+    
     # SETUP END
 
     # Asserting that the default case works
@@ -61,7 +62,3 @@ def test_message_edit():
 
         # Testing function with an invalid message id
         message_edit(token_one, invalid_messageid, message_list[1])
-
-
-
-
