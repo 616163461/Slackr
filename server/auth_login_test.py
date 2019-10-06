@@ -43,11 +43,11 @@ def test_auth_login_bad():
     
     # SETUP BEGIN
     
-    authRegisterDic = auth_register("validemail", "validpassword")
+    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
-    authRegisterDic1 = auth_register("validemail1", "validpassword1")
+    authRegisterDic1 = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
     token1 = authRegisterDic1['token']
     u_id1 = authRegisterDic1['u_id']
     
