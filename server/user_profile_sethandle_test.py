@@ -4,6 +4,7 @@
 # Exception: ValueError when: 
 # - handle_str is no more than 20 characters
 # Description: Update the authorised user's handle (i.e. display name)
+#
 
 import pytest
 from f_user_profile_sethandle import user_profile_sethandle
@@ -24,7 +25,7 @@ def user_profile_sethandle_test():
     invalid_token = invalidAuthRegisterDicTwo['token']
     invalid_u_id = invalidAuthRegisterDicTwo['u_id']
     # Invalidates token
-    auth_logout(invalid_token) 
+    auth_logout(invalid_token)
     # SETUP END
     
     # Testing successful run (default case)
