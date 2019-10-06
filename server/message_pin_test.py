@@ -21,13 +21,13 @@ from f_message_pin import message_pin
 def test_message_pin(): 
     
     # SETUP BEGIN
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("valid@email1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid1@email.com", "validpassword1", "firstname1", "lastname1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     
@@ -45,18 +45,18 @@ def test_message_pin():
 def test_message_pin_bad():
     
     # SETUP BEGIN
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("valid@email1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid1@email.com", "validpassword1", "firstname1", "lastname1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     channel_join(token_one, channel_id)
     
-    authRegisterDicTwo = auth_register("valid@email2", "validpassword2", "firstname2", "lastname2")
+    authRegisterDicTwo = auth_register("valid2@email.com", "validpassword2", "firstname2", "lastname2")
     token_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     
