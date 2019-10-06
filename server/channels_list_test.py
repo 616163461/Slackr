@@ -10,7 +10,7 @@ from f_channel_details import channel_details
 from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_channel_join import channel_join
-from f_channet_leave import channel_leave
+from f_channel_leave import channel_leave
 from f_channels_list import channels_list
 from f_auth_logout import auth_logout
 
@@ -30,7 +30,7 @@ def test_channels_list():
     # SETUP END
     
     # Testing function using authorised user
-    assert channels_list(token) = [{channels: {channel_id: "validchannel"}}]
+    assert channels_list(token) == [{channels: {channel_id: "validchannel"}}]
     
     
 
