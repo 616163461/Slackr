@@ -8,7 +8,7 @@
 #
 
 def user_profile_setname(token, name_first, name_last):
-    pass
     
-
+    user_profile_setname_dict = {}
     
+    return user_profile_setname_dict
