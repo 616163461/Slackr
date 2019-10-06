@@ -25,7 +25,7 @@ def test_standup_start():
     u_id = authRegisterDic['u_id']
     createValidChannelDict = channels_create(token, "validchannel", True)
     channel_id = createValidChannelDict["channel_id"]
-    time_finish = 19:15/02/10/2019
+    time_finish = "19:15/02/10/2019"
     
     
     # Invalid channel ID
@@ -40,5 +40,5 @@ def test_standup_start():
     with pytest.raises(ValueError): 
         # Testing function with invalid channel_id
     	standup_start(token, invalid_channelid)
-		# Testing function with invalid token
-		standup_start(invalid_token, channelid)
+    	# Testing function with invalid token
+    	standup_start(invalid_token, channelid)
