@@ -20,13 +20,13 @@ def test_admin_userperm_change():
     # SETUP BEGIN   
     
     # Generate a valid user
-    registerValidUserDict = auth_register("thom_browne@gmail.com", "password", "Thom", "Browne")
+    registerValidUserDict = auth_register("valid@email.com", "password", "Thom", "Browne")
     token = registerValidUserDict["token"]
     u_id = registerValidUserDict["u_id"]    
     permission_id = 1    
     
     # Generate an invalid user
-    registerInvalidUserDictTwo = auth_register("hwang_yeji@gmail.com", "feelspecial", "Hwang", "Yeji")
+    registerInvalidUserDictTwo = auth_register("valid2@email.com", "feelspecial", "Hwang", "Yeji")
     invalid_token = registerInvalidUserDictTwo["token"]
     invalid_uid = registerInvalidUserDictTwo["u_id"]
     invalid_permission_id = "a"
