@@ -24,7 +24,7 @@ def test_message_remove():
     # SETUP BEGIN
     
     # Generate a valid user
-    registerValidUserDict = auth_register("hwangyeji@gmail.com", "feelspecial", "Thom", "Browne")
+    registerValidUserDict = auth_register("valid@gmail.com", "validpassword", "firstname", "lastname")
     token = registerValidUserDict["token"]    
     u_id = registerValidUserDict["u_id"]
     createValidChannelDict = channels_create(token, "validchannel", True)
@@ -39,7 +39,7 @@ def test_message_remove():
     message_id = message_dict["message_id"]
     
     # Generate an invalid user
-    registerInvalidUserDict = auth_register("chungha@gmail.com", "snapping", "Kang", "Daniel")
+    registerInvalidUserDict = auth_register("invalid1@gmail.com", "invalidpassword", "invalidfirstname", "invalidlastname")
     invalid_token = registerInvalidUserDict["token"]  
     invalid_uid = registerValidUserDict["u_id"]  
     createInvalidChannelDict = channels_create(invalid_token, "invalidchannel", True)
