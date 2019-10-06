@@ -19,12 +19,12 @@ def test_search():
     # SETUP BEGIN
     # User One 
     validAuthRegisterDicOne = auth_register("richard123@gmail.com", "validpassword", "Richard", "Jiang")
-    token_user_one = authRegisterDicOne['token']
-    u_id_one = authRegisterDicOne['u_id']
+    token_user_one = validauthRegisterDicOne['token']
+    u_id_one = validauthRegisterDicOne['u_id']
     # User Two
     validAuthRegisterDicTwo = auth_register("daniel123@gmail.com", "validpassword", "Daniel", "Yang")
-    token_user_two = authRegisterDicTwo['token']
-    u_id_two = authRegisterDicTwo['u_id']
+    token_user_two = validauthRegisterDicTwo['token']
+    u_id_two = validauthRegisterDicTwo['u_id']
     
     # False User Three
     invalidAuthRegisterDic = auth_register("richard123@gmail.com", "validpassword", "firstname", "lastname")
