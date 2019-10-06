@@ -16,7 +16,6 @@ def test_auth_logout():
     authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
-    
     # SETUP END
     
     with pytest.raises(ValueError): 
