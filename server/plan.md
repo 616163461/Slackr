@@ -21,4 +21,5 @@ The following table is a more detailed representation of the priorities in the w
 
 
 https://imgur.com/a/9pyCf2Z 
+
 As a result, our method of implementing the functions consists of implementing them in a way that we are able to deliver a minimum viable product. Our approach ensures that we have a working product that we can deliver with the proper functionalities and valid authentication.
