@@ -37,7 +37,7 @@ def test_channel_leave():
     channel_leave(token_one, channel_id)
     
     # checking that token1 user left the channel
-    assert channel_details(token, channel_id) = {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{}]}
+    assert channel_details(token, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{}]}
     
     
 def test_channel_leave_bad(): 
