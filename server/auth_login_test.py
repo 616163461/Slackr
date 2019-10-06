@@ -14,11 +14,14 @@ from f_auth_login import auth_login
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
 
-def test_auth_login(): 
+def test_auth_login():
+    
     # SETUP BEGIN
+    
     authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
+    
     # SETUP END
     
     with pytest.raises(ValueError): 
@@ -37,7 +40,9 @@ def test_auth_login():
     
     
 def test_auth_login_bad():
+    
     # SETUP BEGIN
+    
     authRegisterDic = auth_register("validemail", "validpassword")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
@@ -45,6 +50,7 @@ def test_auth_login_bad():
     authRegisterDic1 = auth_register("validemail1", "validpassword1")
     token1 = authRegisterDic1['token']
     u_id1 = authRegisterDic1['u_id']
+    
     # SETUP END
     
     with pytest.raises(ValueError):
