@@ -17,7 +17,7 @@ def test_message_send():
     # SETUP BEGIN
 
     # Generate a valid user 
-    registerValidUserDict = auth_register("hwangyeji@gmail.com", "feelspecial", "Hwang", "Yeji")
+    registerValidUserDict = auth_register("valid@gmail.com", "validpassword", "firstname", "lastname")
     token = registerValidUserDict["token"]
     u_id = registerValidUserDict["u_id"]
     createValidChannelDict = channels_create(token, "validchannel", True)
@@ -26,7 +26,7 @@ def test_message_send():
     message = "I Heart Hwang Yeji"
 
     # Generate an invalid user
-    registerInvalidUserDict = auth_register("kangdaniel@gmail.com", "password", "Kang", "Daniel")
+    registerInvalidUserDict = auth_register("invalid1@gmail.com", "invalidpassword", "invalidfirstname", "invalidlastname")
     invalid_token = registerInvalidUserDict["token"]
     invalid_uid = registerValidUserDict["u_id"]
     createInvalidChannelDict = channels_create(invalid_token, "invalidchannel", True)
