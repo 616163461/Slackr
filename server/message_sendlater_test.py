@@ -19,7 +19,7 @@ def test_send_message_later():
     # SETUP BEGIN
     
     # Generate a valid user
-    registerValidUserDict = auth_register("thom_browne@gmail.com", "password", "Thom", "Browne")
+    registerValidUserDict = auth_register("valid@email.com", "password", "Thom", "Browne")
     token = registerValidUserDict["token"]
     u_id = registerValidUserDict["u_id"]
     createValidChannelDict = channels_create(token, "validchannel", True)
@@ -29,7 +29,7 @@ def test_send_message_later():
     timesent = "20/10/2020"
     
     # Generate an invalid user
-    registerInvalidUserDict = auth_register("gmail@gmail.com", "password", "Thom", "Browne")
+    registerInvalidUserDict = auth_register("valid2@email.com", "password", "Thom", "Browne")
     invalid_token = registerInvalidUserDict["token"]
     invalid_uid = registerValidUserDict["u_id"]
     createInvalidChannelDict = channels_create(invalid_token, "invalidchannel", True)
