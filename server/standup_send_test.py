@@ -20,7 +20,7 @@ from f_channel_invite import channel_invite
 def test_standup_send():
 
     # Generate a valid user 
-    registerValidUserDict = auth_register("hwangyeji@gmail.com", "feelspecial", "Hwang", "Yeji")
+    registerValidUserDict = auth_register("valid@email.com", "feelspecial", "Hwang", "Yeji")
     token = registerValidUserDict["token"]
     u_id = registerValidUserDict["u_id"]
     createValidChannelDict = channels_create(token, "validchannel", True)
@@ -33,7 +33,7 @@ def test_standup_send():
     time = "19:16/02/10"
 
     # Generate an invalid user
-    registerInvalidUserDict = auth_register("kangdaniel@gmail.com", "password", "Kang", "Daniel")
+    registerInvalidUserDict = auth_register("valid2@email.com", "password", "Kang", "Daniel")
     invalid_token = registerInvalidUserDict["token"]
     invalid_uid = registerValidUserDict["u_id"]
     createInvalidChannelDict = channels_create(invalid_token, "invalidchannel", True)
