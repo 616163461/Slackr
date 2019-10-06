@@ -10,7 +10,7 @@
 
 import pytest
 import requests
-from f_user_ profiles_uploadphoto import user_ profiles_uploadphoto
+from f_user_profiles_uploadphoto import user_ profiles_uploadphoto
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
 from PIL import Image
