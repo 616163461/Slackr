@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Function name: auth_passwordreset_request()
 # Parameters: (email)
 # Return type: {}
@@ -13,3 +14,8 @@ def auth_passwordreset_request(email):
     auth_passwordreset_request_dict = {}
 
     return auth_passwordreset_request_dict
+=======
+def auth_passwordreset_request(email):
+    pass
+    
+>>>>>>> 35d67967a106c3c7d62aae781161f5fb5e25d128

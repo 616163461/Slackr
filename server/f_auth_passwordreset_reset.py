@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Function name: auth_passwordreset_reset()
 # Parameters: (reset_code, new_password)
 # Return type: {}
@@ -12,3 +13,7 @@ def auth_passwordreset_reset(reset_code, new_password):
     auth_passwordreset_reset_dict = {}
 
     return auth_passwordreset_reset_dict
+=======
+def auth_passwordreset_reset(reset_code, new_password):
+    pass
+>>>>>>> 35d67967a106c3c7d62aae781161f5fb5e25d128

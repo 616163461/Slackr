@@ -1,0 +1,99 @@
+# Function name: auth_register()
+# Parameters: (email, password, name_first, name_last)
+# Return type: { u_id, token }
+# Exception: ValueError when:
+# - Email entered is not a valid email.
+# - Email address is already being used by another user
+# - Password entered is not a valid password
+# - name_first is more than 50 characters
+# - name_last is more than 50 characters
+# Description: Given a user's first and last name, email address, and password, 
+# create a new account for them and return a new token for authentication in their session
+#
+
+import pytest
+from f_auth_register import auth_register
+   
+def test_auth_register(): 
+    
+<<<<<<< HEAD
+    # SET UP BEGIN
+=======
+    # SETUP BEGIN
+>>>>>>> daniel_branch
+    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    token = authRegisterDic['token']
+    u_id = authRegisterDic['u_id']
+    
+<<<<<<< HEAD
+    # SET UP END
+    
+    # calling auth_logout function to check that I successfully registered
+    auth_logout(token)
+    
+    # calling auth_login function to check that the account was successfully registered
+=======
+    # SETUP END
+    
+    # Testing auth_logout function to check that I successfully registered
+    auth_logout(token)
+    
+    # Testing auth_login function to check that the account was successfully registered
+>>>>>>> daniel_branch
+    auth_login("valid@email", "validpassword")
+    
+    
+    
+def test_auth_register_bad(): 
+    
+<<<<<<< HEAD
+    # SET UP BEGIN
+=======
+    # SETUP BEGIN
+>>>>>>> daniel_branch
+    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    token = authRegisterDic['token']
+    u_id = authRegisterDic['u_id']
+    
+<<<<<<< HEAD
+    # SET UP END
+    
+    with pytest.raises(ValueError):
+        # calling function with invalid email 
+        auth_register("invalidemail", "validpassword1", "firstname1", "lastname1")
+        # calling function with already registered email
+        auth_register("valid@email", "validpassword1", "firstname1", "lastname1") 
+        # calling function with invalid password
+        auth_register("valid@email1", "ivp", "firstname1", "lastname1")
+        # calling function with invalid first_name
+        auth_register("valid@email1", "validpassword1", "firstnameiswayyyyyyyyyytoooooooooooooolongsounforunatelyitwillcauseanerror", "lastname1")
+        # calling function with invalid last_name
+        auth_register("valid@email1", "validpassword1", "firstname1", "lastnameiswayyyyyyyyyytoooooooooooooolongsounforunatelyitwillcauseanerror")
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+=======
+    # SETUP END
+    
+    with pytest.raises(ValueError):
+        # Testing function with invalid email 
+        auth_register("invalidemail", "validpassword1", "firstname1", "lastname1")
+        # Testing function with already registered email
+        auth_register("valid@email", "validpassword1", "firstname1", "lastname1") 
+        # Testing function with invalid password
+        auth_register("valid@email1", "ivp", "firstname1", "lastname1")
+        # Testing function with invalid first_name
+        auth_register("valid@email1", "validpassword1", "firstnameiswayyyyyyyyyytoooooooooooooolongsounforunatelyitwillcauseanerror", "lastname1")
+        # Testing function with invalid last_name
+        auth_register("valid@email1", "validpassword1", "firstname1", "lastnameiswayyyyyyyyyytoooooooooooooolongsounforunatelyitwillcauseanerror")
+
+>>>>>>> daniel_branch
