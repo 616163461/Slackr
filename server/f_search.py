@@ -1,8 +1,8 @@
-#Function: user_profile
-#Parameter: (token, u_id)
-#Output: {email, name_first, name_last, handle_str}
-#ValueError: User with u_id is not a valid user
-#Description: For a valid user, returns information about their email, first name, last name, and handle
+# Function: search()
+# Parameter: (token, query_str)
+# Output: {}
+# Exception: N/A
+# Description: Given a query string, return a collection of messages that match the query
 
 def search(token, query_str):
     messages = {}
