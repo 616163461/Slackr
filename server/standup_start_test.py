@@ -20,7 +20,7 @@ from f_message_send import message_send
 
 def test_standup_start():
     # Valid channel ID
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     createValidChannelDict = channels_create(token, "validchannel", True)
@@ -29,7 +29,7 @@ def test_standup_start():
     
     
     # Invalid channel ID
-    registerInvalidUserDict = auth_register("gmail@gmail.com", "password", "Thom", "Browne")
+    registerInvalidUserDict = auth_register("valid2@email.com", "password", "Thom", "Browne")
     invalid_token = registerInvalidUserDict["token"]
     invalid_uid = registerValidUserDict["u_id"]
     createInvalidChannelDict = channels_create(invalid_token, "invalidchannel", True)
