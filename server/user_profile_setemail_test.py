@@ -14,8 +14,8 @@ from f_auth_logout import auth_logout
 def test_user_profile_setemail():
     # SETUP BEGIN
     validAuthRegisterDic = auth_register("richard123@gmail.com", "validpassword", "Richard", "Jiang")
-    token = authRegisterDic['token']
-    u_id = authRegisterDic['u_id']
+    token = validAuthRegisterDic['token']
+    u_id = validAuthRegisterDic['u_id']
     email_good = "richard123@gmail.com"
     
     invalidAuthRegisterDicTwo = auth_register("richard3@gmail.com", "validpassword", "firstname", "lastname")
