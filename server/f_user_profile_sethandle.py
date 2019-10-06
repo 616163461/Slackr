@@ -4,6 +4,7 @@
 # Exception: ValueError when: 
 # - handle_str is no more than 20 characters
 # Description: Update the authorised user's handle (i.e. display name)
+#
 
 def user_profile_sethandle(token, handle_str):
     pass

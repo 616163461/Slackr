@@ -1,8 +1,9 @@
-#Functions: search()
-#Parameters: (token, query_str)
-#Output: {messages}
-#ValueError: N/A
-#Description: Given a query string, return a collection of messages that match the query
+# Function: search()
+# Parameter: (token, query_str)
+# Output: { messages }
+# Exception: N/A
+# Description: Given a query string, return a collection of messages that match the query
+#
 
 import pytest
 from f_search import search
@@ -15,29 +16,29 @@ from f_channel_messages import channel_messages
 
 def test_search(): 
     
-    #SET UP BEGIN
-    #User One 
+    # SETUP BEGIN
+    # User One 
     validAuthRegisterDicOne = auth_register("richard123@gmail.com", "validpassword", "Richard", "Jiang")
     token_user_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
-    #User Two
+    # User Two
     validAuthRegisterDicTwo = auth_register("daniel123@gmail.com", "validpassword", "Daniel", "Yang")
     token_user_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     
-    #False User Three
+    # False User Three
     invalidAuthRegisterDic = auth_register("richard123@gmail.com", "validpassword", "firstname", "lastname")
     invalid_token = invalidAuthRegisterDic['token']
     auth_logout(invalid_token) #Creates an Invalid Token
     
-    #Create a channel
+    # Create a channel
     channel_id = channels_create(token, "Channel Nine", True)
     
-    #Invite the members
+    # Invite the members
     channel_invite(token_user_one, channel_id, u_id_one)
     channel_invite(token_user_two, channel_id, u_id_two)
     
-    #Send the messages
+    # Send the messages
     message_send(token_user_two, channel_id, "Safe and secure society")
     message_send(token_user_one, channel_id, "Hello")
     message_send(token_user_two, channel_id, "Hellomydude")
@@ -49,7 +50,7 @@ def test_search():
     message_send(token_user_one, channel_id, "New world. New skills.")
     message_send(token_user_one, channel_id, "New world")
     
-    #Find the Message ID's
+    # Find the Message ID's
     channelMessagesDic = channel_messages(token, channel_id, 0)
     message_list = channelMessagesDic["messages"]
     message_dic = message_list[0]
@@ -58,15 +59,15 @@ def test_search():
     message_id_two = message_dic_two["message_id"]
     message_dic_three = message_list[3]
     message_id_hellomyman = message_dic_three["message_id"]
-    #SET UP END
+    # SETUP END
     
-    #Testing for no results
+    # Testing for no results
     assert search(token_user_one, "???") == {}
     
-    #Testing for one result
+    # Testing for one result
     assert search(token_user_one, "Safe") == {"message_id" : message_id_safe , "u_id": u_id_two, "message" : "Safe and secure society", "time_created" : "19:35", "is_unread" : True}
     
-    #Testing for two or more results
+    # Testing for two or more results
     assert search(token_user_one, "Hellomy") == [{  "message_id" : 112,
         "u_id": message_id_two, 
         "message" : "Hellomydude",
@@ -81,7 +82,9 @@ def test_search():
         "is_unread" : True
     }]
     
-    #Testing Bad Cases
+    # Testing Bad Cases
     with pytest.raises(ValueError):
-        #Bad token with multiple search results
-        search(invalid_token, "hey")
+        # Bad token with multiple search results
+        search(invalid_token, "Hellomy")
+        # Bad token with no search results
+        search(invalid_token, "ahahahahahaha")
