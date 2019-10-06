@@ -1,4 +1,3 @@
-
 # Function name: channel_details()
 # Parameters: (token, channel_id)
 # Return type: { name, owner_members, all_members }
@@ -21,7 +20,7 @@ def test_channel_details():
     
     # SET UP BEGIN 
 
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
@@ -35,13 +34,13 @@ def test_channel_details():
 def test_channel_details_bad(): 
     
     # SET UP BEGIN
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    authRegisterDicOne = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     channelsCreateDicOne = channels_create(token_one, "validchannel1", True)
