@@ -23,6 +23,7 @@ Assumed for all functions that passes “u_id” as an argument:
 Assumed that the user ID is a non-negative integer and not a string
 Assumed for all functions that pass “message_id” as an argument:
 Assumed that the message_id is a valid, unique, and non-negative integer
+
 Auth_login:
 Assumed that the user is not logged in
 Assumed that user is inputting english characters/integers only
