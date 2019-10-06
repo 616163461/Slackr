@@ -11,4 +11,7 @@
 #
 
 def message_remove(token, message_id):
-    pass
+    
+    message_remove_dict = {}
+    
+    return message_remove_dict
