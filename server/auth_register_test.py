@@ -18,7 +18,7 @@ def test_auth_register():
 
     # SETUP BEGIN
 
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
@@ -28,16 +28,20 @@ def test_auth_register():
     auth_logout(token)
     
     # Testing auth_login function to check that the account was successfully registered
-    auth_login("valid@email", "validpassword")
+    auth_login("valid@email.com", "validpassword")
     
     
 def test_auth_register_bad(): 
     
     # SETUP BEGIN
 
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
+    
+    authRegisterDic_one = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
+    token_one = authRegisterDic_one['token']
+    u_id_one = authRegisterDic_one['u_id']
     
     # SETUP END
     
@@ -45,10 +49,10 @@ def test_auth_register_bad():
         # Testing function with invalid email 
         auth_register("invalidemail", "validpassword1", "firstname1", "lastname1")
         # Testing function with already registered email
-        auth_register("valid@email", "validpassword1", "firstname1", "lastname1") 
+        auth_register("valid@email.com", "validpassword1", "firstname1", "lastname1") 
         # Testing function with invalid password
-        auth_register("valid@email1", "ivp", "firstname1", "lastname1")
+        auth_register("valid2@email.com", "ivp", "firstname1", "lastname1")
         # Testing function with invalid first_name
-        auth_register("valid@email1", "validpassword1", "firstnameiswayyyyyyyyyytoooooooooooooolongsounforunatelyitwillcauseanerror", "lastname1")
+        auth_register("valid2@email.com", "validpassword1", "firstnameiswayyyyyyyyyytoooooooooooooolongsounforunatelyitwillcauseanerror", "lastname1")
         # Testing function with invalid last_name
-        auth_register("valid@email1", "validpassword1", "firstname1", "lastnameiswayyyyyyyyyytoooooooooooooolongsounforunatelyitwillcauseanerror")
+        auth_register("valid2@email.com", "validpassword1", "firstname1", "lastnameiswayyyyyyyyyytoooooooooooooolongsounforunatelyitwillcauseanerror")
