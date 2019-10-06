@@ -15,7 +15,7 @@ from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_channel_messages import channel_messages
 from f_channel_invite import channel_invite
-from f_channel_edit import channel_edit
+from f_message_edit import message_edit
 
 
 def test_message_edit():
@@ -51,16 +51,16 @@ def test_message_edit():
     # SETUP END
 
     # Asserting that the default case works
-    assert edit_message(token, message_id, message_list[0]) == {}
+    assert message_edit(token, message_id, message_list[0]) == {}
     
     # Testing that ValueError is raised when invalid parameters are passed
     with pytest.raises(ValueError):
         
         # Testing function with an invalid token
-        edit_message(token_one, message_id, message_list[0])
+        message_edit(token_one, message_id, message_list[0])
 
         # Testing function with an invalid message id
-        edit_message(token_one, invalid_messageid, message_list[1])
+        message_edit(token_one, invalid_messageid, message_list[1])
 
 
 
