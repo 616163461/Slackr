@@ -23,32 +23,32 @@ def test_auth_passwordreset_reset():
     
     # SETUP BEGIN 
     
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email,com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
     # SETUP END 
     
-    auth_passwordreset_request("valid@email")
+    auth_passwordreset_request("valid@email.com")
     
     # setting password 
     auth_passwordreset_reset("reset_code", "new_password")
     
     # checking I can log in with the new password
-    auth_login("valid@email", "new_password")
+    auth_login("valid@email.com", "new_password")
 
 
 def test_auth_passwordreset_reset_bad(): 
     
     # SETUP BEGIN 
 
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
     # SETUP END 
     
-    auth_passwordreset_request("valid@email")
+    auth_passwordreset_request("valid@email.com")
     
     with pytest.raises(ValueError):     
         # Testing function with invalid reset code
