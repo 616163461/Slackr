@@ -2,6 +2,8 @@ COMP1531 ITERATION 1 Thom_Browne
 
 
 EPIC STORY 1: User should be able to login to a unique profile from the website, and can simply logout
+
+
 ID: US 1.1
 Name: User unique login/authorization
 User-Story Description: As a user, I want to be able to log in with an email and password so that I can access the user portal
@@ -57,6 +59,8 @@ Priority: Essential
 Size: 3 Hours
 
 EPIC STORY 2: Users can access the functionality of the channels
+
+
 ID: US 2.1
 Name: View channels
 User-Story Description: As a user, I would like to view the list of channels which I have already joined, so that I can easily choose channels to open
@@ -236,6 +240,8 @@ Priority: Essential
 Size: 3 Hours
 
 EPIC STORY 3: As an admin, I want to manage the number of admins
+
+
 ID: US 3.1
 Name: Manage admins
 User-Story Description: As an admin, I want to be able to make other users to be admin or not so that I can manage the admins
@@ -248,6 +254,8 @@ Priority: Optional
 Size: 4 Hours
 
 EPIC STORY 4: Admin should be able to login to a unique profile that is hidden from a user’s view. 
+
+
 ID: US 4.1
 Name: Admin login
 User-Story Description: As an admin, I want to be able to log in with a username and password so that I can access the admin portal 
