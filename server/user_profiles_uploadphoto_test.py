@@ -18,7 +18,7 @@ from io import BytesIO
 
 
 def user_profiles_uploadphoto_test():
-    validAuthRegisterDic = auth_register("valid@gmail.com", "validpassword", "firstname", "lastname")
+    validAuthRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
 
