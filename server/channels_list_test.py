@@ -17,16 +17,18 @@ from f_auth_logout import auth_logout
 
 def test_channels_list(): 
     
-    # SET UP BEGIN 
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    # SETUP BEGIN 
+    
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("validemail1@gmail.com", "validpassword1", "firstname1", "lastname1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
+    
     # SETUP END
     
     # Testing function using authorised user
@@ -36,8 +38,8 @@ def test_channels_list():
 
 def test_channels_list_bad(): 
     
-    # SET UP BEGIN 
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    # SETUP BEGIN 
+    authRegisterDic = auth_register("invalidemail", "invalidpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
@@ -45,7 +47,6 @@ def test_channels_list_bad():
     
     # SETUP END 
 
-    
     auth_logout(token)
     with pytest.raises(ValueError):
         # Testing function using invalid token 
