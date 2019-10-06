@@ -17,13 +17,13 @@ from f_channel_details import channel_details
 def test_channel_invite(): 
     
     # SET UP BEGIN 
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("valid@email1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     # SETUP END 
@@ -37,19 +37,19 @@ def test_channel_invite():
 
 def test_channel_invite_bad(): 
     # SET UP BEGIN 
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
 
-    authRegisterDicOne = auth_register("valid@email1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     channelsCreateDicOne = channels_create(token_one, "validchannel1", True)
     channel_id_one = channelsCreateDicOne['channel_id']
     
-    authRegisterDicTwo = auth_register("valid@email2", "validpassword2", "firstname2", "lastname2")
+    authRegisterDicTwo = auth_register("valid3@email.com", "validpassword2", "firstname2", "lastname2")
     token_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     # SETUP END
