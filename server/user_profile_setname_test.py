@@ -21,8 +21,8 @@ def test_user_profile_setname():
     
     
     validAuthRegisterDic = auth_register("richard123@gmail.com", "validpassword", "Richard", "Jiang")
-    token = authRegisterDic['token']
-    u_id = authRegisterDic['u_id']
+    token = validAuthRegisterDic['token']
+    u_id = validAuthRegisterDic['u_id']
 
    
     invalidAuthRegisterDicTwo = auth_register("richard1@gmail.com", "validpassword", "firstname", "lastname")
