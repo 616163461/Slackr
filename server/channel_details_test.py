@@ -27,11 +27,11 @@ def test_channel_details_bad():
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDic1 = auth_register("valid@email", "validpassword", "firstname", "lastname")
-    token1 = authRegisterDic['token']
-    u_id1 = authRegisterDic['u_id']
+    authRegisterDic1 = auth_register("valid@email1", "validpassword1", "firstname1", "lastname1")
+    token1 = authRegisterDic1['token']
+    u_id1 = authRegisterDic1['u_id']
     channelsCreateDic1 = channels_create(token1, "validchannel1", True)
-    channel_id1 = channelsCreateDic['channel_id']
+    channel_id1 = channelsCreateDic1['channel_id']
     # SET UP END 
     
     with pytest.raises(ValueError): 
