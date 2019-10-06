@@ -1,6 +1,7 @@
 # Function name: message_edit()
 # Parameters: (token, message_id, message)
 # Return type: {}
+# Exception: N/A
 # Description: Given a message, update it's text with new text
 #
 
