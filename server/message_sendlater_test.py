@@ -1,12 +1,22 @@
+# Function: message_sendlater()
+# Parameter: (token, channel_id, message, time_sent)
+# Output: {}
+# Exception: ValueError when:
+# - Channel (based on ID) does not exist
+# - Message is more than 1000 characters
+# - Time sent is a time in the past
+# Description: Send a message from authorised_user to the channel specified by channel_id automatically at a specified time in the future
+#
+
+import pytest
 from f_message_sendlater import message_sendlater
 from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_channel_invite import channel_invite
-import pytest
 
 def test_send_message_later():
 
-    # SET UP BEGIN
+    # SETUP BEGIN
     
     # Generate a valid user
     registerValidUserDict = auth_register("thom_browne@gmail.com", "password", "Thom", "Browne")
@@ -39,14 +49,14 @@ def test_send_message_later():
     # Testing that ValueError is raised when invalid parameters are passed
     with pytest.raises(ValueError, match = r"*"):
         
-        # calling function with an invalid token
+        # Testing function with an invalid token
         message_sendlater(invalid_token, channel_id, message, timesent)
         
-        # calling function with an invalid channel id
+        # Testing function with an invalid channel id
         message_sendlater(token, invalid_channelid, message, timesent)
         
-        # calling function with an invalid message
+        # Testing function with an invalid message
         message_sendlater(token, channel_id, invalid_message, timesent)
         
-        # calling function with an invalid timesent input
+        # Testing function with an invalid timesent input
         message_sendlater(token, channel_id, message, invalid_timesent)
