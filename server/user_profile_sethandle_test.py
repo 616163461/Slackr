@@ -17,11 +17,11 @@ def user_profile_sethandle_test():
     handle_str_bad =  "goodhandle"
     handle_str_max = "hithisis20characters"
     
-    validAuthRegisterDic = auth_register("richard123@gmail.com", "validpassword", "Richard", "Jiang")
+    validAuthRegisterDic = auth_register("valid@email.com", "validpassword", "Richard", "Jiang")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
-    invalidAuthRegisterDicTwo = auth_register("richard2@gmail.com", "validpassword", "firstname", "lastname")
+    invalidAuthRegisterDicTwo = auth_register("valid2@email.com", "validpassword", "firstname", "lastname")
     invalid_token = invalidAuthRegisterDicTwo['token']
     invalid_u_id = invalidAuthRegisterDicTwo['u_id']
     # Invalidates token
