@@ -12,10 +12,13 @@ from f_auth_logout import auth_logout
 
 
 def test_auth_logout(): 
+    
     # SETUP BEGIN
+    
     authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
+    
     # SETUP END
     
     with pytest.raises(ValueError): 
