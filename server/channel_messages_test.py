@@ -23,20 +23,22 @@ from f_channel_leave import channel_leave
 from f_auth_logout import auth_logout
 from f_message_send import message_send
 
-
 def test_channel_messages(): 
-    # SET UP BEGIN 
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    
+    # SETUP BEGIN 
+    
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDic1 = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDic1 = auth_register("validemail1@gmail.com", "validpassword1", "firstname1", "lastname1")
     token1 = authRegisterDic1['token']
     u_id1 = authRegisterDic1['u_id']
     
     message_send(token, channel_id, "validmessage")
+    
     # SETUP END
     
     # Couldn't assert since unable to obtain message_id also need to assert end == - 1
@@ -50,23 +52,25 @@ def test_channel_messages():
     channel_messages(token, channel_id, 0)
     
     # Checking that the start index works 
-    
+    channel_messages(token, channel_id, 31)
     
     
 def test_channel_messages_bad(): 
 
-    # SET UP BEGIN 
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    # SETUP BEGIN 
+    
+    authRegisterDic = auth_register("invalidemail", "invalidpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("invalidemail1", "invalidpassword1", "firstname1", "lastname1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     
     message_send(token, channel_id, "validmessage")
+    
     # SETUP END
     
     with pytest.raises(ValueError): 
@@ -76,7 +80,7 @@ def test_channel_messages_bad():
         channel_messages(token_one, channel_id, 0)
        
     message_send(token, channel_id, "secondvalidmessage")
+    
     with pytest.raises(ValueError): 
         # Testing function with starting index greater than total number of messages in the channel
         channel_messages(token, channel_id, 10)
-
