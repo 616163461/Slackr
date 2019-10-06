@@ -14,17 +14,17 @@ from f_auth_logout import auth_logout
 def test_user_profile():
 
     # SETUP BEGIN
-    validAuthRegisterDic = auth_register("richard123@gmail.com", "validpassword", "Richard", "Jiang")
+    validAuthRegisterDic = auth_register("valid@email.com", "validpassword", "Richard", "Jiang")
     goodtoken = validAuthRegisterDic['token']
     goodu_id = validAuthRegisterDic['u_id']
     
-    invalidAuthRegisterDic = auth_register("richard2@gmail.com", "validpassword", "firstname", "lastname")
+    invalidAuthRegisterDic = auth_register("valid2@email.com", "validpassword", "firstname", "lastname")
     invalid_token = invalidAuthRegisterDic['token']
     auth_logout(invalid_token) #Creates an Invalid Token
     badu_id = "invaliduserid"
     # SETUP END
     
-    assert  user_profile(goodtoken, goodu_id) == {'email' : "richardjiang123@gmail.com", 'name_first' : "Richard", 'name_last' : "Jiang", 'handle_str' : "Faerid"}
+    assert  user_profile(goodtoken, goodu_id) == {'email' : "valid@email.com", 'name_first' : "Richard", 'name_last' : "Jiang", 'handle_str' : "Faerid"}
     # In Iteration 1, auth_register doesn't let you set a handle_str...
     # Assume handle_str is "Faerid" in this scenario
     
