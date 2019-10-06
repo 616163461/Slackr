@@ -15,11 +15,12 @@ Following on from generating the test cases in iteration 1, we have decided to a
 This flowchart demonstrates how we will be implementing the functions and the priority of the functions. This will form our method of using logical buckets to tackle iteration 2. The priority order is based upon the starting function to the ending function, with the inclusion of side priority functions as they branch off the side.
 
 https://imgur.com/a/KyXcX10 
-
+( Link to the flowchart image )
 
 The following table is a more detailed representation of the priorities in the workflow. The time column is an estimation of the number of hours we are planning to spend for each function.
 
 
 https://imgur.com/a/9pyCf2Z 
+( Link to the table )
 
 As a result, our method of implementing the functions consists of implementing them in a way that we are able to deliver a minimum viable product. Our approach ensures that we have a working product that we can deliver with the proper functionalities and valid authentication.
