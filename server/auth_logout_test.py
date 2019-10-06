@@ -15,7 +15,7 @@ def test_auth_logout():
     
     # SETUP BEGIN
     
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
@@ -23,11 +23,11 @@ def test_auth_logout():
     
     with pytest.raises(ValueError): 
         # Testing login function with user which hasn't been logged out
-        auth_login("validemail", "validpassword")
+        auth_login("valid@email.com", "validpassword")
         
     auth_logout(token)
     # Testing login function with logged out user to check he's succesfully logged out 
-    auth_login("validemail", "validpassword")
+    auth_login("valid@email.com", "validpassword")
     
     auth_logout(token)
     # Testing logout function with a logged out user 
