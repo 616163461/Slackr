@@ -20,8 +20,11 @@ def test_auth_passwordreset_reset():
     
     auth_passwordreset_request("valid@email")
     
-    # I don't have anyway of getting the reset_code so I can't test this
+    # setting password 
     auth_passwordreset_reset("reset_code", "new_password")
+    
+    # checking I can log in with the new password
+    auth_login("valid@email", "new_password")
 
 
 def test_auth_passwordreset_reset(): 
