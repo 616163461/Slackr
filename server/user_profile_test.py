@@ -15,8 +15,8 @@ def test_user_profile():
 
     # SETUP BEGIN
     validAuthRegisterDic = auth_register("richard123@gmail.com", "validpassword", "Richard", "Jiang")
-    goodtoken = authRegisterDic['token']
-    goodu_id = authRegisterDic['u_id']
+    goodtoken = validAuthRegisterDic['token']
+    goodu_id = validAuthRegisterDic['u_id']
     
     invalidAuthRegisterDic = auth_register("richard2@gmail.com", "validpassword", "firstname", "lastname")
     invalid_token = invalidAuthRegisterDic['token']
