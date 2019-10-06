@@ -10,4 +10,7 @@
 # 
 
 def admin_userperm_change(token, u_id, permission_id):
-    pass
+    
+    admin_userperm_change_dict = {}
+    
+    return admin_userperm_change_dict
