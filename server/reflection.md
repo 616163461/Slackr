@@ -10,7 +10,7 @@ Instead of using the GitLab board that was provided, we opted to primarily use T
 
 
 https://imgur.com/a/tX0HsC3
-
+( Link to the Trello Board image )
 
 Figure 1.1 - Trello Board as at 3/10/2019
 Our physical weekly meet-ups were also extremely useful; by speaking with team members in person we were able to bounce ideas off each other and were able to reach conclusions much faster with proper direction, i.e, ways to approach a certain test function and how to implement them.
