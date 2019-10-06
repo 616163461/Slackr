@@ -26,12 +26,12 @@ def test_auth_login():
     
     with pytest.raises(ValueError): 
         # Testing function with account which hasn't been logged out 
-        auth_login("validemail", "validpassword")
+        auth_login("valid@email.com", "validpassword")
      
     # Testing function with account which has been logged out 
     auth_logout(token)
 
-    authLoginDic = auth_login("validemail", "validpassword")
+    authLoginDic = auth_login("valid@email.com", "validpassword")
     token = authLoginDic['token']
     u_id = authLoginDic['u_id']
     
