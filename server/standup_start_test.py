@@ -19,7 +19,7 @@ from f_standup_start import standup_start
 from f_message_send import message_send
 
 def test_standup_start():
-	# Valid channel ID
+    # Valid channel ID
     authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
