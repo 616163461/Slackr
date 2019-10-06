@@ -1,14 +1,27 @@
+# Function: message_remove()
+# Parameters: (token, message_id)
+# Output: {}
+# Exception:ValueError when:
+# - Message (based on ID) no longer exists
+# AccessError when:
+# - all of the following are not true
+# - Message with message_id was not sent by the authorised user making this request
+# - Message with message_id was not sent by an owner of this channel
+# - Message with message_id was not sent by an admin or owner of the slack
+#
+
+import pytest
 from f_message_send import message_send
 from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_message_remove import message_remove
 from f_channel_messages import channel_messages
 from f_channel_invite import channel_invite
-import pytest
+
 
 def test_message_remove():
     
-    # SET UP BEGIN
+    # SETUP BEGIN
     
     # Generate a valid user
     registerValidUserDict = auth_register("hwangyeji@gmail.com", "feelspecial", "Thom", "Browne")
@@ -43,7 +56,7 @@ def test_message_remove():
     # Invalidate the invalid user
     auth_logout(invalid_token)
     
-    # SET UP END
+    # SETUP END
     
     # Asserting that the default case works
     assert remove_message(token, message_id) == {}
@@ -51,8 +64,8 @@ def test_message_remove():
     # Testing that ValueError is raised when invalid parameters are passed
     with pytest.raises(ValueError, match = r"*"):
         
-        # calling function with an invalid token
+        # Testing function with an invalid token
         remove_message(invalid_token, message_id)
 
-        # calling function with an invalid message id
+        # Testing function with an invalid message id
         remove_message(valid_token, invalid_messageid)
