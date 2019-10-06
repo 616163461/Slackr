@@ -12,26 +12,4 @@
 #
 
 def auth_register(email, password, name_first, name_last): 
-<<<<<<< HEAD
     pass
-=======
-    
-    pass
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-def check_valid_email(email): 
-    regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
-    if(re.search(regex, email)):
-        return True
-    else:
-        return False
-    
->>>>>>> 35d67967a106c3c7d62aae781161f5fb5e25d128
