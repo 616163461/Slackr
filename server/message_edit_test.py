@@ -23,7 +23,7 @@ def test_message_edit():
     # SETUP BEGIN
     
     # Token creates the channel so it should be the owner
-	registerValidUserDict = auth_register("hwangyeji@gmail.com", "feelspecial", "Thom", "Browne")
+	#registerValidUserDict = auth_register("hwangyeji@gmail.com", "feelspecial", "Thom", "Browne")
     token = registerValidUserDict["token"]    
     u_id = registerValidUserDict["u_id"]
     createValidChannelDict = channels_create(token, "validchannel", True)
