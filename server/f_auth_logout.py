@@ -1,6 +1,7 @@
 # Function name: auth_logout()
 # Parameters: (token)
 # Return type: {}
+# Exception: N/A
 # Description: Given an active token, invalidates the taken to log the user out. 
 # Given a non-valid token, does nothing
 #
