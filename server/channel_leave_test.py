@@ -1,11 +1,13 @@
-import pytest
-from f_channel_invite import channel_invite
+from f_channel_details import channel_details
 from f_auth_register import auth_register
 from f_channels_create import channels_create
+from f_channel_join import channel_join
+from f_channel_leave import channel_leave
 from f_auth_logout import auth_logout
-from f_channel_details import channel_details
+import pytest
 
-def test_channel_invite(): 
+def test_channel_leave(): 
+    
     # SET UP BEGIN 
     authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
@@ -16,15 +18,21 @@ def test_channel_invite():
     authRegisterDic1 = auth_register("valid@email1", "validpassword1", "firstname1", "lastname1")
     token1 = authRegisterDic1['token']
     u_id1 = authRegisterDic1['u_id']
-    # SET UP END 
+    # SET UP END
     
-    channel_invite(token, channel_id, u_id1)
-    # asserting that the invited user is now a member of the channel
-    assert channel_details(token1, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{"u_id": u_id, "name_first": "firstname1", "name_last": "lastname1"}]}
-    # calling leave to check that he's a member of the channel
+    channel_join(token1, channel_id)
+    
+    # assuming admin isn't in all_members list since admin was specifically isn't a member
+    assert channel_details(token, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{"u_id": u_id1, "name_first": "firstname1", "name_last": "lastname1"}]}
+    
     channel_leave(token1, channel_id)
     
-def test_channel_invite_bad(): 
+    # checking that token1 user left the channel
+    assert channel_details(token, channel_id) = {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{}]}
+    
+    
+def test_channel_leave_bad(): 
+    
     # SET UP BEGIN 
     authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
@@ -35,38 +43,22 @@ def test_channel_invite_bad():
     authRegisterDic1 = auth_register("valid@email1", "validpassword1", "firstname1", "lastname1")
     token1 = authRegisterDic1['token']
     u_id1 = authRegisterDic1['u_id']
-    channelsCreateDic1 = channels_create(token1, "validchannel1", True)
-    channel_id1 = channelsCreateDic1['channel_id']
     
     authRegisterDic2 = auth_register("valid@email2", "validpassword2", "firstname2", "lastname2")
     token2 = authRegisterDic2['token']
     u_id2 = authRegisterDic2['u_id']
     # SET UP END 
     
+    channel_join(token1, channel_id)
     with pytest.raises(ValueError): 
-        # calling function with invalid channel_id
-        channel_invite(token, "invalidchannel_id", u_id1)
-        # calling function with channel_id which the authorised user isn't a member of
-        channel_invite(token, channel_id1, u_id2)
-        # calling function with an invalid u_id
-        channel_invite(token, channel_id, "invalidu_id")
+        # calling function using invalid channel_id
+        channel_leave(token1, "invalidchannel_id")
+        # calling function on user who isn't part of the channel
+        channel_leave(token2, channel_id)
         
     auth_logout(token1)
     with pytest.raises(ValueError): 
-        # calling function with invalid token
-        channel_invite(token1, channel_id1, u_id2)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        # calling function using invalid token
+        channel_leave(token1, channel_id)
+
+
