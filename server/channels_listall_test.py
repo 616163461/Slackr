@@ -18,7 +18,7 @@ from f_auth_logout import auth_logout
 def test_channels_listall(): 
     
     # SET UP BEGIN 
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
@@ -41,7 +41,7 @@ def test_channels_listall():
 def test_channels_listall_bad(): 
     
     # SET UP BEGIN 
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
