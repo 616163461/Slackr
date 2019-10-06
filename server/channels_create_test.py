@@ -14,8 +14,8 @@ from f_auth_logout import auth_logout
 
 def test_channels_create(): 
     
-    # SET UP BEGIN 
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    # SETUP BEGIN 
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
@@ -27,8 +27,8 @@ def test_channels_create():
 def test_channels_create_bad():
    
 
-    # SET UP BEGIN 
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    # SETUP BEGIN 
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
