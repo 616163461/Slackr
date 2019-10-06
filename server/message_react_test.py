@@ -19,13 +19,14 @@ from f_message_react import message_react
 def test_message_react(): 
     
     # SETUP BEGIN 
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("valid@email1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid1@email.com", "validpassword1", "firstname1", "lastname1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     
@@ -37,8 +38,8 @@ def test_message_react():
     
     # Assuming 123 is valid react_id
     react_id = 123
-    # SETUP END
     
+    # SETUP END
     
     assert message_react(token, message_id, react_id) == {}
    
@@ -46,18 +47,19 @@ def test_message_react():
 def test_message_react_bad(): 
     
     # SETUP BEGIN 
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("valid@email1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid1@email.com", "validpassword1", "firstname1", "lastname1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     channel_join(token_one, channel_id)
     
-    authRegisterDicTwo = auth_register("valid@email2", "validpassword2", "firstname2", "lastname2")
+    authRegisterDicTwo = auth_register("valid2@email.com", "validpassword2", "firstname2", "lastname2")
     token_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     
@@ -66,6 +68,7 @@ def test_message_react_bad():
     message_list = channelMessagesDic["messages"]
     message_dic = message_list[0]
     message_id = message_dic["message_id"]
+    
     # SETUP END
 
     with pytest.raises(ValueError): 
