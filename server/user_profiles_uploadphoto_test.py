@@ -17,7 +17,7 @@ from PIL import Image
 from io import BytesIO
 
 
-def user_ profiles_uploadphoto_test():
+def user_profiles_uploadphoto_test():
 
 
 	validAuthRegisterDic = auth_register("richard123@gmail.com", "validpassword", "firstname", "lastname")
