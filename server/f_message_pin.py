@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-def message_pin(token, message_id):
-    pass
-=======
 # Function name: message_pin()
 # Parameters: (token, message_id)
 # Return type: {}
@@ -19,4 +15,3 @@ def message_pin(token, message_id):
     message_pin_dict = {}
 
     return message_pin_dict
->>>>>>> daniel_branch

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-def message_react(token, message_id, react_id):
-    pass
-=======
 # Function name: message_react()
 # Parameters: (token, message_id, react_id)
 # Return type: {}
@@ -17,4 +13,3 @@ def message_react(token, message_id, react_id):
     message_react_dict = {}
 
     return message_react_dict
->>>>>>> daniel_branch

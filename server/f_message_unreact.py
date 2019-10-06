@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-def message_unreact(token, message_id, react_id): 
-    pass
-=======
 # Function name: message_unreact()
 # Parameters: (token, message_id, react_id)
 # Return type: {}
@@ -17,4 +13,3 @@ def message_unreact(token, message_id, react_id):
     message_unreact_dict = {}
 
     return message_unreact_dict
->>>>>>> daniel_branch
