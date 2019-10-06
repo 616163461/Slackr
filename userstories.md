@@ -18,7 +18,6 @@ When entering the incorrect combination, a warning message will be presented and
 Priority: Essential
 Size: 2 Hours
 
-
 ID US 1.3 
 Name: Register account
 User-Story Description: As a user, I want to be able to register for a new account so that I can login to the website
