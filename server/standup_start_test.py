@@ -23,13 +23,13 @@ def test_standup_start():
     authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
-	createValidChannelDict = channels_create(token, "validchannel", True)
+    createValidChannelDict = channels_create(token, "validchannel", True)
     channel_id = createValidChannelDict["channel_id"]
     time_finish = 19:15/02/10/2019
     
     
     # Invalid channel ID
- 	registerInvalidUserDict = auth_register("gmail@gmail.com", "password", "Thom", "Browne")
+    registerInvalidUserDict = auth_register("gmail@gmail.com", "password", "Thom", "Browne")
     invalid_token = registerInvalidUserDict["token"]
     invalid_uid = registerValidUserDict["u_id"]
     createInvalidChannelDict = channels_create(invalid_token, "invalidchannel", True)
