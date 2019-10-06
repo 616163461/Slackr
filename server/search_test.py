@@ -18,18 +18,19 @@ def test_search():
     
     # SETUP BEGIN
     # User One 
-    validAuthRegisterDicOne = auth_register("richard123@gmail.com", "validpassword", "Richard", "Jiang")
+    validAuthRegisterDicOne = auth_register("valid@email.com", "validpassword", "Richard", "Jiang")
     token_user_one = validAuthRegisterDicOne['token']
     u_id_one = validAuthRegisterDicOne['u_id']
     # User Two
-    validAuthRegisterDicTwo = auth_register("daniel123@gmail.com", "validpassword", "Daniel", "Yang")
+    validAuthRegisterDicTwo = auth_register("valid2@email.com", "validpassword", "Daniel", "Yang")
     token_user_two = validAuthRegisterDicTwo['token']
     u_id_two = validAuthRegisterDicTwo['u_id']
     
     # False User Three
-    invalidAuthRegisterDic = auth_register("richard123@gmail.com", "validpassword", "firstname", "lastname")
+    invalidAuthRegisterDic = auth_register("valid3@email.com", "validpassword", "firstname", "lastname")
     invalid_token = invalidAuthRegisterDic['token']
-    auth_logout(invalid_token) #Creates an Invalid Token
+    # Creates an Invalid Token
+    auth_logout(invalid_token) 
     
     # Create a channel
     channel_id = channels_create(token, "Channel Nine", True)
