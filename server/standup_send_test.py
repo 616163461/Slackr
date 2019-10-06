@@ -30,7 +30,7 @@ def test_standup_send():
     message_dict = message_list[0]
     message_id = message_dict["message_id"]
 
-    time = 19:16/02/10
+    time = "19:16/02/10"
 
     # Generate an invalid user
     registerInvalidUserDict = auth_register("kangdaniel@gmail.com", "password", "Kang", "Daniel")
