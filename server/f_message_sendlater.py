@@ -8,8 +8,8 @@
 # Description: Send a message from authorised_user to the channel specified by channel_id automatically at a specified time in the future
 #
 
-def send_message_later(token, channel_id, message, time_sent):
+def message_sendlater(token, channel_id, message, time_sent):
     
-    send_message_later_dict = {}
+    message_sendlater_dict = {}
     
-    return send_message_later_dict
+    return message_sendlater_dict
