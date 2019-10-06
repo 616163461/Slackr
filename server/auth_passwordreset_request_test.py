@@ -19,21 +19,21 @@ def test_auth_passwordreset_request():
 
     # SETUP BEGIN 
     
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
     # SETUP END 
     
     # Testing function with valid email
-    auth_passwordreset_request("valid@email")
+    auth_passwordreset_request("valid@email.com")
     
     
 def test_auth_passwordreset_request_bad(): 
 
     # SETUP BEGIN 
 
-    authRegisterDic = auth_register("valid@email", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
