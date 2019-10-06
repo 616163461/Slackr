@@ -1,6 +1,7 @@
 # Function name: auth_passwordreset_request()
 # Parameters: (email)
 # Return type: {}
+# Exception: N/A
 # Description: Given an email address, 
 # if the user is a registered user, 
 # send's them a an email containing a specific secret code, 
