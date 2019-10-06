@@ -47,9 +47,9 @@ def test_auth_login_bad():
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
-    authRegisterDic1 = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
-    token1 = authRegisterDic1['token']
-    u_id1 = authRegisterDic1['u_id']
+    authRegisterDicOne = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
+    token_one = authRegisterDicOne['token']
+    u_id_one = authRegisterDicOne['u_id']
     
     # SETUP END
     
