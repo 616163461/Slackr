@@ -18,7 +18,7 @@ def test_auth_login():
     
     # SETUP BEGIN
     
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
@@ -43,11 +43,11 @@ def test_auth_login_bad():
     
     # SETUP BEGIN
     
-    authRegisterDic = auth_register("validemail", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
-    authRegisterDicOne = auth_register("validemail1", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     
@@ -57,8 +57,8 @@ def test_auth_login_bad():
         # Testing function with invalid email
         auth_login("invalidemail", "validpassword")
         # Testing function with invalid password
-        auth_login("validemail", "invalidpassword")
+        auth_login("valid@email.com", "invalidpassword")
         # Testing function with incorrect password
-        auth_login("validemail", "incorrectpassword")
+        auth_login("valid@email.com", "incorrectpassword")
         # Testing function with incorrect email
-        auth_login("validemail1", "validpassword")
+        auth_login("valid2@email.com", "validpassword")
