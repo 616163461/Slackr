@@ -66,7 +66,7 @@ def test_search():
     assert search(token, "???") == {}
     
     # Testing for one result
-    assert search(token, "Safe") == {"message_id" : message_id_safe, "u_id" : u_id_one, "message" : "Safe and secure society", "time_created" : "19:35", "is_unread" : True}
+    assert search(token, "Safe") == {"message_id" : message_id_safe, "u_id" : u_id_one, "message" : "Safe and secure society", "time_created" : "19:35", "is_unread" : False}
     
     # Testing for two or more results
     assert search(token, "Hellomy") == [{  
@@ -74,14 +74,14 @@ def test_search():
         "u_id" : message_id_one, 
         "message" : "Hellomydude",
         "time_created" : "17:35",
-        "is_unread" : True
+        "is_unread" : False
     },
     {
         "message_id" : 113,
         "u_id" : message_id_two, 
         "message" : "Helloymyman",
         "time_created" : "18:35",
-        "is_unread" : True
+        "is_unread" : False
     }]
     
     # Testing Bad Cases
