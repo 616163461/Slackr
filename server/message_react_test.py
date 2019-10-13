@@ -79,8 +79,6 @@ def test_message_react_bad():
     # SETUP END
 
     with pytest.raises(ValueError): 
-        # Testing function with user who isn't admin 
-        message_react(token_one, message_id, react_id)
         # Testing function with invalid message_id
         message_react(token, "invalidmessage_id", react_id)
         # Testing function with user who isn't part of the channel
