@@ -18,14 +18,14 @@ def test_search():
     
     # SETUP BEGIN
     # User One 
-    validAuthRegisterDicOne = auth_register("valid@email.com", "validpassword", "Richard", "Jiang")
-    token = validAuthRegisterDicOne['token']
-    u_id = validAuthRegisterDicOne['u_id']
+    validAuthRegisterDic = auth_register("valid@email.com", "validpassword", "Richard", "Jiang")
+    token = validAuthRegisterDic['token']
+    u_id = validAuthRegisterDic['u_id']
     
     # User Two
-    validAuthRegisterDicTwo = auth_register("valid2@email.com", "validpassword", "Daniel", "Yang")
-    token_one = validAuthRegisterDicTwo['token']
-    u_id_one = validAuthRegisterDicTwo['u_id']
+    validAuthRegisterDicOne = auth_register("valid2@email.com", "validpassword", "Daniel", "Yang")
+    token_one = validAuthRegisterDicOne['token']
+    u_id_one = validAuthRegisterDicOne['u_id']
     
     # False User Three
     invalidAuthRegisterDic = auth_register("valid3@email.com", "validpassword", "firstname", "lastname")
