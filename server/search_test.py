@@ -70,15 +70,15 @@ def test_search():
     
     # Testing for two or more results
     assert search(token, "Hellomy") == [{  
-        "message_id" : 112,
-        "u_id" : message_id_one, 
+        "message_id" : message_id,
+        "u_id" : u_id, 
         "message" : "Hellomydude",
         "time_created" : "17:35",
         "is_unread" : False
     },
     {
-        "message_id" : 113,
-        "u_id" : message_id_two, 
+        "message_id" : message_id_one,
+        "u_id" : u_id_one, 
         "message" : "Helloymyman",
         "time_created" : "18:35",
         "is_unread" : False
