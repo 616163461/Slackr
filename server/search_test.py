@@ -20,11 +20,12 @@ def test_search():
     # User One 
     validAuthRegisterDicOne = auth_register("valid@email.com", "validpassword", "Richard", "Jiang")
     token = validAuthRegisterDicOne['token']
-    u_id_one = validAuthRegisterDicOne['u_id']
+    u_id = validAuthRegisterDicOne['u_id']
+    
     # User Two
     validAuthRegisterDicTwo = auth_register("valid2@email.com", "validpassword", "Daniel", "Yang")
-    token_user_two = validAuthRegisterDicTwo['token']
-    u_id_two = validAuthRegisterDicTwo['u_id']
+    token_one = validAuthRegisterDicTwo['token']
+    u_id_one = validAuthRegisterDicTwo['u_id']
     
     # False User Three
     invalidAuthRegisterDic = auth_register("valid3@email.com", "validpassword", "firstname", "lastname")
@@ -36,17 +37,17 @@ def test_search():
     channel_id = channels_create(token, "Channel Nine", True)
     
     # Invite the member
-    channel_invite(token_user_two, channel_id, u_id_two)
+    channel_invite(token, channel_id, u_id_one)
     
     # Send the messages
-    message_send(token_user_two, channel_id, "Safe and secure society")
+    message_send(token_one, channel_id, "Safe and secure society")
     message_send(token, channel_id, "Hello")
-    message_send(token_user_two, channel_id, "Hellomydude")
+    message_send(token_one, channel_id, "Hellomydude")
     message_send(token, channel_id, "Hellomyman")
     message_send(token, channel_id, "Seriously cool")
-    message_send(token_user_two, channel_id, "Absolutely astonishing")
+    message_send(token_one, channel_id, "Absolutely astonishing")
     message_send(token, channel_id, "Congratulations on the role!")
-    message_send(token_user_two, channel_id, "Happy work anniversary!")
+    message_send(token_one, channel_id, "Happy work anniversary!")
     message_send(token, channel_id, "New world. New skills.")
     message_send(token, channel_id, "New world")
     
