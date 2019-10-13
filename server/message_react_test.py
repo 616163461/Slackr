@@ -42,6 +42,13 @@ def test_message_react():
     # SETUP END
     
     assert message_react(token, message_id, react_id) == {}
+    with pytest.raises(ValueError):
+        # Testing function can't react the message for a second time
+        message_react(token, message_id, react_id)
+    
+    # Testing function can unreact the message 
+    assert message_unreact(token, message_id, react_id) == {}
+    
    
         
 def test_message_react_bad(): 
