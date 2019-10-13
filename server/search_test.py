@@ -56,28 +56,28 @@ def test_search():
     message_list = channelMessagesDic["messages"]
     message_dic = message_list[0]
     message_id_safe = message_dic["message_id"]
-    message_dic_two = message_list[2]
+    message_dic_one = message_list[2]
+    message_id_one = message_dic_one["message_id"]
+    message_dic_two = message_list[3]
     message_id_two = message_dic_two["message_id"]
-    message_dic_three = message_list[3]
-    message_id_hellomyman = message_dic_three["message_id"]
     # SETUP END
     
     # Testing for no results
     assert search(token, "???") == {}
     
     # Testing for one result
-    assert search(token, "Safe") == {"message_id" : message_id_safe , "u_id": u_id_two, "message" : "Safe and secure society", "time_created" : "19:35", "is_unread" : True}
+    assert search(token, "Safe") == {"message_id" : message_id_safe , "u_id": u_id_one, "message" : "Safe and secure society", "time_created" : "19:35", "is_unread" : True}
     
     # Testing for two or more results
     assert search(token, "Hellomy") == [{  "message_id" : 112,
-        "u_id": message_id_two, 
+        "u_id": message_id_one, 
         "message" : "Hellomydude",
         "time_created" : "17:35",
         "is_unread" : True
     },
     {
        "message_id" : 113,
-        "u_id": message_id_three, 
+        "u_id": message_id_two, 
         "message" : "Helloymyman",
         "time_created" : "18:35",
         "is_unread" : True
