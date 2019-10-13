@@ -29,6 +29,7 @@ def test_message_react():
     authRegisterDicOne = auth_register("valid1@email.com", "validpassword1", "firstname1", "lastname1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
+    channel_join(token_one, channel_id)
     
     message_send(token, channel_id, "validmessage")
     channelMessagesDic = channel_messages(token, channel_id, 0)
@@ -42,12 +43,17 @@ def test_message_react():
     # SETUP END
     
     assert message_react(token, message_id, react_id) == {}
+    # Testing two users can react laugh one message
+    assert message_react(token_one, message_id, react_id) == {}
+    
     with pytest.raises(ValueError):
         # Testing function can't react the message for a second time
         message_react(token, message_id, react_id)
     
     # Testing function can unreact the message 
     assert message_unreact(token, message_id, react_id) == {}
+    
+    
     
    
         
