@@ -85,7 +85,7 @@ def test_search():
     }]
     
     # Testing Bad Cases
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match = r"*"):
         # Bad token with multiple search results
         search(invalid_token, "Hellomy")
         # Bad token with no search results
