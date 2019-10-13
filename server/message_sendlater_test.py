@@ -14,7 +14,7 @@ from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_channel_invite import channel_invite
 
-def test_message_send_later():
+def test_message_sendlater():
 
     # SETUP BEGIN
     
