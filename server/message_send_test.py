@@ -23,7 +23,7 @@ def test_message_send():
     createValidChannelDict = channels_create(token, "validchannel", True)
     channel_id = createValidChannelDict["channel_id"]
     channel_invite(token, channel_id, u_id)
-    message = "I Heart Hwang Yeji"
+    message = "I Heart Hayden Smith"
 
     # Generate an invalid user
     registerInvalidUserDict = auth_register("invalid1@email.com", "invalidpassword", "invalidfirstname", "invalidlastname")
