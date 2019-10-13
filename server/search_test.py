@@ -76,7 +76,7 @@ def test_search():
         "is_unread" : True
     },
     {
-       "message_id" : 113,
+        "message_id" : 113,
         "u_id": message_id_two, 
         "message" : "Helloymyman",
         "time_created" : "18:35",
