@@ -6,5 +6,4 @@
 #
 
 def search(token, query_str):
-    messages = {}
-    return messages
+    pass

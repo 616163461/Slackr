@@ -7,4 +7,7 @@
 #
 
 def user_profile_sethandle(token, handle_str):
-    pass
+    
+    user_profile_sethandle_dict = {}
+    
+    return user_profile_sethandle_dict

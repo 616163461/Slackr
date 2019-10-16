@@ -13,15 +13,15 @@ from f_auth_logout import auth_logout
 
 def test_user_profile_setemail():
     # SETUP BEGIN
-    validAuthRegisterDic = auth_register("richard123@gmail.com", "validpassword", "Richard", "Jiang")
-    token = authRegisterDic['token']
-    u_id = authRegisterDic['u_id']
-    email_good = "richard123@gmail.com"
+    validAuthRegisterDic = auth_register("valid@email.com", "validpassword", "Richard", "Jiang")
+    token = validAuthRegisterDic['token']
+    u_id = validAuthRegisterDic['u_id']
+    email_good = "valid@email.com"
     
-    invalidAuthRegisterDicTwo = auth_register("richard3@gmail.com", "validpassword", "firstname", "lastname")
+    invalidAuthRegisterDicTwo = auth_register("valid2@email.com", "validpassword", "firstname", "lastname")
     invalid_token = invalidAuthRegisterDicTwo['token']
     invalid_u_id = invalidAuthRegisterDicTwo['u_id']
-    email_bad = "rich"
+    email_bad = "bademail"
     auth_logout(invalid_token)
     # SETUP END
     # Default testing

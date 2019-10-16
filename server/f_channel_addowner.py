@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Function name: channel_addowner()
 # Parameters: (token, channel_id, u_id)
 # Return type: {}
@@ -15,7 +14,3 @@ def channel_addowner(token, channel_id, u_id):
     channel_addowner_dict = {}
 
     return channel_addowner_dict
-=======
-def channel_addowner(token, channel_id, u_id): 
-    pass
->>>>>>> 35d67967a106c3c7d62aae781161f5fb5e25d128

@@ -8,11 +8,7 @@
 #
 
 def channel_invite(token, channel_id, u_id):
-<<<<<<< HEAD
-    
+
     channel_invite_dict = {}
 
     return channel_invite_dict
-=======
-    pass
->>>>>>> 35d67967a106c3c7d62aae781161f5fb5e25d128

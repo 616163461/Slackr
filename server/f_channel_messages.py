@@ -14,6 +14,5 @@
 # returns -1 in "end" to indicate there are no more messages to load after this return.
 #
 
-
 def channel_messages(token, channel_id, start):
     pass

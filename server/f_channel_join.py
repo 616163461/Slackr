@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Function name: channel_join()
 # Parameters: (token, channel_id)
 # Return type: {}
@@ -14,7 +13,3 @@ def channel_join(token, channel_id):
     channel_join_dict = {}
 
     return channel_join_dict
-=======
-def channel_join(token, channel_id): 
-    pass
->>>>>>> 35d67967a106c3c7d62aae781161f5fb5e25d128
