@@ -41,6 +41,9 @@ def auth_passwordreset_reset():
     new_password = request.form.get('new_password')
     mask = 0 
     user_list = data['users']
+    if len(new_password) < 6:
+        # raise error saying password is too short 
+        return sendError("User's new password is too short , please re-enter valid password.")
     for user in user_list:
         if user['reset_code'] == reset_code:
             mask = 1
