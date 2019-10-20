@@ -62,7 +62,7 @@ def auth_passwordreset_request():
                 msg = Message("Reset Slackr password",
                     sender="snackathon123@gmail.com",
                     recipients=["snackathon123@gmail.com"])
-                msg.body = "Hey" + first_name + last_name + "\n" + "Here's the special code to reset the password for your Slackr account.  Special code: CIMICTOP10"
+                msg.body = "Hey " + first_name + " " + last_name + "\n" + "Here's the special code to reset the password for your Slackr account.  \nSpecial code: CIMICTOP10" + "\n\n" + "Kind Regards, \nSlackr Support Team"
                 mail.send(msg)
                 return 'Slackr password reset code sent successfully!'
             except Exception as e:
