@@ -16,12 +16,6 @@ from werkzeug.exceptions import HTTPException
 
 APP = Flask(__name__)
 
-data = {
-    'users' : [ 
-                {'token' : '123456', 'handle_str' : 'richardjiang', 'first_name' : 'Richard', 'last_name' : 'Jiang', 'password' : 'hash(hello12345)', 'email' : 'richard@email.com', 'u_id' : 22222} , 
-                {'token' : '654321', 'handle_str' : 'danielyang', 'first_name' : 'Daniel', 'last_name' : 'Yang', 'password' : 'mixedsignals', 'email' : 'dy@email.com', 'u_id' : 11111}
-              ]
-}
 
 def getData():
     with open('export.json', 'r') as FILE:
