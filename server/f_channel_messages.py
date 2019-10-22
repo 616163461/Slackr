@@ -44,7 +44,7 @@ def channel_messages():
                 end = 50 + int(start)
                 send_Success = True
                 end2 = end
-                if end == 50:
+                if len(channel['messages']) - int(start) < 50 :
                     end2 = -1
                 return sendSuccess({'messages' : messages[int(start):end], 'start' : start, 'end' : end2})
                 
