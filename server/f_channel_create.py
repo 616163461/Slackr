@@ -52,7 +52,7 @@ def channelsCreate():
         'is_public' : is_public,
         'owner_members' : [{'u_id' : u_id, 'name_first' : name_first, 'name_last' : name_last}],
         'all_members' : [{'u_id' : u_id, 'name_first' : name_first, 'name_last' : name_last}],
-        'messages' : [{}]
+        'messages' : []
     })
     updateData(data)
     return sendSuccess({'channel_id' : channel_id})
