@@ -65,10 +65,10 @@ def channel_join():
                             add_user = {
                                 'u_id' : u_id,
                                 'name_first' : name_first,
-                                'name_last' : name_last,
-                                'permission_id' : '1'
+                                'name_last' : name_last
                             }
                             channel['all_members'].append(add_user)
+                            channel['owner_members'].append(add_user)
                             return sendSuccess({})
                 else:
                     raise ValueError("Unable to join a private channel (you are not an Admin or Owner).")
@@ -85,7 +85,7 @@ def channel_join():
                         add_user = {
                             'u_id' : u_id,
                             'name_first' : name_first,
-                            'name_last' : name_last,
+                            'name_last' : name_last
                         }
                         channel['all_members'].append(add_user)
                         updateData(data)
