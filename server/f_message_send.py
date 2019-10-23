@@ -61,9 +61,10 @@ def message_send():
                     answer['u_id'] = u_id
                     answer['message'] = message
                     answer['time_created'] = "12:04"
-                    answer['reacts'] = {}
+                    answer['reacts'] = [{}]
                     answer['is_pinned'] = False
-                    j['messages'].append(answer)
+                    for i in range(0,50):
+                        j['messages'].append(answer)
                     updateData(data_new)
                     return sendSuccess({'message_id' : message_id})
     if channel_found == 0:
