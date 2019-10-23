@@ -61,7 +61,7 @@ def message_send():
                     answer['u_id'] = u_id
                     answer['message'] = message
                     answer['time_created'] = "12:04"
-                    answer['reacts'] = [{}]
+                    answer['reacts'] = []
                     answer['is_pinned'] = False
                     for i in range(0,50):
                         j['messages'].append(answer)
