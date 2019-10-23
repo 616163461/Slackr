@@ -58,16 +58,14 @@ def channel_invite():
             for member in channel['all_members']:
                 if member['u_id'] == member_user:
                     member_found = 1
-                    if perm_id == '1' or perm_id == '2':
-                        p_id = '1'
-                    else:
-                        p_id = '2'
                     add_user = {
                         'u_id' : u_id,
                         'name_first' : name_first,
                         'name_last' : name_last
                     }
                     channel['all_members'].append(add_user)
+                    if perm_id == '1' or perm_id == '2':
+                        channel['owner_members'].append(add_user)     
                     updateData(data)
                     return sendSuccess({})
 
