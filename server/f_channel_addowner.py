@@ -11,7 +11,6 @@
 
 from flask import Flask, request
 import json
-from random import randint
 
 APP = Flask(__name__)
 
