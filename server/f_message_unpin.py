@@ -10,8 +10,66 @@
 # Description: Given a message within a channel, remove it's mark as unpinned
 #
 
-def message_unpin(token, message_id): 
-    
-    message_unpin_dict = {}
+from flask import Flask, request
+import json
+# Have not implemented time
+APP = Flask(__name__)
 
-    return message_unpin_dict
+
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
+
+# converting dictionary into string for flask
+def sendSuccess(data):
+    return json.dumps(data)
+    
+def updateData(data):
+    with open('export.json', 'w') as FILE:
+        json.dump(data, FILE)
+    return 0
+    
+
+@APP.route('/message/unpin', methods = ['POST'])  
+def message_unpin():
+    token = request.form.get('token')
+    message_id = request.form.get('message_id')
+    data_new = getData()
+    flag = 0
+    #Test for valid token
+    for i in data_new['users']:
+        if str(i['token']) == token and token != None:
+            u_id = i['u_id']
+            flag = 1
+    if flag == 0:
+        raise ValueError("Session has expired. Please refresh the page and login\n")
+    
+    #Test if message_id exists
+    message_found = 0
+    member_found = 0
+   
+    for j in data_new['channels']:
+        #Finding the message
+        for k in j['messages']:
+            if str(k['message_id']) == message_id:
+                message_found = 1
+                #Testing to see if user is in the channel and has owner permission
+                for l in j['owner_members']:
+                    if l['u_id'] == u_id:
+                        member_found = 1
+                if member_found == 0:
+                    raise ValueError("Member is not part of the channel")
+                if k['is_pinned'] == False:
+                    raise ValueError("Action could not be completed. Message is not pinned...\n")
+                k['is_pinned'] = False
+                gg = {}
+                updateData(data_new)
+                return sendSuccess(gg)
+    if message_found == 0:
+       raise ValueError("Action could not be completed. Message ID could not be found...\n") 
+
+
+if __name__ == '__main__':
+    APP.run(port = 7878)
+
