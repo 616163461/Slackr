@@ -46,7 +46,7 @@ def auth_register():
     password = request.form.get('password')
     name_first = request.form.get('name_first')
     name_last = request.form.get('name_last')
-
+    password = hashlib.sha256(password.encode()).hexdigest()
     flag = 0
     for user in data['users']:
         if user['email'] == email and flag == 0:
