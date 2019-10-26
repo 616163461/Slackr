@@ -47,11 +47,6 @@ def user_profile_setemail(token, email):
     if flag == 0:
         myexception.token_error()
 
-
-@APP.route('/names', methods=['GET'])
-def getnames():
-    return sendSuccess(data)
-
 def check(email):
     regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
 
