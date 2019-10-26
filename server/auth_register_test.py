@@ -10,15 +10,16 @@
 # Description: Given a user's first and last name, email address, and password, 
 # create a new account for them and return a new token for authentication in their session
 #
-
+from wrapper import wrap_auth_register
 import pytest
 from f_auth_register import auth_register
-   
+
+        
 def test_auth_register(): 
 
     # SETUP BEGIN
 
-    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid9@email.com", "valid9password", "first9name", "last9name")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
@@ -35,11 +36,11 @@ def test_auth_register_bad():
     
     # SETUP BEGIN
 
-    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid7@email.com", "valid7password", "first7name", "last7name")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
-    authRegisterDic_one = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
+    authRegisterDic_one = auth_register("valid8@email.com", "valid8password", "first8name", "last8name")
     token_one = authRegisterDic_one['token']
     u_id_one = authRegisterDic_one['u_id']
     
