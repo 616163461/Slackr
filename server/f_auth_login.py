@@ -10,20 +10,16 @@ Description: Given a registered users' email and password
 and generates a valid token for the user to remain authenticated
 '''
 import re
-from flask import Flask, request
 import json
 from werkzeug.exceptions import HTTPException
 import myexcept
 import hashlib
-
-APP = Flask(__name__)
 
 
 def getData():
     with open('export.json', 'r') as FILE:
         data = json.load(FILE)
     return data
-
 
 def generateToken(password):
     return password + '12345abcd'
@@ -37,11 +33,8 @@ def updateData(data):
         json.dump(data, FILE)
     return 0
 
-@APP.route('/auth/login', methods=['POST'])
-def auth_login():
+def auth_login(email, password):
     data = getData()
-    email = request.form.get('email')
-    password = request.form.get('password')
     password = hashlib.sha256(password.encode()).hexdigest()
 
     if check(email) == False:
@@ -72,6 +65,3 @@ def check(email):
         return True
     else:
         return False
-
-if __name__ == "__main__":
-    APP.run(port=7878)
