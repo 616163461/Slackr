@@ -52,11 +52,11 @@ def channel_leave(token, channel_id):
                         data['channels'].remove(channels)
                     answer = {}
                     updateData(data_new)
-                    return sendSuccess(answer)
+                    return answer
     if channel_found == 0:
         myexcept.channel_not_found()
     if member_found == 0:
         myexcept.member_not_in_channel()
 
     answer = {}
-    return sendSuccess(answer)
+    return answer
