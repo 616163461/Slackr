@@ -31,6 +31,7 @@ from flask import Flask, request
 import json
 
 APP = Flask(__name__)
+
 APP.config.update(
     MAIL_SERVER='smtp.gmail.com',
     MAIL_PORT=465,
@@ -90,7 +91,7 @@ def wrap_channel_leave():
     return json.dumps({})
 
 @APP.route('/channel/messages', methods=['GET'])
-def wrap_channel_messages()
+def wrap_channel_messages():
     channel_messages(request.args.get('token'), request.args.get('channel_id'), request.args.get('start'))
     return json.dumps({})
 
@@ -141,7 +142,7 @@ def wrap_message_send():
     
 @APP.route('/message/sendlater', methods=['POST'])
 def wrap_message_sendlater():
-    message_sendlater(request.form.get('token') request.form.get('channel_id') request.form.get('message') request.form.get('time_sent'))
+    message_sendlater(request.form.get('token'),request.form.get('channel_id'), request.form.get('message'), request.form.get('time_sent'))
     return json.dumps({})
 
 @APP.route('/message/unpin', methods=['POST'])
@@ -165,12 +166,12 @@ def wrap_user_profile():
     return json.dumps({})
 
 @APP.route('/user/profile/setemail', methods=['PUT'])
-def wrap_user_profile_setemail()
+def wrap_user_profile_setemail():
     user_profile_setemail(request.form.get('token'), request.form.get('email'))
     return json.dumps({})
 
 @APP.route('/user/profile/sethandle', methods=['PUT'])
-def wrap_user_profile_sethandle()
+def wrap_user_profile_sethandle():
     user_profile_sethandle(request.form.get('token'),request.form.get('handle_str'))
     return json.dumps({})
 
