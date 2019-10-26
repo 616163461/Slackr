@@ -18,7 +18,7 @@ def getData():
         data = json.load(FILE)
     return data
 
-def user_profile_sethandle_test():
+def test_user_profile_sethandle():
     # SETUP BEGIN
     handle_str_good = "thisismorethantwentycharacters"
     handle_str_bad =  "goodhandle"
