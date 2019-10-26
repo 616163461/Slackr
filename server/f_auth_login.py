@@ -36,7 +36,7 @@ def updateData(data):
 def auth_login(email, password):
     data = getData()
     password = hashlib.sha256(password.encode()).hexdigest()
-
+    
     if check(email) == False:
         myexcept.invalid_email()
 
@@ -49,10 +49,10 @@ def auth_login(email, password):
             u_id = user['u_id']
             user['token'] = generateToken(password)
             updateData(data)
-            return sendSuccess({
+            return sendSuccess(
                 'u_id' : u_id,
                 'token' : generateToken(password)
-            })
+            )
 
     if flag == 0:
         myexcept.not_registered_email()
