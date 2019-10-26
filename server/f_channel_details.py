@@ -48,7 +48,7 @@ def channel_details(token, channel_id):
                         'owner_members' : channel['owner_members'],
                         'all_members' : channel['all_members']
                     }
-                    return sendSuccess(answer)
+                    return answer
 
     if flag == 0 or flag2 == 0:
         myexcept.member_not_in_channel()
