@@ -40,7 +40,7 @@ def channel_messages(token, channel_id, start):
                 if len(channel['messages']) - int(start) < 50:
                     end2 = -1
                     myexcept.start_message_invalid()
-                return sendSuccess({'messages' : messages[int(start):end],
-                                    'start' : start, 'end' : end2})
+                return {'messages' : messages[int(start):end],
+                        'start' : start, 'end' : end2}
     if send_Success == False:
         myexcept.channel_not_found()
