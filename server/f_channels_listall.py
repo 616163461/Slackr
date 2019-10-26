@@ -35,4 +35,4 @@ def channels_listall(token):
         temp['channel_id'] = channels['channel_id']
         answer.append(temp)
 
-    return sendSuccess(answer)
+    return answer
