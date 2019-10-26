@@ -6,14 +6,9 @@
 # - Password entered is not a valid password
 # Description: Given a reset code for a user, set that user's new password to the password provided
 #
-
 import hashlib
 import json
 import myexcept
-from flask import Flask, request
-
-APP = Flask(__name__)
-
 
 def getData():
     with open('export.json', 'r') as FILE:
@@ -35,11 +30,8 @@ def sendError(message):
         '_error' : message,
     })
 
-@APP.route('/auth/passwordreset/reset', methods = ['POST'])
-def auth_passwordreset_reset():
+def auth_passwordreset_reset(reset_code, new_password):
     
-    reset_code = request.form.get('reset_code')
-    new_password = request.form.get('new_password')
     mask = 0
     data = getData()
     user_list = data['users']
@@ -62,6 +54,3 @@ def auth_passwordreset_reset():
         myexcept.reset_code()
 
     return sendSuccess({})
-
-if __name__ == '__main__':
-    APP.run(port = 7878)
