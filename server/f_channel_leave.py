@@ -1,17 +1,13 @@
-# Function name: channel_leave()
-# Parameters: (token, channel_id)
-# Return type: {}
-# Exception: ValueError when:
-# - Channel (based on ID) does not exist
-# Description: Given a channel ID, the user removed as a member of this channel
-#
-
-from flask import Flask, request
+'''
+Function name: channel_leave()
+Parameters: (token, channel_id)
+Return type: {}
+Exception: ValueError when:
+- Channel (based on ID) does not exist
+Description: Given a channel ID, the user removed as a member of this channel
+'''
 import json
-
-
-
-APP = Flask(__name__)
+import myexcept
 
 def getData():
     with open('export.json', 'r') as FILE:
@@ -21,19 +17,16 @@ def getData():
 # converting dictionary into string for flask
 def sendSuccess(data):
     return json.dumps(data)
-    
+
 def updateData(data):
     with open('export.json', 'w') as FILE:
         json.dump(data, FILE)
     return 0
 
-@APP.route('/channel/leave', methods=['POST'])
-def channel_leave(): 
-    token = request.form.get('token')
-    channel_id = request.form.get('channel_id')
-    
+def channel_leave(token, channel_id):
+
     data_new = getData()
-    
+
     flag = 0
     #Test for valid token
     for i in data_new['users']:
@@ -41,8 +34,8 @@ def channel_leave():
             u_id = i['u_id']
             flag = 1
     if flag == 0:
-        raise ValueError("Session has expired. Please refresh the page and login\n")
-    
+        myexcept.token_error()
+
     member_found = 0
     channel_found = 0
     for channels in data_new['channels']:
@@ -61,14 +54,9 @@ def channel_leave():
                     updateData(data_new)
                     return sendSuccess(answer)
     if channel_found == 0:
-        raise ValueError("Channel does not exist...\n")
+        myexcept.channel_not_found()
     if member_found == 0:
-        raise ValueError("Member was not in channel to begin with...\n")
-    
+        myexcept.member_not_in_channel()
+
     answer = {}
     return sendSuccess(answer)
-  
-
-if __name__ == '__main__':
-    APP.run(port = 7878)
-

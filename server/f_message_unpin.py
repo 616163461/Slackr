@@ -1,75 +1,75 @@
-# Function name: message_unpin()
-# Parameters: (token, message_id)
-# Return type: {}
-# Exception: ValueError when:
-# - message_id is not a valid message
-# - The authorised user is not an admin
-# - Message with ID message_id is already unpinned
-# AccessError when:
-# - The authorised user is not a member of the channel that the message is within
-# Description: Given a message within a channel, remove it's mark as unpinned
-#
-
-from flask import Flask, request
+'''
+Function name: message_unpin()
+Parameters: (token, message_id)
+Return type: {}
+Exception: ValueError when:
+- message_id is not a valid message
+- The authorised user is not an admin
+- Message with ID message_id is already unpinned
+AccessError when:
+- The authorised user is not a member of the channel that the message is within
+Description: Given a message within a channel, remove it's mark as unpinned
+'''
 import json
-# Have not implemented time
-APP = Flask(__name__)
+import myexcept
 
-
+# retrieve data from local data base 
 def getData():
     with open('export.json', 'r') as FILE:
         data = json.load(FILE)
     return data
 
-# converting dictionary into string for flask
+# converting dictionary into string for flask 
 def sendSuccess(data):
     return json.dumps(data)
-    
+
+# updates the local data base 
 def updateData(data):
     with open('export.json', 'w') as FILE:
         json.dump(data, FILE)
     return 0
-    
 
-@APP.route('/message/unpin', methods = ['POST'])  
-def message_unpin():
-    token = request.form.get('token')
-    message_id = request.form.get('message_id')
-    data_new = getData()
+
+def message_unpin(token, message_id):
+    data = getData()
     flag = 0
-    #Test for valid token
-    for i in data_new['users']:
-        if str(i['token']) == token and token != None:
-            u_id = i['u_id']
-            flag = 1
-    if flag == 0:
-        raise ValueError("Session has expired. Please refresh the page and login\n")
     
+    # checking that token is an admin
+    authorised_user_exists = False
+    for user in data['users']:
+        if str(user['token']) == token and token != None:
+            auth_u_id = user['u_id']
+            perm_id = user['permission_id']
+            authorised_user_exists = True
+
+    if authorised_user_exists == False:
+        myexcept.auth_token_not_found()
+        
+    if perm_id == 3:
+        myexcept.not_an_admin()
+        
     #Test if message_id exists
-    message_found = 0
-    member_found = 0
-   
-    for j in data_new['channels']:
+    message_found = False
+    member_has_admin = False
+    member_found = False
+    for channels in data['channels']:
         #Finding the message
-        for k in j['messages']:
-            if str(k['message_id']) == message_id:
-                message_found = 1
-                #Testing to see if user is in the channel and has owner permission
-                for l in j['owner_members']:
-                    if l['u_id'] == u_id:
-                        member_found = 1
-                if member_found == 0:
-                    raise ValueError("Member is not part of the channel")
-                if k['is_pinned'] == False:
-                    raise ValueError("Action could not be completed. Message is not pinned...\n")
-                k['is_pinned'] = False
-                gg = {}
-                updateData(data_new)
-                return sendSuccess(gg)
-    if message_found == 0:
-       raise ValueError("Action could not be completed. Message ID could not be found...\n") 
-
-
-if __name__ == '__main__':
-    APP.run(port = 7878)
-
+        for messages in channels['messages']:
+            if str(messages['message_id']) == message_id:
+                message_found = True
+                # checking if the authorised user is in the channel
+                for members in channels['all_members']:
+                    if members['u_id'] == auth_u_id:
+                        member_found = True
+                if member_found == False:
+                    myexcept.member_not_in_channel()
+                # checking if the message is already unpinned
+                if messages['is_pinned'] == False:
+                    myexcept.message_already_unpinned()
+                messages['is_pinned'] = False
+                answer = {}
+                updateData(data)
+                return sendSuccess(answer)
+    # checking if the message_id exists
+    if message_found == False:
+        myexcept.message_not_found()
