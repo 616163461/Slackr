@@ -14,7 +14,7 @@ from flask import Flask, request
 import json
 from werkzeug.exceptions import HTTPException
 import myexcept
-#from flask_cors import CORS
+import hashlib
 
 APP = Flask(__name__)
 
@@ -42,6 +42,7 @@ def auth_login():
     data = getData()
     email = request.form.get('email')
     password = request.form.get('password')
+    password = hashlib.sha256(password.encode()).hexdigest()
 
     if check(email) == False:
         myexcept.invalid_email()
