@@ -65,7 +65,7 @@ def channel_join(token, channel_id):
                             }
                             channel['all_members'].append(add_user)
                             channel['owner_members'].append(add_user)
-                            return sendSuccess({})
+                            return {}
                 else:
                     myexcept.private_channel_denied()
             elif channel['is_public'] == "True":
@@ -85,7 +85,7 @@ def channel_join(token, channel_id):
                         }
                         channel['all_members'].append(add_user)
                         updateData(data)
-                        return sendSuccess({})
+                        return {}
 
     if channel_found == 0:
         myexcept.channel_not_found()
