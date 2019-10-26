@@ -52,6 +52,17 @@ def user_profile_sethandle_test():
     # Testing maximum case of handle_str
     assert user_profile_sethandle(token, handle_str_max) == {}
     
+    # checking name is changed in local data base
+    handle_set = False
+    data = getData()
+    for users in data['users']:
+        if users['token'] == token:
+            if users['handle_str'] == handle_str_max:
+                handle_set = True
+
+    if handle_set == False: 
+        raise ValueError(f"Handle set unsuccessful...\n")
+    
     with pytest.raises(ValueError):
         # Testing good token, with bad handle_str
         user_profile_sethandle(token, handle_str_bad)
