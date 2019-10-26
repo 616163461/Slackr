@@ -16,6 +16,7 @@ from random import randint
 import json
 from flask import Flask, request
 import myexcept
+import hashlib
 
 APP = Flask(__name__)
 
@@ -46,6 +47,7 @@ def auth_register():
     password = request.form.get('password')
     name_first = request.form.get('name_first')
     name_last = request.form.get('name_last')
+    password = hashlib.sha256(password.encode()).hexdigest()
 
     flag = 0
     for user in data['users']:
