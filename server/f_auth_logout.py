@@ -35,7 +35,6 @@ def auth_logout(token):
             is_success = True
     if is_success:
         updateData(data)
-        return sendSuccess({
+        return {
             'success' : is_success
-        })
-
+        )
