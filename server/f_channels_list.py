@@ -43,4 +43,4 @@ def channels_list(token):
             temp['channel_id'] = channels['channel_id']
             answer.append(temp)
 
-    return sendSuccess(answer)
+    return answer
