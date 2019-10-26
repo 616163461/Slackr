@@ -1,13 +1,12 @@
-# Function: search()
-# Parameter: (token, query_str)
-# Output: { messages }
-# Exception: N/A
-# Description: Given a query string, return a collection of messages that match the query
-#
-from flask import Flask, request
+'''
+Function: search()
+Parameter: (token, query_str)
+Output: { messages }
+Exception: N/A
+Description: Given a query string, return a collection of messages that match the query
+'''
 import json
-# Have not implemented time
-APP = Flask(__name__)
+import myexcept
 
 def getData():
     with open('export.json', 'r') as FILE:
@@ -17,17 +16,13 @@ def getData():
 # converting dictionary into string for flask
 def sendSuccess(data):
     return json.dumps(data)
-    
+
 def updateData(data):
     with open('export.json', 'w') as FILE:
         json.dump(data, FILE)
     return 0
-    
-    
-@APP.route('/search', methods = ['GET'])   
-def search():
-    token = request.args.get('token')
-    query_str = request.args.get('query_str')
+
+def search(token, query_str):
     data_new = getData()
     flag = 0
     #Test for valid token
@@ -36,8 +31,8 @@ def search():
             u_id = i['u_id']
             flag = 1
     if flag == 0:
-        raise ValueError("Session has expired. Please refresh the page and login\n")
-        
+        myexcept.token_error()
+
     answer = []
     #search through channels, find the channels that the user is in
     for j in data_new['channels']:
@@ -47,14 +42,8 @@ def search():
                 for messages in j['messages']:
                     if query_str in messages['message']:
                         answer.append(messages)
-                        
-    
-                
-                
+
     #search through all messages and find prefix (if contains)
     return sendSuccess(answer)
-
-
 if __name__ == '__main__':
-    APP.run(port = 7878)
-
+    APP.run(port=7878)
