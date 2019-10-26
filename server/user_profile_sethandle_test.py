@@ -10,6 +10,13 @@ import pytest
 from f_user_profile_sethandle import user_profile_sethandle
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
+import json
+
+# retrieve data from local data base 
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
 
 def user_profile_sethandle_test():
     # SETUP BEGIN
@@ -30,8 +37,31 @@ def user_profile_sethandle_test():
     
     # Testing successful run (default case)
     assert user_profile_sethandle(token, handle_str_good) == {}
+    
+    # checking name is changed in local data base
+    handle_set = False
+    data = getData()
+    for users in data['users']:
+        if users['token'] == token:
+            if users['handle_str'] == handle_str_good:
+                handle_set = True
+
+    if handle_set == False: 
+        raise ValueError(f"Handle set unsuccessful...\n")
+        
     # Testing maximum case of handle_str
     assert user_profile_sethandle(token, handle_str_max) == {}
+    
+    # checking name is changed in local data base
+    handle_set = False
+    data = getData()
+    for users in data['users']:
+        if users['token'] == token:
+            if users['handle_str'] == handle_str_max:
+                handle_set = True
+
+    if handle_set == False: 
+        raise ValueError(f"Handle set unsuccessful...\n")
     
     with pytest.raises(ValueError):
         # Testing good token, with bad handle_str

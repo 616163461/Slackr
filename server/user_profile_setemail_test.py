@@ -43,7 +43,7 @@ def test_user_profile_setemail():
                 email_set = True
                 
     if email_set == False:
-        raise ValueError(f"Email set was unsuccessful...\n)
+        raise ValueError(f"Email set was unsuccessful...\n")
     
     with pytest.raises(ValueError):
         # Testing user_profile_setemail with invalid token
