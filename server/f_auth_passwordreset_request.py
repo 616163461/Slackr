@@ -57,7 +57,7 @@ def auth_passwordreset_request(email):
                 mail.send(msg)
                 user['pass_reset_code'] = reset_code
                 updateData(data)
-                return sendSuccess({})
+                return {}
             except Exception as e:
                 return str(e)
 
@@ -65,4 +65,4 @@ def auth_passwordreset_request(email):
         # raise error saying email doesn't exist in database
         myexcept.not_registered_email()
 
-    return sendSuccess({})
+    return {}
