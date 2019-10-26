@@ -53,7 +53,7 @@ def message_edit(token, message_id, message):
                         flag = 1
                         findmessage['message'] = message
                         updateData(data)
-                        return sendSuccess({})
+                        return {}
 
     if flag == 0:
         myexcept.edit_message_denied()
