@@ -66,7 +66,3 @@ def message_send(token, channel_id, message):
         myexcept.channel_not_found()
     elif member_found == 0:
         myexcept.member_not_in_channel()
-
-@APP.route('/data', methods=['GET'])
-def getdataa():
-    return sendSuccess(data)
