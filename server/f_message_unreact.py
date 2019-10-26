@@ -1,18 +1,16 @@
-# Function name: message_unreact()
-# Parameters: (token, message_id, react_id)
-# Return type: {}
-# Exception: ValueError when:
-# - message_id is not a valid message within a channel that the authorised user has joined
-# - react_id is not a valid React ID
-# - Message with ID message_id does not contain an active React with ID react_id
-# Description: Given a message within a channel the authorised user is part of, remove a "react" to that particular message
-# 
-    
-from flask import Flask, request
+'''
+Function name: message_unreact()
+Parameters: (token, message_id, react_id)
+Return type: {}
+Exception: ValueError when:
+- message_id is not a valid message within a channel that the authorised user has joined
+- react_id is not a valid React ID
+- Message with ID message_id does not contain an active React with ID react_id
+Description: Given a message within a channel the
+authorised user is part of, remove a "react" to that particular message
+'''
 import json
-
-APP = Flask(__name__)
-
+import myexcept
 
 def getData():
     with open('export.json', 'r') as FILE:
@@ -22,19 +20,13 @@ def getData():
 # converting dictionary into string for flask
 def sendSuccess(data):
     return json.dumps(data)
-    
+
 def updateData(data):
     with open('export.json', 'w') as FILE:
         json.dump(data, FILE)
     return 0
-    
 
-@APP.route('/message/unreact', methods = ['POST'])
-def message_unreact():
-    token = request.form.get('token')
-    message_id = request.form.get('message_id')
-    react_id = request.form.get('react_id')
-    
+def message_unreact(token, message_id, react_id):
     data_new = getData()
     flag = 0
     #Test for valid token
@@ -43,12 +35,12 @@ def message_unreact():
             u_id = i['u_id']
             flag = 1
     if flag == 0:
-        raise ValueError("Session has expired. Please refresh the page and login\n")
-    
+        myexcept.token_error()
+
     #Test if message_id exists
     message_found = 0
     member_found = 0
-    
+
     for j in data_new['channels']:
         #Finding the message
         for k in j['messages']:
@@ -60,7 +52,7 @@ def message_unreact():
                     if l['u_id'] == u_id:
                         member_found = 1
                 if member_found == 0:
-                    raise ValueError("Member is not part of the channel")
+                    myexcept.member_not_in_channel()
                 react_check = 0
                 for react in k['reacts']:
                     react_dic = react
@@ -71,14 +63,9 @@ def message_unreact():
                     if message_uid == u_id:
                         react['is_this_user_reacted'] = False
                 if react_check == 0:
-                    raise ValueError("Did not react to the message in the first place...\n")        
+                    myexcept.message_already_unreacted()
                 answer = {}
                 updateData(data_new)
                 return sendSuccess(answer)
     if message_found == 0:
-       raise ValueError("Not a valid message within the channel...\n")
-
-
-if __name__ == '__main__':
-    APP.run(port = 7878)
-
+        myexcept.invalid_message_id()
