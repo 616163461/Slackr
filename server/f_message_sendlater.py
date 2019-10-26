@@ -1,19 +1,18 @@
-# Function name: message_sendlater()
-# Parameters: (token, channel_id, message, time_sent)
-# Return type: {}
-# Exception: ValueError when:
-# - Channel (based on ID) does not exist
-# - Message is more than 1000 characters
-# - Time sent is a time in the past
-# Description: Send a message from authorised_user to the channel specified by channel_id automatically at a specified time in the future
-#
-
-from flask import Flask, request
+'''
+Function name: message_sendlater()
+Parameters: (token, channel_id, message, time_sent)
+Return type: {}
+Exception: ValueError when:
+- Channel (based on ID) does not exist
+- Message is more than 1000 characters
+- Time sent is a time in the past
+Description: Send a message from authorised_user to the channel specified
+by channel_id automatically at a specified time in the future
+'''
 import json
 from datetime import datetime
 import time
-
-APP = Flask(__name__)
+import myexcept
 
 def getData():
     with open('export.json', 'r') as FILE:
@@ -23,24 +22,19 @@ def getData():
 # converting dictionary into string for flask
 def sendSuccess(data):
     return json.dumps(data)
-    
+
 def updateData(data):
     with open('export.json', 'w') as FILE:
         json.dump(data, FILE)
     return 0
-    
 
-@APP.route('/message/sendlater', methods = ['POST'])
-def send_message_later():
+
+def message_sendlater(token, channel_id, messsage, time_sent):
     data = getData()
-    token = request.form.get('token')
-    channel_id = request.form.get('channel_id')
-    message = request.form.get('message')
-    time_sent = request.form.get('time_sent')
-
+    
     #Test for valid message
     if len(message) > 1000:
-        raise ValueError('Message contains too many characters\n')
+        myexcept.invalid_message()
 
     #Test for valid token
     flag = 0
@@ -50,7 +44,7 @@ def send_message_later():
             flag = 1
 
     if flag == 0:
-        raise ValueError("Session has expired. Please refresh the page and login\n")
+        myexcept.token_error()
 
     #Test for valid time
     format = '%Y-%m-%d %H:%M:%S'
@@ -60,7 +54,7 @@ def send_message_later():
     present = datetime.strptime(convert_present_time, format)
 
     if send_time < present:
-        raise ValueError("Input time is invalid.")
+        myexcept.invalid_time()
 
     tdelta = send_time - present
     sendlater_time = present + tdelta
@@ -93,11 +87,6 @@ def send_message_later():
                     return sendSuccess(sendlater)
 
     if channel_found == 0:
-        raise ValueError("Channel not found...")
+        myexcept.channel_not_found()
     elif member_found == 0:
-        raise ValueError("Action could not be completed. User does not belong in the channel...\n") 
-
-
-
-if __name__ == '__main__':
-    APP.run(port = 7878)
+        myexcept.member_not_in_channel()
