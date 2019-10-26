@@ -7,6 +7,7 @@
 # Description: Given a reset code for a user, set that user's new password to the password provided
 #
 
+import hashlib
 import json
 import myexcept
 from flask import Flask, request
@@ -51,7 +52,8 @@ def auth_passwordreset_reset():
             # resetting user reset_code to None
             user['pass_reset_code'] = None
             # changing user's password to new password
-            user['password'] = new_password
+            hashed_password = hashlib.sha256(new_password.encode()).hexdigest()
+            user['password'] = hashed_password
             updateData(data)
             return sendSuccess({})
 
