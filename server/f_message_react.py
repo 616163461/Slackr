@@ -77,6 +77,6 @@ def message_react(token, message_id, react_id):
 
                 answer = {}
                 updateData(data_new)
-                return sendSuccess(answer)
+                return answer
     if message_found == 0:
        myexcept.message_not_found()
