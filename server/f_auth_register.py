@@ -15,6 +15,7 @@ create a new account for them and return a new token for authentication in their
 from random import randint
 import json
 import myexcept
+import re
 
 def getData():
     with open('export.json', 'r') as FILE:
@@ -35,7 +36,6 @@ def auth_register(email, password, name_first, name_last):
     # assuming u_id is random number between 1 - 100
     u_id = randint(1, 101)
     data = getData()
-    password = hashlib.sha256(password.encode()).hexdigest()
     flag = 0
     for user in data['users']:
         if user['email'] == email and flag == 0:
@@ -65,10 +65,10 @@ def auth_register(email, password, name_first, name_last):
     })
 
     updateData(data)
-    return sendSuccess({
+    return {
         'u_id' : u_id,
         'token' : name_first + name_last
-    })
+    }
 
 def check(email):
     regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
