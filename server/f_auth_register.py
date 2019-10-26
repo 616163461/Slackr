@@ -14,11 +14,7 @@ create a new account for them and return a new token for authentication in their
 
 from random import randint
 import json
-from flask import Flask, request
 import myexcept
-
-APP = Flask(__name__)
-
 
 def getData():
     with open('export.json', 'r') as FILE:
@@ -34,18 +30,11 @@ def updateData(data):
         json.dump(data, FILE)
     return 0
 
-
-@APP.route('/auth/register', methods=['POST'])
-def auth_register():
+def auth_register(email, password, name_first, name_last):
 
     # assuming u_id is random number between 1 - 100
     u_id = randint(1, 101)
     data = getData()
-
-    email = request.form.get('email')
-    password = request.form.get('password')
-    name_first = request.form.get('name_first')
-    name_last = request.form.get('name_last')
     password = hashlib.sha256(password.encode()).hexdigest()
     flag = 0
     for user in data['users']:
@@ -88,6 +77,3 @@ def check(email):
         return True
     else:
         return False
-
-if __name__ == "__main__":
-    APP.run(port=7878)
