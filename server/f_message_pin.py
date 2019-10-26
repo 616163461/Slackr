@@ -69,7 +69,7 @@ def message_pin(token, message_id):
                 messages['is_pinned'] = True
                 answer = {}
                 updateData(data)
-                return sendSuccess(answer)
+                return answer
     # checking if the message_id exists
     if message_found == False:
         myexcept.message_not_found()
