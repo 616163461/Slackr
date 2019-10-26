@@ -11,5 +11,63 @@
 # create a new account for them and return a new token for authentication in their session
 #
 
-def auth_register(email, password, name_first, name_last): 
-    pass
+from random import randint
+import json
+from flask import Flask, request
+
+APP = Flask(__name__)
+
+
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
+
+# converting dictionary into string for flask
+def sendSuccess(data):
+    return json.dumps(data)
+    
+def updateData(data):
+    with open('export.json', 'w') as FILE:
+        json.dump(data, FILE)
+    return 0
+    
+
+@APP.route('/auth/register', methods = ['POST'])
+def auth_register(): 
+    
+    # assuming u_id is random number between 1 - 100
+    u_id = randint(1,101)
+    data = getData()
+    
+    email = request.form.get('email')
+    password = request.form.get('password')
+    name_first = request.form.get('name_first')
+    name_last = request.form.get('name_last')
+
+    ''' Add ValueError exception catching here '''
+
+    data['users'].append({
+        'token' : name_first + name_last, 
+        'handle_str' : name_first + name_last, 
+        'first_name' : name_first, 
+        'last_name' : name_last, 
+        'password' : password, 
+        'email' : email, 
+        'u_id' : u_id,
+        'permission_id' : 3
+        'pass_reset_code' : None
+    })
+
+    updateData(data)
+    return sendSuccess({ 
+        'u_id' : u_id,
+        'token' : name_first + name_last 
+    })
+     
+if __name__ == "__main__":
+    APP.run(port = 7878)
+
+#validDic = auth_register("geoffrey.he777@gmail.com", "CIMICTOP10", "Geoffrey", "He")
+#data = getData()
+#print(data)
