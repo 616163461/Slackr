@@ -10,7 +10,14 @@ import pytest
 from f_user_profile_setemail import user_profile_setemail
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
+import json
 
+# retrieve data from local data base 
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
+    
 def test_user_profile_setemail():
     # SETUP BEGIN
     validAuthRegisterDic = auth_register("valid@email.com", "validpassword", "Richard", "Jiang")
@@ -26,6 +33,17 @@ def test_user_profile_setemail():
     # SETUP END
     # Default testing
     assert user_profile_setemail(token, email_good) == {}
+    
+    # checking that email was set
+    email_set = False
+    data = getData()
+    for users in data['users']:
+        if users['token'] == token:
+            if users['email'] == email_good:
+                email_set = True
+                
+    if email_set == False:
+        raise ValueError(f"Email set was unsuccessful...\n)
     
     with pytest.raises(ValueError):
         # Testing user_profile_setemail with invalid token
