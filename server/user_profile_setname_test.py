@@ -63,7 +63,3 @@ def test_user_profile_setname():
         user_profile_setname(token, name_first_bad, name_last_bad)
         # Testing user_profile_setname with a bad token
         user_profile_setname(invalid_token, name_first_good, name_last_good)
-      
-
-        
-        
