@@ -45,7 +45,7 @@ def test_channel_leave():
     # checking output matches local data base
     data = getData()
     for channels in data['channels']:
-        if channels['channel_id'] = channel_id:
+        if channels['channel_id'] == channel_id:
             assert channels['all_members'] == [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}]
             
             
