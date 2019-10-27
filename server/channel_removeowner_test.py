@@ -52,7 +52,7 @@ def test_channel_removeowner():
     # checking output matches local data base
     data = getData()
     for channels in data['channels']:
-        if channels['channel_id'] = channel_id:
+        if channels['channel_id'] == channel_id:
             assert channels['owner_members'] == [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}]
     # Calling function with recently removed owner to check he's not an owner
     channel_addowner(token_one, channel_id, u_id_two)
@@ -60,7 +60,7 @@ def test_channel_removeowner():
     # checking output matches local data base
     data = getData()
     for channels in data['channels']:
-        if channels['channel_id'] = channel_id:
+        if channels['channel_id'] == channel_id:
             assert channels['owner_members'] == [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}, {"u_id": u_id_two, "name_first": "firstname2", "name_last": "lastname2"}]
 
 def test_channel_removeowner_bad():
