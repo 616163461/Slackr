@@ -26,7 +26,9 @@ from f_user_profile import user_profile
 from f_user_profile_setemail import user_profile_setemail
 from f_user_profile_sethandle import user_profile_sethandle
 from f_user_profile_setname import user_profile_setname
-# MISSING: STAND UP START, STAND UP END, USER PERMISSION CHANGE
+from f_admin_user_permission_change import admin_user_permission_change
+
+
 from flask import Flask, request
 import json
 from json_clean import jsonClean
@@ -206,6 +208,12 @@ def wrap_user_profile_sethandle():
 @APP.route('/user/profile/setname', methods=['PUT'])
 def wrap_user_profile_setname():
     user_profile_setname(request.form.get('token'), request.form.get('name_first'), request.form.get('name_last'))
+    jsonClean()
+    return json.dumps({})
+
+@APP.route('/admin/userpermission/change', methods=['POST'])
+def wrap_admin_userpermission_change():
+    admin_user_permission_change(request.form.get('token'), request.form.get('u_id'), request.form.get('permission_id'))
     jsonClean()
     return json.dumps({})
 
