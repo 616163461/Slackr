@@ -3,7 +3,7 @@ import json
 import threading
 import time
 import myexcept
-import standup_start
+import f_standup_start
 
 def getData():
     with open('export.json', 'r') as FILE:
