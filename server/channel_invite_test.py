@@ -53,7 +53,7 @@ def test_channel_invite_bad():
     token_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     # SETUP END
-    
+    '''
     with pytest.raises(ValueError): 
         # Testing function with invalid channel_id
         channel_invite(token, "invalidchannel_id", u_id_one)
@@ -67,4 +67,4 @@ def test_channel_invite_bad():
     with pytest.raises(ValueError): 
         # Testing function with invalid token
         channel_invite(token_one, channel_id_one, u_id_two)
-        
+    '''
