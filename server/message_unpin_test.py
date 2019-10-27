@@ -17,18 +17,18 @@ from f_channels_create import channels_create
 from f_channel_messages import channel_messages
 from f_message_pin import message_pin
 from f_message_unpin import message_unpin
-
+from f_channel_join import channel_join
 
 def test_message_pin(): 
     
     # SETUP BEGIN 
-    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid60@email.com", "valid60password", "first60name", "last60name")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid61@email.com", "valid61password", "first61name", "last61name")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     
@@ -52,18 +52,18 @@ def test_message_pin():
 def test_message_pin_bad(): 
     
     # SETUP BEGIN 
-    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid70@email.com", "valid70password", "first70name", "last70name")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid71@email.com", "valid71password", "first71name", "last71name")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     channel_join(token_one, channel_id)
     
-    authRegisterDicTwo = auth_register("valid3@email.com", "validpassword2", "firstname2", "lastname2")
+    authRegisterDicTwo = auth_register("valid72@email.com", "valid72password", "first72name", "last72name")
     token_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     
@@ -87,4 +87,3 @@ def test_message_pin_bad():
     with pytest.raises(ValueError):        
         # Testing function with already unpinned message_id
         message_unpin(token, message_id)
-        
