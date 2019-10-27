@@ -10,6 +10,14 @@ import pytest
 from f_channels_create import channels_create
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
+import myexcept
+import json
+
+# retrieve data from local data base 
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
 
 
 def test_channels_create(): 
@@ -21,8 +29,25 @@ def test_channels_create():
     
     # SETUP END 
     
-    assert channels_create(token, "validchannel", True) == {channel_id: "validchannel"}
+    channels_create(token, "validchannel", True) 
+    
+    channel_found = False
+    data = getData()
+    for channels in data['channels']:
+        if channels['name'] == 'validchannel':
+             channel_found = True
+    
+    assert channel_found == True
+        
     assert channels_create(token, "validchannel1", False) == {channel_id: "validchannel1"}
+    
+    channel2_found = False
+    data = getData()
+    for channels in data['channels']:
+        if channels['name'] == 'validchannel1':
+             channel2_found = True
+    
+    assert channel2_found == True
     
 def test_channels_create_bad():
    
