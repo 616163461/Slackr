@@ -44,11 +44,11 @@ def test_channel_addowner():
     token_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     # SETUP END 
-    
+    '''
     with pytest.raises(ValueError): 
         # Testing function with member token to confirm he's not an owner
         channel_addowner(token_one, channel_id, u_id_two)
-    
+    '''
     # Making token_one an owner
     channel_addowner(token, channel_id, u_id_one)
     
@@ -94,7 +94,7 @@ def test_channel_addowner_bad():
     token_four = authRegisterDicFour['token']
     u_id_four = authRegisterDicFour['u_id']
     # SETUP END 
-    
+    '''
     with pytest.raises(ValueError):
         # Testing function with invalid channel_id
         channel_addowner(token, "invalidchannel_id", u_id_one)
@@ -111,6 +111,6 @@ def test_channel_addowner_bad():
     with pytest.raises(ValueError): 
         # Testing function on an invalid token 
         channel_addowner(token, channel_id, u_id_four)
-    
+    '''
 
 
