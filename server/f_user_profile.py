@@ -43,6 +43,6 @@ def user_profile(token, u_id):
             answer['first_name'] = i['first_name']
             answer['last_name'] = i['last_name']
             answer['handle_str'] = i['handle_str']
-            return sendSuccess(answer)
+            return answer
 
     myexcept.invalid_user()
