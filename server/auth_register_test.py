@@ -10,11 +10,11 @@
 # Description: Given a user's first and last name, email address, and password, 
 # create a new account for them and return a new token for authentication in their session
 #
-from wrapper import wrap_auth_register
+
 import pytest
 from f_auth_register import auth_register
 
-        
+
 def test_auth_register(): 
 
     # SETUP BEGIN
@@ -29,7 +29,7 @@ def test_auth_register():
     auth_logout(token)
     
     # Testing auth_login function to check that the account was successfully registered
-    auth_login("valid@email.com", "validpassword")
+    auth_login("valid9@email.com", "valid9password")
     
     
 def test_auth_register_bad(): 
