@@ -34,4 +34,3 @@ def test_user_profile():
         auth_profile(invalid_token, badu_id)
         # Testing both a bad token and bad user_id
         auth_profile(invalid_token, badu_id)
-        
