@@ -16,6 +16,7 @@ from random import randint
 import json
 import myexcept
 import re
+import hashlib
 
 def getData():
     with open('export.json', 'r') as FILE:
@@ -33,6 +34,7 @@ def updateData(data):
 
 def auth_register(email, password, name_first, name_last):
 
+    password = hashlib.sha256(password.encode()).hexdigest()
     # assuming u_id is random number between 1 - 100
     u_id = randint(1, 101)
     data = getData()
