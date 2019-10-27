@@ -38,7 +38,7 @@ def user_profile_setname(token, name_first, name_last):
             flag = 1
             answer = {}
             updateData(data_new)
-            return sendSuccess(answer)
+            return answer
 
     if flag == 0:
         myexcept.token_error()
