@@ -11,11 +11,11 @@ Our team holds three main meetings a week:
 
 WEEK PLAN (FOR EVERY WEEK LEADING UP TO DUE DATE)
 Meeting #1:
-Sunday, 8:00 PM - 9:00 PM  Online Conference Call
+ - Sunday, 8:00 PM - 9:00 PM  Online Conference Call
 Meeting #2:
-Wednesday, 6:00 PM - 9:00 PM,  UNSW Main Library, Meeting Room
+ - Wednesday, 6:00 PM - 9:00 PM,  UNSW Main Library, Meeting Room
 Meeting #3:
-Friday, 6:00 PM - 9:00 PM,  UNSW Main Library, Meeting Room
+ - Friday, 6:00 PM - 9:00 PM,  UNSW Main Library, Meeting Room
 
 These meetings were extremely effective for keeping the team focused on the right tasks, and ensured that we remained productive on a daily basis. Furthermore, it built a high transparency on the group’s progress as it enabled the team to communicate and build upon any ongoing issues and ideas. In the physical meetings, we would plan out the workflows for the following days as this needed to be constantly updated (whether it was due to certain errors, workarounds or new specifications). The delegation of responsibilities played a huge part in our implementation’s success, as each team member had the freedom to choose the functions that they felt most comfortable with, and propose ideas and directions for the functions that were more difficult in nature. The online conference call was implemented in an attempt to improve our communication from Iteration 1, as a four day gap between meetings had led to a lack of communication that was seen in the past. Our team had also decided to set up an Excel spreadsheet, where each member had to log the details of their work into the spreadsheet daily. This acted as a daily asynchronous stand-up, as all the information that was scribed could be seen by everyone in the group if we ever needed to refer to past details. These details consisted of what we had achieved that day, any issues that had transpired and what responsibilities/tasks they would take the following day. 
 
