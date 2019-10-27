@@ -44,7 +44,7 @@ def message_unreact(token, message_id, react_id):
     for j in data_new['channels']:
         #Finding the message
         for k in j['messages']:
-            if str(k['message_id']) == message_id:
+            if k['message_id'] == message_id:
                 message_uid = k['u_id']
                 message_found = 1
                 #Testing to see if user is in the channel and has owner permission
@@ -66,6 +66,6 @@ def message_unreact(token, message_id, react_id):
                     myexcept.message_already_unreacted()
                 answer = {}
                 updateData(data_new)
-                return sendSuccess(answer)
+                return answer
     if message_found == 0:
         myexcept.invalid_message_id()
