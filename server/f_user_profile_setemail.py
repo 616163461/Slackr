@@ -45,7 +45,7 @@ def user_profile_setemail(token, email):
             return answer
 
     if flag == 0:
-        myexception.token_error()
+        myexcept.token_error()
 
 def check(email):
     regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
