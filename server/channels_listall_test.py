@@ -43,7 +43,7 @@ def test_channels_listall():
     # SETUP END
     
     # Testing function using authorised user
-    assert channels_listall(token) == [{channels: {channel_id: "validchannel"}}, {channels: {channel_id_one: "validchannel1"}}, {channels: {channel_id_two: "validchannel2"}}, {channels: {channel_id_three: "validchannel3"}}]
+    assert channels_listall(token) == {channels: [{'channel_id': channel_id, 'name': 'validchannel'}, {'channel_id': channel_id_one, 'name': 'validchannel1'}, {'channel_id': channel_id_two, 'name': 'validchannel2'}, {'channel_id': channel_id_three, 'name': 'validchannel3'}]}
 
  
 def test_channels_listall_bad(): 
