@@ -31,7 +31,7 @@ def message_unreact(token, message_id, react_id):
     flag = 0
     #Test for valid token
     for i in data_new['users']:
-        if str(i['token']) == token and token != None:
+        if i['token'] == token and token != None:
             u_id = i['u_id']
             flag = 1
     if flag == 0:
