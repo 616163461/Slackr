@@ -12,6 +12,13 @@ from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_channel_invite import channel_invite
 from f_auth_logout import auth_logout
+import hashlib
+
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
+
 def test_message_send():
 
     # SETUP BEGIN
@@ -40,7 +47,13 @@ def test_message_send():
     # SETUP END
     
     # Asserting that the default case works
-    assert message_send(token, channel_id, message) == {}
+    message_id = message_send(token, channel_id, message)
+    
+    data = getData()
+    for channels in data['channels']:
+        for messages in channel['messages']:
+            if messages['message'] == message:
+                assert messages['message_id'] == message_id['message_id']
     
     # Testing that ValueError is raised when invalid parameters are passed
     with pytest.raises(ValueError, match = r"*"): 
