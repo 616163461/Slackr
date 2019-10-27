@@ -51,7 +51,7 @@ def test_channel_messages():
     # Couldn't assert since unable to obtain message_id also need to assert end == - 1
     for channels in data['channels']:
         if channels['channel_id'] == channel_id:
-            assert channel_messages(token, channel_id, 0) == {channels['messages'], 0, -1}
+            assert channel_messages(token, channel_id, 0) == {'messages': channels['messages'], 'start': 0, 'end': -1}
     
     # Adding 50 more messages to the channel to make 51 total messages
     for i in range(0,50): 
@@ -60,12 +60,12 @@ def test_channel_messages():
     # Should be asserting that end is not equal to -1      
     for channels in data['channels']:
         if channels['channel_id'] == channel_id:
-            assert channel_messages(token, channel_id, 0) == {channels['messages'][:50], 0, 50}
+            assert channel_messages(token, channel_id, 0) == {'messages': channels['messages'][:50], 'start': 0, 'end': 50}
     
     # Checking that the start index works
     for channels in data['channels']:
         if channels['channel_id'] == channel_id:
-            assert channel_messages(token, channel_id, 31) == {channels['messages'][31:], 31, -1}
+            assert channel_messages(token, channel_id, 31) == {'messages': channels['messages'][31:], 'start': 31, 'end': -1}
     
     
 def test_channel_messages_bad(): 
