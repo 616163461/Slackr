@@ -44,6 +44,4 @@ def search(token, query_str):
                         answer.append(messages)
 
     #search through all messages and find prefix (if contains)
-    return sendSuccess(answer)
-if __name__ == '__main__':
-    APP.run(port=7878)
+    return answer
