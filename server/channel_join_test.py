@@ -26,7 +26,7 @@ def getData():
 def test_channel_join(): 
     
     # SET UP BEGIN 
-    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid100@email.com", "validpassword", "first100name", "last100name")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
@@ -42,23 +42,23 @@ def test_channel_join():
     # checking output matches local data base
     data = getData()
     for channels in data['channels']:
-        if channels['channel_id'] = channel_id:
-            assert channels['all_members'] == [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}, {"u_id": u_id_one, "name_first": "firstname1", "name_last": "lastname1"}]
+        if channels['channel_id'] == channel_id:
+            assert channels['all_members'] == [{"u_id": u_id, "name_first": "first100name", "name_last": "last100name"}, {"u_id": u_id_one, "name_first": "firstname1", "name_last": "lastname1"}]
     
     # Assuming admin isn't in all_members list since admin was specifically isn't a member
-    assert channel_details(token, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}, {"u_id": u_id_one, "name_first": "firstname1", "name_last": "lastname1"}]}
+    assert channel_details(token, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "first100name", "name_last": "last100name"}], "all_members": [{"u_id": u_id, "name_first": "first100name", "name_last": "last100name"}, {"u_id": u_id_one, "name_first": "firstname1", "name_last": "lastname1"}]}
 
     
 def test_channel_join_bad(): 
    
     # SET UP BEGIN 
-    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid10@email.com", "validpassword", "first10name", "last10name")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", False)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid20@email.com", "validpassword1", "first20name1", "last20name1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     # SETUP END 
