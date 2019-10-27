@@ -35,7 +35,7 @@ def channel_join(token, channel_id):
     flag = 0
     for user in data['users']:
         # If token is valid, get user's u_id, first name, last name
-        if str(user['token']) == token and token != None:
+        if user['token'] == token and token != None:
             u_id = user['u_id']
             name_first = user['first_name']
             name_last = user['last_name']
@@ -50,8 +50,8 @@ def channel_join(token, channel_id):
 
     # search for the channel with channel_id
     for channel in data['channels']:
-        if str(channel['channel_id']) == channel_id:
-            if channel['is_public'] == "False":
+        if channel['channel_id'] == channel_id:
+            if channel['is_public'] == False:
                 if perm_id == '1' or perm_id == '2':
                     channel_found = 1
                     # search in channel members, if the user is not already in the channel
@@ -68,7 +68,7 @@ def channel_join(token, channel_id):
                             return {}
                 else:
                     myexcept.private_channel_denied()
-            elif channel['is_public'] == "True":
+            elif channel['is_public'] == True:
                 channel_found = 1
                 # search in channel members, if the user is not already in the channel
                 for member in channel['all_members']:
