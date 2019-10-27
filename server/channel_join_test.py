@@ -14,7 +14,13 @@ from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_channel_join import channel_join
 from f_auth_logout import auth_logout
+import json
 
+# retrieve data from local data base 
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
 
 
 def test_channel_join(): 
@@ -32,8 +38,15 @@ def test_channel_join():
     # SETUP END 
     
     channel_join(token_one, channel_id)
+    
+    # checking output matches local data base
+    data = getData()
+    for channels in data['channels']:
+        if channels['channel_id'] = channel_id:
+            assert channels['all_members'] == [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}, {"u_id": u_id_one, "name_first": "firstname1", "name_last": "lastname1"}]
+    
     # Assuming admin isn't in all_members list since admin was specifically isn't a member
-    assert channel_details(token, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{"u_id": u_id_one, "name_first": "firstname1", "name_last": "lastname1"}]}
+    assert channel_details(token, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}, {"u_id": u_id_one, "name_first": "firstname1", "name_last": "lastname1"}]}
 
     
 def test_channel_join_bad(): 
