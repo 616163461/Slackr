@@ -3,9 +3,9 @@ Assurance (Thom Browne)
 Required:
 Provide assurances that your backend implementation is fit for purpose. Consider both verification and validation when doing this. This will, at a minimum, require acceptance criteria for your user stories.
 
-Demonstration of an understanding of the need for software verification and validation
-Development of appropriate acceptance criteria based on user stories and requirements
-Demonstration of appropriate tool usage for assurance (code coverage, linting, etc.)
+ - Demonstration of an understanding of the need for software verification and validation
+ - Development of appropriate acceptance criteria based on user stories and requirements
+ - Demonstration of appropriate tool usage for assurance (code coverage, linting, etc.)
 
 Verification (Producer’s view of quality):
 Verification is the process of evaluating software at intermediate stages when being developed to ensure that it will meet project requirements and specifications derived from user stories.  This means that we can ensure the customer that each part of the code will work exactly the way it was meant to work.  Sometimes this can be difficult since the most thorough verification process is formal verification.  This method involves proving in a mathematical style that the piece of software contains certain required properties that was specified before development started.  However, formal verification isn’t widely used and is not covered in this course due to its high cost in regards to manpower and time.  For Slackr we utilised various levels of testing instead such as unit testing and integration testing as a form of insurance that our functions all perform as per the system requirements.  Our unit tests were initially written using a black-box method since we didn’t have access to the functions, but were later updated and improved on using a white-box method after we had written all the functions.   Finally to confirm that our functions worked correctly in respect to each other we did white-box integration testing with a few related functions at the time.  Hence through thorough testing processes we can assure that our Slackr functions will satisfy all the acceptance criteria.
