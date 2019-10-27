@@ -57,10 +57,9 @@ def message_send(token, channel_id, message):
                     answer['time_created'] = "12:04"
                     answer['reacts'] = []
                     answer['is_pinned'] = False
-                    for i in range(0, 50):
-                        j['messages'].append(answer)
+                    j['messages'].append(answer)
                     updateData(data_new)
-                    return sendSuccess({'message_id' : message_id})
+                    return {'message_id' : message_id}
     if channel_found == 0:
         myexcept.channel_not_found()
     elif member_found == 0:
