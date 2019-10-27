@@ -35,7 +35,7 @@ def updateData(data):
 def auth_login(email, password):
     data = getData()
     password = hashlib.sha256(password.encode()).hexdigest()
-    
+
     if check(email) == False:
         myexcept.invalid_email()
 
