@@ -13,6 +13,14 @@ from f_channel_join import channel_join
 from f_channel_leave import channel_leave
 from f_channels_list import channels_list
 from f_auth_logout import auth_logout
+import json
+
+# retrieve data from local data base 
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
+
 
 
 def test_channels_listall(): 
