@@ -24,9 +24,9 @@ def updateData(data):
     return 0
 
 def user_profile_setname(token, name_first, name_last):
-    if len(name_first) >= 50 and len(name_first) <= 1:
+    if len(name_first) >= 50 or len(name_first) <= 1:
         myexcept.name_first_invalid()
-    if len(name_last) >= 50 and len(name_last) <= 1:
+    if len(name_last) >= 50 or len(name_last) <= 1:
         myexcept.name_last_invalid()
 
     flag = 0
