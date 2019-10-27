@@ -31,16 +31,18 @@ def channel_messages(token, channel_id, start):
     data = getData()
     send_Success = False
     for channel in data['channels']:
-        if channel['channel_id'] == channel_id:
-            for message in channel['messages']:
-                messages = channel['messages']
-                end = 50 + int(start)
-                send_Success = True
-                end2 = end
-                if len(channel['messages']) - int(start) < 50:
-                    end2 = -1
+        if str(channel['channel_id']) == channel_id:
+            #for message in channel['messages']:
+            # checking start is smaller than total number of messages
+            if start > len(channel['messages']):
                     myexcept.start_message_invalid()
-                return {'messages' : messages[int(start):end],
-                        'start' : start, 'end' : end2}
+            messages = channel['messages']
+            end = 50 + int(start)
+            send_Success = True
+            end2 = end
+            if len(channel['messages']) - int(start) < 50:
+                end2 = -1
+            return {'messages' : messages[int(start):end],
+                    'start' : start, 'end' : end2}
     if send_Success == False:
         myexcept.channel_not_found()
