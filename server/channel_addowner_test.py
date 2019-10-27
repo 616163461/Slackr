@@ -30,17 +30,17 @@ def getData():
 def test_channel_addowner(): 
     
     # SET UP BEGIN 
-    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid9@email.com", "valid9password", "first9name", "last9name")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid6@email.com", "valid6password1", "first6name1", "last6name1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     
-    authRegisterDicTwo = auth_register("valid3@email.com", "validpassword2", "firstname2", "lastname2")
+    authRegisterDicTwo = auth_register("valid10@email.com", "validpassword2", "firstname2", "lastname2")
     token_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     # SETUP END 
@@ -55,8 +55,8 @@ def test_channel_addowner():
     # checking output matches local data base
     data = getData()
     for channels in data['channels']:
-        if channels['channel_id'] = channel_id:
-            assert channels['owner_members'] == [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}, {"u_id": u_id_one, "name_first": "firstname1", "name_last": "lastname1"}]
+        if channels['channel_id'] == channel_id:
+            assert channels['owner_members'] == [{"u_id": u_id, "name_first": "first9name", "name_last": "last9name"}, {"u_id": u_id_one, "name_first": "first6name1", "name_last": "last6name1"}]
             
 
     # Testing function with recently declared owner (token_one) to check if he has owner permissions
@@ -65,8 +65,8 @@ def test_channel_addowner():
     # checking output matches local data base
     data = getData()
     for channels in data['channels']:
-        if channels['channel_id'] = channel_id:
-            assert channels['owner_members'] == [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}, {"u_id": u_id_one, "name_first": "firstname1", "name_last": "lastname1"}, {"u_id": u_id_two, "name_first": "firstname2", "name_last": "lastname2"}]
+        if channels['channel_id'] == channel_id:
+            assert channels['owner_members'] == [{"u_id": u_id, "name_first": "first9name", "name_last": "last9name"}, {"u_id": u_id_one, "name_first": "first6name1", "name_last": "last6name1"}, {"u_id": u_id_two, "name_first": "firstname2", "name_last": "lastname2"}]
             
     
 def test_channel_addowner_bad(): 
@@ -112,5 +112,3 @@ def test_channel_addowner_bad():
         # Testing function on an invalid token 
         channel_addowner(token, channel_id, u_id_four)
     '''
-
-
