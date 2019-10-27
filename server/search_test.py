@@ -14,28 +14,28 @@ from f_auth_logout import auth_logout
 from f_channel_invite import channel_invite
 from f_channel_messages import channel_messages
 
-def test_search(): 
+def test_search():
     
     # SETUP BEGIN
     # User One 
-    validAuthRegisterDic = auth_register("valid@email.com", "validpassword", "Richard", "Jiang")
+    validAuthRegisterDic = auth_register("valid30@email.com", "valid30password", "first30name", "last30name")
     token = validAuthRegisterDic['token']
     u_id = validAuthRegisterDic['u_id']
     
     # User Two
-    validAuthRegisterDicOne = auth_register("valid2@email.com", "validpassword", "Daniel", "Yang")
+    validAuthRegisterDicOne = auth_register("valid31@email.com", "valid31password", "first31name", "last31name")
     token_one = validAuthRegisterDicOne['token']
     u_id_one = validAuthRegisterDicOne['u_id']
     
     # False User Three
-    invalidAuthRegisterDic = auth_register("valid3@email.com", "validpassword", "firstname", "lastname")
+    invalidAuthRegisterDic = auth_register("valid32@email.com", "valid32password", "first32name", "last32name")
     invalid_token = invalidAuthRegisterDic['token']
     # Creates an Invalid Token
     auth_logout(invalid_token) 
     
     # Create a channel
-    channel_id = channels_create(token, "Channel Nine", True)
-    
+    channel_id_dic = channels_create(token, "Channel Nine", True)
+    channel_id = channel_id_dic['channel_id']
     # Invite the member
     channel_invite(token, channel_id, u_id_one)
     
