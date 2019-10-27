@@ -43,7 +43,7 @@ def user_profile_sethandle(token, handle_str):
             flag = 1
             answer = {}
             updateData(data_new)
-            return sendSuccess(answer)
+            return answer
 
     if flag == 0:
         myexcept.token_error()
