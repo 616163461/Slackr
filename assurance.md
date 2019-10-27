@@ -1,4 +1,4 @@
-Assurance (Thom Browne)
+Assurance (Thom_Browne)
 
 Required:
 Provide assurances that your backend implementation is fit for purpose. Consider both verification and validation when doing this. This will, at a minimum, require acceptance criteria for your user stories.
@@ -13,7 +13,7 @@ Verification is the process of evaluating software at intermediate stages when b
 Validation (Consumer’s view of quality):
 Validation is also extremely useful as it makes sure that the product meets the intended purpose. It is the process of evaluating the final product to check whether the software meets the business needs. The techniques that are included in validation are: Unit testing and User acceptance testing, whereby ensuring that the system is working according to the plan. 
 
-Validation is the process of evaluating the overall software at the final stage with respect to the customer’s requirements so that it satisfies all the user requirements demonstrating an accurate interpretation of user stories.  This aspect focuses on the customers satisfaction and feedback.
+Validation is the process of evaluating the overall software at the final stage with respect to the customer’s requirements so that it satisfies all the user requirements demonstrating an accurate interpretation of user stories.  This aspect focuses on the customers satisfaction and feedback.  The process of validation usually results in a lot of back and forth communication between the customer and programmer.  Over the course of coding this project we imitated this through asking multiple questions on piazza to ensure the correct interpretation of all the customer’s requirements.  Furthermore we implemented white-box system testing and acceptance testing as a reinsurance that our Slackr system functions all work together perfectly.  The acceptancing testing on the other hand was performed with the intention of ensuring that we accomplished all our initial requirements.  Hence, through utilising thorough testing process in the final stage and communicating back and forth with the customer we can assure that our Slackr satisfies the customer’s needs. 
 
 Below is a list of our Iteration 1 Acceptance criteria:
 Upon entering the correct combination, the user will be able to view their own portal, direct messages, channels etc.
