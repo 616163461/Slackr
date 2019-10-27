@@ -10,10 +10,13 @@ Meeting Times:
 Our team holds three main meetings a week:
 
 WEEK PLAN (FOR EVERY WEEK LEADING UP TO DUE DATE)
+
 Meeting #1:
  - Sunday, 8:00 PM - 9:00 PM  Online Conference Call
+
 Meeting #2:
  - Wednesday, 6:00 PM - 9:00 PM,  UNSW Main Library, Meeting Room
+
 Meeting #3:
  - Friday, 6:00 PM - 9:00 PM,  UNSW Main Library, Meeting Room
 
