@@ -18,6 +18,13 @@ from f_channel_leave import channel_leave
 from f_channels_list import channels_list
 from f_auth_logout import auth_logout
 from f_channel_addowner import channel_addowner
+import json
+
+# retrieve data from local data base 
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
 
 
 def test_channel_addowner(): 
@@ -45,9 +52,23 @@ def test_channel_addowner():
     # Making token_one an owner
     channel_addowner(token, channel_id, u_id_one)
     
+    # checking output matches local data base
+    data = getData()
+    for channels in data['channels']:
+        if channels['channel_id'] = channel_id:
+            assert channels['owner_members'] == [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}, {"u_id": u_id_one, "name_first": "firstname1", "name_last": "lastname1"}]
+            
+
     # Testing function with recently declared owner (token_one) to check if he has owner permissions
     assert channel_addowner(token_one, channel_id, u_id_two) == {}
-
+    
+    # checking output matches local data base
+    data = getData()
+    for channels in data['channels']:
+        if channels['channel_id'] = channel_id:
+            assert channels['owner_members'] == [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}, {"u_id": u_id_one, "name_first": "firstname1", "name_last": "lastname1"}, {"u_id": u_id_two, "name_first": "firstname2", "name_last": "lastname2"}]
+            
+    
 def test_channel_addowner_bad(): 
     
     # SET UP BEGIN 
