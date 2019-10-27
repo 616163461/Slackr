@@ -13,24 +13,26 @@ from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_auth_logout import auth_logout
 from f_channel_details import channel_details
+from f_channel_invite import channel_invite
+from f_channel_leave import channel_leave
 
 def test_channel_invite(): 
     
     # SET UP BEGIN 
-    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid6@email.com", "validpassword", "first6name", "last6name")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid8@email.com", "validpassword1", "first8name1", "last8name1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     # SETUP END 
     
     channel_invite(token, channel_id, u_id_one)
     # Asserting that the invited user is now a member of the channel
-    assert channel_details(token_one, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{"u_id": u_id, "name_first": "firstname1", "name_last": "lastname1"}]}
+    assert channel_details(token_one, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "first6name", "name_last": "last6name"}], "all_members": [{"u_id": u_id, "name_first": "first6name", "name_last": "last6name"}, {"u_id": u_id_one, "name_first": "first8name1", "name_last": "last8name1"}]}
     # Testing channel_leave to check that he's a member of the channel
     channel_leave(token_one, channel_id)
     
