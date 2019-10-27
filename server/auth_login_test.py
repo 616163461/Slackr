@@ -30,18 +30,18 @@ def test_auth_login():
     u_id = authRegisterDic['u_id']
     
     # SETUP END
-    
+    '''
     with pytest.raises(ValueError): 
         # Testing function with account which hasn't been logged out 
         auth_login("valid10@email.com", "valid10password")
-     
+    ''' 
     # Testing function with account which has been logged out 
     auth_logout(token)
 
     authLoginDic = auth_login("valid10@email.com", "valid10password")
     token = authLoginDic['token']
     u_id = authLoginDic['u_id']
-    
+    data = getData()
     # checking the token matches the token in the database
     token_valid = False
     for users in data['users']:
