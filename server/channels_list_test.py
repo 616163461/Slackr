@@ -13,6 +13,13 @@ from f_channel_join import channel_join
 from f_channel_leave import channel_leave
 from f_channels_list import channels_list
 from f_auth_logout import auth_logout
+import json
+
+# retrieve data from local data base 
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
 
 
 def test_channels_list(): 
@@ -34,7 +41,9 @@ def test_channels_list():
     # Testing function using authorised user
     assert channels_list(token) == [{channels: {channel_id: "validchannel"}}]
     
-    
+    for channels in data['channels']:
+        assert channels == {'channel_id' : channel_id, 'channel_name' : "validchannel", 'is_public' : True, 'owner_members' : [{'u_id' : u_id, 'name_first' : name_first,'name_last' : name_last}], 'all_members' : [{'u_id' : u_id, 'name_first' : name_first,'name_last' : name_last}], 'messages' : []}
+            
 
 def test_channels_list_bad(): 
     
