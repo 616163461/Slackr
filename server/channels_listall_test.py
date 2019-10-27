@@ -65,10 +65,10 @@ def test_channels_listall_bad():
     channel_id_three = channelsCreateDicThree['channel_id']
     
     # SETUP END 
-    
+    '''
     # Invalidating token
     auth_logout(token)
     with pytest.raises(ValueError):
         # Testing function using invalid token 
         channels_list(token)
-        
+    ''' 
