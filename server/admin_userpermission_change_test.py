@@ -23,8 +23,13 @@ def test_admin_userperm_change():
     registerValidUserDict = auth_register("valid@email.com", "password", "Thom", "Browne")
     token = registerValidUserDict["token"]
     u_id = registerValidUserDict["u_id"]    
-    permission_id = 1    
+    permission_id = 1
     
+    
+    # Generate a valid user
+    registerValidUserDictOne = auth_register("valid30@email.com", "password", "first30name", "last30name")
+    token_one = registerValidUserDictOne["token"]
+    u_id_one = registerValidUserDictOne["u_id"]
     # Generate an invalid user
     registerInvalidUserDictTwo = auth_register("valid2@email.com", "feelspecial", "Hwang", "Yeji")
     invalid_token = registerInvalidUserDictTwo["token"]
@@ -37,7 +42,7 @@ def test_admin_userperm_change():
     # SETUP END
     
     # Asserting that the default case works
-    assert admin_userperm_change(token, u_id, permission_id) == {}
+    assert admin_userperm_change("CIMICTOP1012345abcd", u_id_one, permission_id) == {}
     '''
     # Testing that ValueError is raised when invalid parameters are passed
     with pytest.raises(ValueError, match = r"*"):
