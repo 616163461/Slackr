@@ -13,6 +13,7 @@ from f_channels_create import channels_create
 from f_channel_join import channel_join
 from f_channel_leave import channel_leave
 from f_auth_logout import auth_logout
+from myexcept import ValueError
 import json
 
 # retrieve data from local data base 
@@ -71,7 +72,6 @@ def test_channel_leave_bad():
     token_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     # SETUP END 
-    '''
     channel_join(token_one, channel_id)
     with pytest.raises(ValueError): 
         # Testing function using invalid channel_id
@@ -83,5 +83,3 @@ def test_channel_leave_bad():
     with pytest.raises(ValueError): 
         # Testing function using invalid token
         channel_leave(token_one, channel_id)
-    '''
-
