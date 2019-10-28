@@ -19,6 +19,8 @@ from f_channels_list import channels_list
 from f_auth_logout import auth_logout
 from f_channel_removeowner import channel_removeowner
 from f_channel_addowner import channel_addowner
+from myexcept import ValueError
+
 # retrieve data from local data base 
 def getData():
     with open('export.json', 'r') as FILE:
@@ -85,7 +87,7 @@ def test_channel_removeowner_bad():
     # SETUP END
     
     channel_addowner(token, channel_id, u_id_one)
-    '''
+    
     with pytest.raises(ValueError): 
         # Testing function with invalid channel_id
         channel_removeowner(token, "invalidchannel_id", u_id_one)
@@ -98,4 +100,3 @@ def test_channel_removeowner_bad():
     with pytest.raises(ValueError): 
         # Testing function with invalid token
         channel_removeowner(token, channel_id, u_id_one)
-    '''
