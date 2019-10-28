@@ -15,9 +15,11 @@ from f_channels_create import channels_create
 from f_channel_messages import channel_messages
 from f_message_unreact import message_unreact
 from f_message_react import message_react
+from myexcept import ValueError, AccessError
+from json_clean import jsonClean
 
 def test_message_react(): 
-    
+    jsonClean()
     # SETUP BEGIN 
     
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
@@ -45,11 +47,11 @@ def test_message_react():
     assert message_react(token, message_id, react_id) == {}
     # Testing two users can react laugh one message
     assert message_react(token_one, message_id, react_id) == {}
-    '''
+    
     with pytest.raises(ValueError, match = r"*"):
         # Testing function can't react the message for a second time
         message_react(token, message_id, react_id)
-    '''
+    
     # Testing function can unreact the message 
     assert message_unreact(token, message_id, react_id) == {}
     
@@ -83,7 +85,7 @@ def test_message_react_bad():
     message_id = message_dic["message_id"]
     
     # SETUP END
-    '''
+    
     with pytest.raises(ValueError, match = r"*"):
         # Testing function with invalid message_id
         message_react(token, "invalidmessage_id", react_id)
@@ -102,4 +104,4 @@ def test_message_react_bad():
     with pytest.raises(ValueError, match = r"*"): 
         # Testing function with invalid token 
         message_react(token, message_id, react_id)
-    '''
+    
