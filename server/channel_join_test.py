@@ -14,6 +14,7 @@ from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_channel_join import channel_join
 from f_auth_logout import auth_logout
+from myexcept import ValueError
 import json
 
 # retrieve data from local data base 
@@ -62,7 +63,7 @@ def test_channel_join_bad():
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     # SETUP END 
-    '''
+
     with pytest.raises(ValueError): 
         # Testing function with invalid channel_id
         channel_join(token_one, "invalidchannel_id")
@@ -75,4 +76,3 @@ def test_channel_join_bad():
     with pytest.raises(ValueError): 
         # Testing function with invalid token
         channel_join(token_one, channel_id)
-    '''
