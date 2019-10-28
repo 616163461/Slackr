@@ -16,9 +16,10 @@ from f_auth_register import auth_register
 from f_auth_logout import auth_logout
 from f_auth_login import auth_login
 from myexcept import ValueError
+from json_clean import jsonClean
 
 def test_auth_register(): 
-
+    jsonClean()
     # SETUP BEGIN
 
     authRegisterDic = auth_register("valid9@email.com", "valid9password", "first9name", "last9name")
