@@ -15,6 +15,7 @@ from f_auth_register import auth_register
 from f_auth_logout import auth_logout
 from PIL import Image
 from io import BytesIO
+from myexcept import ValueError
 
 
 def user_profiles_uploadphoto_test():
