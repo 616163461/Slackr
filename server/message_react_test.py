@@ -60,7 +60,7 @@ def test_message_react():
    
         
 def test_message_react_bad(): 
-    
+    jsonClean()
     # SETUP BEGIN 
     
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
