@@ -23,6 +23,7 @@ from f_channel_leave import channel_leave
 from f_auth_logout import auth_logout
 from f_message_send import message_send
 from myexcept import ValueError
+from json_clean import jsonClean
 import json
 
 # retrieve data from local data base 
@@ -32,7 +33,7 @@ def getData():
     return data
     
 def test_channel_messages(): 
-    
+    jsonClean()
     # SETUP BEGIN 
     
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
@@ -70,7 +71,7 @@ def test_channel_messages():
     
     
 def test_channel_messages_bad(): 
-
+    jsonClean()
     # SETUP BEGIN 
     
     authRegisterDic = auth_register("invalidemail", "invalidpassword", "firstname", "lastname")
