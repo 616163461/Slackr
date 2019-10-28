@@ -15,10 +15,12 @@ from f_channels_create import channels_create
 from f_standup_start import standup_start
 from f_message_send import message_send
 from f_channel_invite import channel_invite
+from myexcept import ValueError, AccessError
+from json_clean import jsonClean
 
 
 def test_standup_send():
-
+    jsonClean()
     # Generate a valid user 
     registerValidUserDict = auth_register("valid@email.com", "feelspecial", "Hwang", "Yeji")
     token = registerValidUserDict["token"]
@@ -44,7 +46,7 @@ def test_standup_send():
 
     # Asserting that the default case works
     assert standup_send(token, channel_id, message) == {}
-    '''
+    
     # Testing that ValueError is raised when invalid parameters are passed
     with pytest.raises(ValueError): 
 
@@ -56,4 +58,4 @@ def test_standup_send():
         
         # Testing function with an invalid message
         standup_send(token, channel_id, invalid_message)
-    '''
+    
