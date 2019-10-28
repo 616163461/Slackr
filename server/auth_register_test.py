@@ -15,6 +15,7 @@ import pytest
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
 from f_auth_login import auth_login
+from myexcept import ValueError
 
 def test_auth_register(): 
 
@@ -46,7 +47,7 @@ def test_auth_register_bad():
     u_id_one = authRegisterDic_one['u_id']
     
     # SETUP END
-    '''
+
     with pytest.raises(ValueError):
         # Testing function with invalid email 
         auth_register("invalidemail", "validpassword1", "firstname1", "lastname1")
@@ -58,4 +59,3 @@ def test_auth_register_bad():
         auth_register("valid2@email.com", "validpassword1", "firstnameiswayyyyyyyyyytoooooooooooooolongsounforunatelyitwillcauseanerror", "lastname1")
         # Testing function with invalid last_name
         auth_register("valid2@email.com", "validpassword1", "firstname1", "lastnameiswayyyyyyyyyytoooooooooooooolongsounforunatelyitwillcauseanerror")
-        '''
