@@ -16,6 +16,7 @@ from f_channels_create import channels_create
 from f_channel_messages import channel_messages
 from f_channel_invite import channel_invite
 from f_message_edit import message_edit
+from myexcept import ValueError
 
 
 def test_message_edit():
@@ -53,7 +54,6 @@ def test_message_edit():
 
     # Asserting that the default case works
     assert message_edit(token, message_id, message_list[0]) == {}
-    '''
     # Testing that ValueError is raised when invalid parameters are passed
     with pytest.raises(ValueError):
         
@@ -62,4 +62,3 @@ def test_message_edit():
 
         # Testing function with an invalid message id
         message_edit(token_one, invalid_messageid, message_list[1])
-    '''
