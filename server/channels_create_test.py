@@ -11,6 +11,7 @@ from f_channels_create import channels_create
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
 from myexcept import ValueError
+from json_clean import jsonClean
 import myexcept
 import json
 
@@ -22,7 +23,7 @@ def getData():
 
 
 def test_channels_create(): 
-    
+    jsonClean()
     # SETUP BEGIN 
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
@@ -52,7 +53,7 @@ def test_channels_create():
     
 def test_channels_create_bad():
    
-
+    jsonClean() 
     # SETUP BEGIN 
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
