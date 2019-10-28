@@ -13,6 +13,7 @@ from f_channel_join import channel_join
 from f_channel_leave import channel_leave
 from f_channels_list import channels_list
 from f_auth_logout import auth_logout
+from myexcept import ValueError
 import json
 
 # retrieve data from local data base 
@@ -65,10 +66,8 @@ def test_channels_listall_bad():
     channel_id_three = channelsCreateDicThree['channel_id']
     
     # SETUP END 
-    '''
     # Invalidating token
     auth_logout(token)
     with pytest.raises(ValueError):
         # Testing function using invalid token 
         channels_list(token)
-    ''' 
