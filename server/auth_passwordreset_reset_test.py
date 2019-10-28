@@ -18,6 +18,7 @@ from f_auth_logout import auth_logout
 from f_channel_addowner import channel_addowner
 from f_auth_passwordreset_reset import auth_passwordreset_reset
 from f_auth_passwordreset_request import auth_passwordreset_request
+from myexcept import ValueError
 
 def test_auth_passwordreset_reset(): 
     
@@ -49,10 +50,9 @@ def test_auth_passwordreset_reset_bad():
     # SETUP END 
     
     auth_passwordreset_request("valid17@email.com")
-    '''
+    
     with pytest.raises(ValueError):     
         # Testing function with invalid reset code
         auth_passwordreset_reset("invalid_reset_code", "new_password")
         # Testing function with invalid password
         auth_passwordreset_reset("reset_code", "ivp")
-    '''
