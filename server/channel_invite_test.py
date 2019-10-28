@@ -15,10 +15,11 @@ from f_auth_logout import auth_logout
 from f_channel_details import channel_details
 from f_channel_invite import channel_invite
 from f_channel_leave import channel_leave
+from json_clean import jsonClean
 from myexcept import ValueError
 
 def test_channel_invite(): 
-    
+    jsonClean()
     # SET UP BEGIN 
     authRegisterDic = auth_register("valid6@email.com", "validpassword", "first6name", "last6name")
     token = authRegisterDic['token']
@@ -40,6 +41,7 @@ def test_channel_invite():
 
 def test_channel_invite_bad(): 
     # SET UP BEGIN 
+    jsonClean()
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
