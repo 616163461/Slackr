@@ -15,6 +15,7 @@ from f_auth_logout import auth_logout
 from f_channel_details import channel_details
 from f_channel_invite import channel_invite
 from f_channel_leave import channel_leave
+from myexcept import ValueError
 
 def test_channel_invite(): 
     
@@ -55,7 +56,6 @@ def test_channel_invite_bad():
     token_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     # SETUP END
-    '''
     with pytest.raises(ValueError): 
         # Testing function with invalid channel_id
         channel_invite(token, "invalidchannel_id", u_id_one)
@@ -69,4 +69,3 @@ def test_channel_invite_bad():
     with pytest.raises(ValueError): 
         # Testing function with invalid token
         channel_invite(token_one, channel_id_one, u_id_two)
-    '''
