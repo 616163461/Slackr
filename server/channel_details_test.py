@@ -13,6 +13,7 @@ from f_channel_details import channel_details
 from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_auth_logout import auth_logout
+from myexcept import ValueError
 import json
 # retrieve data from local data base 
 def getData():
@@ -55,10 +56,8 @@ def test_channel_details_bad():
     channelsCreateDicOne = channels_create(token_one, "validchannel1", True)
     channel_id_one = channelsCreateDicOne['channel_id']
     # SETUP END 
-    '''
     with pytest.raises(ValueError): 
         # Testing function with invalid channel_id
         channel_details(token, "invalidchannel_id")
         # Testing function with unauthorised user
         channel_details(token, channel_id_one)
-    '''
