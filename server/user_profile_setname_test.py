@@ -11,6 +11,8 @@ import pytest
 from f_user_profile_setname import user_profile_setname
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
+from myexcept import ValueError, AccessError
+from json_clean import jsonClean
 import json
 
 # retrieve data from local data base 
@@ -20,6 +22,7 @@ def getData():
     return data
 
 def test_user_profile_setname():
+    jsonClean():
     # SETUP BEGIN
     name_first_bad = "exam1exam2exam3exam4exam5exam6exam7exam8exam9exam10"
     name_last_bad = "exam1exam2exam3exam4exam5exam6exam7exam8exam9exam10"
