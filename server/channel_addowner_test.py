@@ -72,7 +72,7 @@ def test_channel_addowner():
             
     
 def test_channel_addowner_bad(): 
-    
+    jsonClean()
     # SET UP BEGIN 
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
