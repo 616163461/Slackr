@@ -53,7 +53,7 @@ def test_message_unreact():
     
     
 def test_message_unreact_bad(): 
-    
+    jsonClean()
     # SETUP BEGIN
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
