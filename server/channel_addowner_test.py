@@ -18,6 +18,7 @@ from f_channel_leave import channel_leave
 from f_channels_list import channels_list
 from f_auth_logout import auth_logout
 from f_channel_addowner import channel_addowner
+from myexcept import ValueError
 import json
 
 # retrieve data from local data base 
@@ -94,7 +95,6 @@ def test_channel_addowner_bad():
     token_four = authRegisterDicFour['token']
     u_id_four = authRegisterDicFour['u_id']
     # SETUP END 
-    '''
     with pytest.raises(ValueError):
         # Testing function with invalid channel_id
         channel_addowner(token, "invalidchannel_id", u_id_one)
@@ -111,4 +111,3 @@ def test_channel_addowner_bad():
     with pytest.raises(ValueError): 
         # Testing function on an invalid token 
         channel_addowner(token, channel_id, u_id_four)
-    '''
