@@ -33,7 +33,7 @@ def test_auth_passwordreset_request():
     
     
 def test_auth_passwordreset_request_bad(): 
-
+    jsonClean()
     # SETUP BEGIN 
 
     authRegisterDic = auth_register("valid15@email.com", "valid15password", "first15name", "last15name")
