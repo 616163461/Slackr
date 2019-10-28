@@ -13,9 +13,11 @@ from f_auth_register import auth_register
 from f_auth_logout import auth_logout
 from f_channel_invite import channel_invite
 from f_channel_messages import channel_messages
+from myexcept import ValueError, AccessError
+from json_clean import jsonClean
 
 def test_search():
-    
+    jsonClean()
     # SETUP BEGIN
     # User One 
     validAuthRegisterDic = auth_register("valid30@email.com", "valid30password", "first30name", "last30name")
@@ -83,11 +85,11 @@ def test_search():
         "time_created" : "18:35",
         "is_unread" : False
     }]
-    '''
+    
     # Testing Bad Cases
     with pytest.raises(ValueError, match = r"*"):
         # Bad token with multiple search results
         search(invalid_token, "Hellomy")
         # Bad token with no search results
         search(invalid_token, "ahahahahahaha")
-    '''
+    
