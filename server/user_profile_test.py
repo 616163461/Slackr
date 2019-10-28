@@ -10,9 +10,11 @@ import pytest
 from f_user_profile import user_profile
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
+from myexcept import ValueError, AccessError
+from json_clean import jsonClean
 
 def test_user_profile():
-
+    jsonClean()
     # SETUP BEGIN
     validAuthRegisterDic = auth_register("valid16@email.com", "valid16password", "first16name", "last16name")
     goodtoken = validAuthRegisterDic['token']
