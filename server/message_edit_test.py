@@ -17,12 +17,13 @@ from f_channel_messages import channel_messages
 from f_channel_invite import channel_invite
 from f_message_edit import message_edit
 from myexcept import ValueError
+from json_clean import jsonClean
 
 
 def test_message_edit():
     
     # SETUP BEGIN
-    
+    jsonClean()
     # Token creates the channel so it should be the owner
     registerValidUserDict = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = registerValidUserDict["token"]
