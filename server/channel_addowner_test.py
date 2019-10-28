@@ -19,6 +19,7 @@ from f_channels_list import channels_list
 from f_auth_logout import auth_logout
 from f_channel_addowner import channel_addowner
 from myexcept import ValueError
+from json_clean import jsonClean
 import json
 
 # retrieve data from local data base 
@@ -29,7 +30,7 @@ def getData():
 
 
 def test_channel_addowner(): 
-    
+    jsonClean()
     # SET UP BEGIN 
     authRegisterDic = auth_register("valid9@email.com", "valid9password", "first9name", "last9name")
     token = authRegisterDic['token']
