@@ -16,8 +16,11 @@ from f_channel_messages import channel_messages
 from f_message_unreact import message_unreact
 from f_message_react import message_react
 from f_channel_join import channel_join
+from myexcept import ValueError, AccessError
+from json_clean import jsonClean
 
 def test_message_unreact(): 
+    jsonClean()
     # SETUP BEGIN 
     authRegisterDic = auth_register("valid40@email.com", "valid40password", "first40name", "last40name")
     token = authRegisterDic['token']
@@ -40,10 +43,10 @@ def test_message_unreact():
     # SETUP END
     
     message_react(token, message_id, react_id)
-    '''
+    
     with pytest.raises(ValueError):
         message_react(token, message_id, react_id)
-    '''
+    
     assert message_unreact(token, message_id, react_id) == {}
     # Testing message_react to check the message was successfully unreacted 
     message_react(token, message_id, react_id)
@@ -73,7 +76,7 @@ def test_message_unreact_bad():
     message_dic = message_list[0]
     message_id = message_dic["message_id"]
     # SETUP END
-    '''
+    
     message_react(token, message_id, 1)
     with pytest.raises(ValueError): 
         # Testing function with user who isn't admin 
@@ -95,4 +98,4 @@ def test_message_unreact_bad():
     with pytest.raises(ValueError): 
         # Testing function with invalid token 
         message_unreact(token, message_id, react_id)
-    '''
+    
