@@ -13,7 +13,7 @@ import pytest
 from f_admin_userpermission_change import admin_userperm_change
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
-
+from myexcept import ValueError
 
 def test_admin_userperm_change():
     
@@ -43,7 +43,7 @@ def test_admin_userperm_change():
     
     # Asserting that the default case works
     assert admin_userperm_change("CIMICTOP1012345abcd", u_id_one, permission_id) == {}
-    '''
+    
     # Testing that ValueError is raised when invalid parameters are passed
     with pytest.raises(ValueError, match = r"*"):
    
@@ -58,4 +58,3 @@ def test_admin_userperm_change():
     
         # Testing function with an invalid permission_id
         admin_userperm_change(token, u_id, invalid_permission_id)
-    '''
