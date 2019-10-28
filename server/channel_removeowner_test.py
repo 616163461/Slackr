@@ -19,6 +19,7 @@ from f_channels_list import channels_list
 from f_auth_logout import auth_logout
 from f_channel_removeowner import channel_removeowner
 from f_channel_addowner import channel_addowner
+from json_clean import jsonClean
 from myexcept import ValueError
 
 # retrieve data from local data base 
@@ -29,7 +30,7 @@ def getData():
 
 
 def test_channel_removeowner():
-    
+    jsonClean()
     # SET UP BEGIN
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
@@ -66,6 +67,7 @@ def test_channel_removeowner():
             assert channels['owner_members'] == [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}, {"u_id": u_id_two, "name_first": "firstname2", "name_last": "lastname2"}]
 
 def test_channel_removeowner_bad():
+    jsonClean()
     # SET UP BEGIN
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
