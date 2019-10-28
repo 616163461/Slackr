@@ -9,6 +9,7 @@ import pytest
 from f_auth_login import auth_login
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
+from myexcept import ValueError
 import json
 
 # retrieve data from local data base 
@@ -27,9 +28,9 @@ def test_auth_logout():
     
     # SETUP END
     
-    #with pytest.raises(ValueError): 
+    with pytest.raises(ValueError): 
         # Testing login function with user which hasn't been logged out
-        #auth_login("valid13@email.com", "valid13password")
+        auth_login("valid13@email.com", "valid13password")
     # auth_login does not check to see if the user is already logged in!
     auth_logout(token)
     data = getData()
@@ -48,8 +49,6 @@ def test_auth_logout():
     auth_login("valid13@email.com", "valid13password")
     
     auth_logout(token)
-    '''
     # Testing logout function with a logged out user 
     with pytest.raises(ValueError):
         assert auth_logout(token) == {}
-    '''
