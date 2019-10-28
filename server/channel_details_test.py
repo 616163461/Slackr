@@ -43,7 +43,7 @@ def test_channel_details():
     
     
 def test_channel_details_bad(): 
-    
+    jsonClean()
     # SET UP BEGIN
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
