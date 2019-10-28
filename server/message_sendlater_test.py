@@ -13,10 +13,11 @@ from f_message_sendlater import message_sendlater
 from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_channel_invite import channel_invite
-import time
+from myexcept import ValueError, AccessError
+from json_clean import jsonClean
 
 def test_message_sendlater():
-
+    jsonClean()
     # SETUP BEGIN
     
     # Generate a valid user
@@ -54,7 +55,7 @@ def test_message_sendlater():
             if messages['message'] == message:
                 assert messages['message_id'] == message_id['message_id']
             
-    '''
+    
     # Testing that ValueError is raised when invalid parameters are passed
     with pytest.raises(ValueError, match = r"*"):
         
@@ -69,4 +70,4 @@ def test_message_sendlater():
         
         # Testing function with an invalid timesent input
         message_sendlater(token, channel_id, message, invalid_timesent)
-    '''
+    
