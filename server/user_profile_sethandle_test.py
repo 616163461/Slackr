@@ -10,8 +10,11 @@ import pytest
 from f_user_profile_sethandle import user_profile_sethandle
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
+from myexcept import ValueError, AccessError
+from json_clean import jsonClean
 
 def test_user_profile_sethandle():
+    jsonClean()
     # SETUP BEGIN
     handle_str_good = "thisismorethantwentycharacters"
     handle_str_bad =  "goodhandle"
@@ -32,7 +35,7 @@ def test_user_profile_sethandle():
     assert user_profile_sethandle(token, handle_str_good) == {}
     # Testing maximum case of handle_str
     assert user_profile_sethandle(token, handle_str_max) == {}
-    '''
+    
     with pytest.raises(ValueError):
         # Testing good token, with bad handle_str
         user_profile_sethandle(token, handle_str_bad)
@@ -40,4 +43,4 @@ def test_user_profile_sethandle():
         user_profile_sethandle(invalid_token, handle_str_good)
         # Testing both bad token and bad handle_str
         user_profile_sethandle(invalid_token, handle_str_bad)
-    '''
+    
