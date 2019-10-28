@@ -19,9 +19,10 @@ from f_channel_addowner import channel_addowner
 from f_auth_passwordreset_reset import auth_passwordreset_reset
 from f_auth_passwordreset_request import auth_passwordreset_request
 from myexcept import ValueError
+from json_clean import jsonClean
 
 def test_auth_passwordreset_reset(): 
-    
+    jsonClean()
     # SETUP BEGIN 
     
     authRegisterDic = auth_register("valid@16email,com", "valid16password", "first16name", "last16name")
