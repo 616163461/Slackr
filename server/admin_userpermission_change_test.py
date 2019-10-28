@@ -15,9 +15,10 @@ from f_auth_register import auth_register
 from f_auth_logout import auth_logout
 from myexcept import ValueError
 from myexcept import SystemError
+from json_clean import jsonClean
 
 def test_admin_userperm_change():
-    
+    jsonClean()
     # SETUP BEGIN   
     
     # Generate a valid user
