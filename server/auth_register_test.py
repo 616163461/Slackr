@@ -36,7 +36,7 @@ def test_auth_register():
     
     
 def test_auth_register_bad(): 
-    
+    jsonClean()
     # SETUP BEGIN
 
     authRegisterDic = auth_register("valid7@email.com", "valid7password", "first7name", "last7name")
