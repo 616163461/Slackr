@@ -52,7 +52,7 @@ def test_message_pin():
     
         
 def test_message_pin_bad(): 
-    
+    jsonClean()
     # SETUP BEGIN 
     authRegisterDic = auth_register("valid70@email.com", "valid70password", "first70name", "last70name")
     token = authRegisterDic['token']
