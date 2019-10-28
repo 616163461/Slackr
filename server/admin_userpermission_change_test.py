@@ -14,6 +14,7 @@ from f_admin_userpermission_change import admin_userperm_change
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
 from myexcept import ValueError
+from myexcept import SystemError
 
 def test_admin_userperm_change():
     
