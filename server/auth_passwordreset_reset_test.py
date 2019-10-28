@@ -41,7 +41,7 @@ def test_auth_passwordreset_reset():
 
 
 def test_auth_passwordreset_reset_bad(): 
-    
+    jsonClean()
     # SETUP BEGIN 
 
     authRegisterDic = auth_register("valid17@email.com", "valid17password", "first17name", "last17name")
