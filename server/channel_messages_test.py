@@ -22,6 +22,7 @@ from f_channel_join import channel_join
 from f_channel_leave import channel_leave
 from f_auth_logout import auth_logout
 from f_message_send import message_send
+from myexcept import ValueError
 import json
 
 # retrieve data from local data base 
@@ -85,7 +86,6 @@ def test_channel_messages_bad():
     message_send(token, channel_id, "validmessage")
     
     # SETUP END
-    '''
     with pytest.raises(ValueError): 
         # Testing function with invalid channel_id
         channel_messages(token, "invalidchannel_id", 0)
@@ -97,4 +97,3 @@ def test_channel_messages_bad():
     with pytest.raises(ValueError): 
         # Testing function with starting index greater than total number of messages in the channel
         channel_messages(token, channel_id, 10)
-    '''
