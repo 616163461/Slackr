@@ -14,6 +14,7 @@ from f_channel_join import channel_join
 from f_channel_leave import channel_leave
 from f_auth_logout import auth_logout
 from myexcept import ValueError
+from json_clean import jsonClean
 import json
 
 # retrieve data from local data base 
@@ -23,7 +24,7 @@ def getData():
     return data
 
 def test_channel_leave(): 
-    
+    jsonClean()
     # SET UP BEGIN 
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
@@ -56,7 +57,7 @@ def test_channel_leave():
     
 def test_channel_leave_bad(): 
     
-
+    jsonClean()
     # SET UP BEGIN 
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
