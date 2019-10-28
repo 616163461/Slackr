@@ -15,6 +15,7 @@ from f_channels_create import channels_create
 from f_channel_join import channel_join
 from f_auth_logout import auth_logout
 from myexcept import ValueError
+from json_clean import jsonClean
 import json
 
 # retrieve data from local data base 
@@ -25,7 +26,7 @@ def getData():
 
 
 def test_channel_join(): 
-    
+    jsonClean()
     # SET UP BEGIN 
     authRegisterDic = auth_register("valid100@email.com", "validpassword", "first100name", "last100name")
     token = authRegisterDic['token']
@@ -51,7 +52,7 @@ def test_channel_join():
 
     
 def test_channel_join_bad(): 
-   
+    jsonClean()
     # SET UP BEGIN 
     authRegisterDic = auth_register("valid10@email.com", "validpassword", "first10name", "last10name")
     token = authRegisterDic['token']
