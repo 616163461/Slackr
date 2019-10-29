@@ -16,6 +16,7 @@ from f_channel_messages import channel_messages
 from f_message_unreact import message_unreact
 from f_message_react import message_react
 from myexcept import ValueError, AccessError
+from f_channel_join import channel_join
 from json_clean import jsonClean
 
 def test_message_react(): 
@@ -48,7 +49,7 @@ def test_message_react():
     # Testing two users can react laugh one message
     assert message_react(token_one, message_id, react_id) == {}
     
-    with pytest.raises(ValueError, match = r"*"):
+    with pytest.raises(ValueError):
         # Testing function can't react the message for a second time
         message_react(token, message_id, react_id)
     
@@ -83,10 +84,10 @@ def test_message_react_bad():
     message_list = channelMessagesDic["messages"]
     message_dic = message_list[0]
     message_id = message_dic["message_id"]
-    
+    react_id = 1
     # SETUP END
     
-    with pytest.raises(ValueError, match = r"*"):
+    with pytest.raises(ValueError):
         # Testing function with invalid message_id
         message_react(token, "invalidmessage_id", react_id)
         # Testing function with user who isn't part of the channel
@@ -95,13 +96,13 @@ def test_message_react_bad():
         message_react(token, message_id, "invalidreact_id")
         
     message_react(token, message_id, react_id)
-    with pytest.raises(ValueError, match = r"*"):      
+    with pytest.raises(ValueError):      
         # Testing function with already reacted message_id
         message_react(token, message_id, react_id)
         
     message_unreact(token, message_id, react_id)
     auth_logout(token)
-    with pytest.raises(ValueError, match = r"*"): 
+    with pytest.raises(ValueError): 
         # Testing function with invalid token 
         message_react(token, message_id, react_id)
     

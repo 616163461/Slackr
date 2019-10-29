@@ -63,7 +63,8 @@ def auth_register(email, password, name_first, name_last):
         'password' : password,
         'email' : email,
         'u_id' : u_id,
-        'permission_id' : 3
+        'permission_id' : 3,
+        'pass_reset_code': None
     })
 
     updateData(data)

@@ -31,7 +31,7 @@ def channel_messages(token, channel_id, start):
     data = getData()
     send_Success = False
     for channel in data['channels']:
-        if str(channel['channel_id']) == channel_id:
+        if channel['channel_id'] == channel_id:
             #for message in channel['messages']:
             # checking start is smaller than total number of messages
             if start > len(channel['messages']):

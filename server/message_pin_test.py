@@ -17,6 +17,7 @@ from f_channels_create import channels_create
 from f_channel_messages import channel_messages
 from f_message_pin import message_pin
 from myexcept import ValueError
+from f_channel_join import channel_join
 from json_clean import jsonClean
 
 def test_message_pin(): 

@@ -34,7 +34,7 @@ def test_auth_passwordreset_reset():
     auth_passwordreset_request("valid16@email.com")
     
     # setting password 
-    auth_passwordreset_reset("reset_code", "new_password")
+    auth_passwordreset_reset("first16namelast16name", "new_password")
     
     # checking I can log in with the new password
     auth_login("valid16@email.com", "new_password")

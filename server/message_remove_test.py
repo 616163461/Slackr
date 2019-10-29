@@ -63,7 +63,7 @@ def test_message_remove():
     assert remove_message(token, message_id) == {}
     
     # Testing that ValueError is raised when invalid parameters are passed
-    with pytest.raises(ValueError, match = r"*"):
+    with pytest.raises(ValueError):
         
         # Testing function with an invalid token
         remove_message(invalid_token, message_id)

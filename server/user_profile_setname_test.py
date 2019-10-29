@@ -22,7 +22,7 @@ def getData():
     return data
 
 def test_user_profile_setname():
-    jsonClean():
+    jsonClean()
     # SETUP BEGIN
     name_first_bad = "exam1exam2exam3exam4exam5exam6exam7exam8exam9exam10"
     name_last_bad = "exam1exam2exam3exam4exam5exam6exam7exam8exam9exam10"

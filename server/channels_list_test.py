@@ -41,7 +41,7 @@ def test_channels_list():
     # SETUP END
     
     # Testing function using authorised user
-    assert channels_list(token) == [{channels: {channel_id: "validchannel"}}]
+    assert channels_list(token) == [{'channels': {channel_id: "validchannel"}}]
     
     for channels in data['channels']:
         assert channels == {'channel_id' : channel_id, 'channel_name' : "validchannel", 'is_public' : True, 'owner_members' : [{'u_id' : u_id, 'name_first' : name_first,'name_last' : name_last}], 'all_members' : [{'u_id' : u_id, 'name_first' : name_first,'name_last' : name_last}], 'messages' : []}

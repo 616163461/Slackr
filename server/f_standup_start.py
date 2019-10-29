@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import threading
 import time
@@ -46,7 +46,7 @@ def standup_start(token, channel_id):
         'time_finish' : present_time_str
     }
 
-    standup_end = present_time + datetime.timedelta(minutes = 15)
+    standup_end = present_time + timedelta(minutes = 15)
 
     standup_end_dict = {
         'time_finish' : standup_end

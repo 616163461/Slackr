@@ -10,7 +10,7 @@ import pytest
 from f_user_profile_setemail import user_profile_setemail
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
-from myexcept import ValueError, AccessError
+from myexcept import ValueError
 from json_clean import jsonClean
 
 def test_user_profile_setemail():

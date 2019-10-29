@@ -13,7 +13,7 @@ from f_auth_register import auth_register
 from f_auth_logout import auth_logout
 from f_channel_invite import channel_invite
 from f_channel_messages import channel_messages
-from myexcept import ValueError, AccessError
+from myexcept import ValueError
 from json_clean import jsonClean
 
 def test_search():
@@ -65,7 +65,7 @@ def test_search():
     # SETUP END
     
     # Testing for no results
-    assert search(token, "???") == {}
+    assert search(token, "???") == []
     
     # Testing for one result
     assert search(token, "Safe") == {"message_id" : message_id_safe, "u_id" : u_id_one, "message" : "Safe and secure society", "time_created" : "19:35", "is_unread" : False}
@@ -87,7 +87,7 @@ def test_search():
     }]
     
     # Testing Bad Cases
-    with pytest.raises(ValueError, match = r"*"):
+    with pytest.raises(ValueError):
         # Bad token with multiple search results
         search(invalid_token, "Hellomy")
         # Bad token with no search results

@@ -54,10 +54,10 @@ def test_message_sendlater():
         for messages in channels['messages']:
             if messages['message'] == message:
                 assert messages['message_id'] == message_id['message_id']
-            
+    
     
     # Testing that ValueError is raised when invalid parameters are passed
-    with pytest.raises(ValueError, match = r"*"):
+    with pytest.raises(ValueError):
         
         # Testing function with an invalid token
         message_sendlater(invalid_token, channel_id, message, timesent)

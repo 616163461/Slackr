@@ -9,6 +9,7 @@ import pytest
 from f_channel_details import channel_details
 from f_auth_register import auth_register
 from f_channels_create import channels_create
+from f_channels_listall import channels_listall
 from f_channel_join import channel_join
 from f_channel_leave import channel_leave
 from f_channels_list import channels_list
@@ -41,11 +42,11 @@ def test_channels_listall():
     channel_id_two = channelsCreateDicTwo['channel_id']
     
     channelsCreateDicThree = channels_create(token, "validchannel3", True)
-    channel_id_three = channelsCreateDic_three['channel_id']
+    channel_id_three = channelsCreateDicThree['channel_id']
     # SETUP END
     
     # Testing function using authorised user
-    assert channels_listall(token) == {channels: [{'channel_id': channel_id, 'name': 'validchannel'}, {'channel_id': channel_id_one, 'name': 'validchannel1'}, {'channel_id': channel_id_two, 'name': 'validchannel2'}, {'channel_id': channel_id_three, 'name': 'validchannel3'}]}
+    assert channels_listall(token) == {'channels' : [{'channel_id': channel_id, 'name': 'validchannel'}, {'channel_id': channel_id_one, 'name': 'validchannel1'}, {'channel_id': channel_id_two, 'name': 'validchannel2'}, {'channel_id': channel_id_three, 'name': 'validchannel3'}]}
 
  
 def test_channels_listall_bad(): 
@@ -61,7 +62,7 @@ def test_channels_listall_bad():
     channel_id_one = channelsCreateDicOne['channel_id']
     
     channelsCreateDicTwo = channels_create(token, "validchannel2", True)
-    channel_id_two = channelsCreateDic2['channel_id']
+    channel_id_two = channelsCreateDicTwo['channel_id']
     
     channelsCreateDicThree = channels_create(token, "validchannel3", True)
     channel_id_three = channelsCreateDicThree['channel_id']

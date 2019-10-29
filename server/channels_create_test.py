@@ -36,17 +36,17 @@ def test_channels_create():
     channel_found = False
     data = getData()
     for channels in data['channels']:
-        if channels['name'] == 'validchannel':
+        if channels['channel_name'] == 'validchannel':
              channel_found = True
     
     assert channel_found == True
         
-    assert channels_create(token, "validchannel1", False) == {channel_id: "validchannel1"}
+    assert channels_create(token, "validchannel1", False) == {'channel_id': "validchannel1"}
     
     channel2_found = False
     data = getData()
     for channels in data['channels']:
-        if channels['name'] == 'validchannel1':
+        if channels['channel_name'] == 'validchannel1':
              channel2_found = True
     
     assert channel2_found == True

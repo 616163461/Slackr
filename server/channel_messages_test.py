@@ -24,6 +24,7 @@ from f_auth_logout import auth_logout
 from f_message_send import message_send
 from myexcept import ValueError
 from json_clean import jsonClean
+from f_channel_messages import channel_messages
 import json
 
 # retrieve data from local data base 

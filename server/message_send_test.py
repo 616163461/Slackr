@@ -14,6 +14,7 @@ from f_channel_invite import channel_invite
 from f_auth_logout import auth_logout
 from myexcept import ValueError, AccessError
 from json_clean import jsonClean
+import json
 import hashlib
 
 def getData():
@@ -53,12 +54,12 @@ def test_message_send():
     
     data = getData()
     for channels in data['channels']:
-        for messages in channel['messages']:
+        for messages in channels['messages']:
             if messages['message'] == message:
                 assert messages['message_id'] == message_id['message_id']
     
     # Testing that ValueError is raised when invalid parameters are passed
-    with pytest.raises(ValueError, match = r"*"): 
+    with pytest.raises(ValueError): 
 
         # Testing function with an invalid token
         message_send(invalid_token, channel_id, message)

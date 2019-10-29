@@ -54,7 +54,7 @@ def message_pin(token, message_id):
     for channels in data['channels']:
         if channels['channel_id'] == channel_id:
             for owners in channels['owner_members']:
-                if owner['u_id'] == auth_u_id:
+                if owners['u_id'] == auth_u_id:
                     owner = True
     
     
