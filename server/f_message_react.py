@@ -32,7 +32,7 @@ def message_react(token, message_id, react_id):
     flag = 0
     #Test for valid token
     for i in data_new['users']:
-        if str(i['token']) == token and token != None:
+        if i['token'] == token and token != None:
             u_id = i['u_id']
             flag = 1
     if flag == 0:
@@ -45,7 +45,7 @@ def message_react(token, message_id, react_id):
     for j in data_new['channels']:
         #Finding the message
         for k in j['messages']:
-            if str(k['message_id']) == message_id:
+            if k['message_id'] == message_id:
                 message_uid = k['u_id']
                 message_found = 1
                 #Testing to see if user is in the channel and has owner permission
@@ -56,7 +56,7 @@ def message_react(token, message_id, react_id):
                     myexcept.member_not_in_channel()
                 react_check = 0
                 for react in k['reacts']:
-                    if len(react) != 0 and str(react['react_id']) == react_id:
+                    if len(react) != 0 and react['react_id'] == react_id:
                         react_check = 1
                         if u_id in react['u_ids']:
                             myexcept.message_already_reacted()
@@ -65,6 +65,7 @@ def message_react(token, message_id, react_id):
                             react['is_this_user_reacted'] = True
                         else:
                             react['is_this_user_reacted'] = False
+
                 if react_check == 0:
                     answer = {}
                     answer['react_id'] = react_id
@@ -74,9 +75,8 @@ def message_react(token, message_id, react_id):
                     else:
                         answer['is_this_user_reacted'] = False
                     k['reacts'].append(answer)
-
                 answer = {}
                 updateData(data_new)
-                return sendSuccess(answer)
+                return answer
     if message_found == 0:
        myexcept.message_not_found()

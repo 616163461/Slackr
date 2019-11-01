@@ -15,7 +15,6 @@ from werkzeug.exceptions import HTTPException
 import myexcept
 import hashlib
 
-
 def getData():
     with open('export.json', 'r') as FILE:
         data = json.load(FILE)
@@ -49,10 +48,10 @@ def auth_login(email, password):
             u_id = user['u_id']
             user['token'] = generateToken(password)
             updateData(data)
-            return sendSuccess({
+            return {
                 'u_id' : u_id,
                 'token' : generateToken(password)
-            })
+            }
 
     if flag == 0:
         myexcept.not_registered_email()

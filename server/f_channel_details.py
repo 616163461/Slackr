@@ -28,7 +28,7 @@ def channel_details(token, channel_id):
     #Test for valid token
     flag = 0
     for user in data['users']:
-        if str(user['token']) == token and token != None:
+        if user['token'] == token and token != None:
             u_id = user['u_id']
             flag = 1
 
@@ -38,7 +38,7 @@ def channel_details(token, channel_id):
     flag = 0
     flag2 = 0
     for channel in data['channels']:
-        if str(channel['channel_id']) == channel_id:
+        if channel['channel_id'] == channel_id:
             flag = 1
             for member in channel['all_members']:
                 if member['u_id'] == u_id:
@@ -48,7 +48,7 @@ def channel_details(token, channel_id):
                         'owner_members' : channel['owner_members'],
                         'all_members' : channel['all_members']
                     }
-                    return sendSuccess(answer)
+                    return answer
 
     if flag == 0 or flag2 == 0:
         myexcept.member_not_in_channel()

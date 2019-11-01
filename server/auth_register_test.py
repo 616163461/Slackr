@@ -13,12 +13,16 @@
 
 import pytest
 from f_auth_register import auth_register
-   
-def test_auth_register(): 
+from f_auth_logout import auth_logout
+from f_auth_login import auth_login
+from myexcept import ValueError
+from json_clean import jsonClean
 
+def test_auth_register(): 
+    jsonClean()
     # SETUP BEGIN
 
-    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid9@email.com", "valid9password", "first9name", "last9name")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
@@ -28,23 +32,23 @@ def test_auth_register():
     auth_logout(token)
     
     # Testing auth_login function to check that the account was successfully registered
-    auth_login("valid@email.com", "validpassword")
+    auth_login("valid9@email.com", "valid9password")
     
     
 def test_auth_register_bad(): 
-    
+    jsonClean()
     # SETUP BEGIN
 
-    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid7@email.com", "valid7password", "first7name", "last7name")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
-    authRegisterDic_one = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
+    authRegisterDic_one = auth_register("valid8@email.com", "valid8password", "first8name", "last8name")
     token_one = authRegisterDic_one['token']
     u_id_one = authRegisterDic_one['u_id']
     
     # SETUP END
-    
+
     with pytest.raises(ValueError):
         # Testing function with invalid email 
         auth_register("invalidemail", "validpassword1", "firstname1", "lastname1")

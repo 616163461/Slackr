@@ -13,18 +13,24 @@ import pytest
 from f_admin_userpermission_change import admin_userperm_change
 from f_auth_register import auth_register
 from f_auth_logout import auth_logout
-
+from myexcept import ValueError
+from json_clean import jsonClean
 
 def test_admin_userperm_change():
-    
+    jsonClean()
     # SETUP BEGIN   
     
     # Generate a valid user
     registerValidUserDict = auth_register("valid@email.com", "password", "Thom", "Browne")
     token = registerValidUserDict["token"]
     u_id = registerValidUserDict["u_id"]    
-    permission_id = 1    
+    permission_id = 1
     
+    
+    # Generate a valid user
+    registerValidUserDictOne = auth_register("valid30@email.com", "password", "first30name", "last30name")
+    token_one = registerValidUserDictOne["token"]
+    u_id_one = registerValidUserDictOne["u_id"]
     # Generate an invalid user
     registerInvalidUserDictTwo = auth_register("valid2@email.com", "feelspecial", "Hwang", "Yeji")
     invalid_token = registerInvalidUserDictTwo["token"]
@@ -37,10 +43,10 @@ def test_admin_userperm_change():
     # SETUP END
     
     # Asserting that the default case works
-    assert admin_userperm_change(token, u_id, permission_id) == {}
+    assert admin_userperm_change("CIMICTOP1012345abcd", u_id_one, permission_id) == {}
     
     # Testing that ValueError is raised when invalid parameters are passed
-    with pytest.raises(ValueError, match = r"*"):
+    with pytest.raises(ValueError):
    
         # Testing function with an invalid token
         admin_userperm_change(invalid_token, u_id, permission_id)
@@ -49,7 +55,7 @@ def test_admin_userperm_change():
         admin_userperm_change(token, invalid_uid, permission_id)
         
     # Testing that SystemError is raised when invalid parameters are passed    
-    with pytest.raises(SystemError):
+    with pytest.raises(ValueError):
     
         # Testing function with an invalid permission_id
         admin_userperm_change(token, u_id, invalid_permission_id)

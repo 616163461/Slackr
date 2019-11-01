@@ -37,12 +37,12 @@ def user_profile(token, u_id):
         myexcept.token_error()
 
     for i in data_new['users']:
-        if i['u_id'] == str(u_id):
+        if i['u_id'] == u_id:
             answer = {}
             answer['email'] = i['email']
             answer['first_name'] = i['first_name']
             answer['last_name'] = i['last_name']
             answer['handle_str'] = i['handle_str']
-            return sendSuccess(answer)
+            return answer
 
     myexcept.invalid_user()

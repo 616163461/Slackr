@@ -9,7 +9,6 @@ Description: Send a message from authorised_user to the channel specified by cha
 import json
 from random import randint
 import myexcept
-import datetime
 
 def getData():
     with open('export.json', 'r') as FILE:
@@ -44,7 +43,7 @@ def message_send(token, channel_id, message):
     channel_found = 0
     member_found = 0
     for j in data_new['channels']:
-        if str(j['channel_id']) == channel_id:
+        if j['channel_id'] == channel_id:
             channel_found = 1
             for k in j['all_members']:
                 if k['u_id'] == u_id:
@@ -55,13 +54,12 @@ def message_send(token, channel_id, message):
                     answer['message_id'] = message_id
                     answer['u_id'] = u_id
                     answer['message'] = message
-                    answer['time_created'] = datetime.now()
+                    answer['time_created'] = "12:04"
                     answer['reacts'] = []
                     answer['is_pinned'] = False
-                    for i in range(0, 50):
-                        j['messages'].append(answer)
+                    j['messages'].append(answer)
                     updateData(data_new)
-                    return sendSuccess({'message_id' : message_id})
+                    return {'message_id' : message_id}
     if channel_found == 0:
         myexcept.channel_not_found()
     elif member_found == 0:

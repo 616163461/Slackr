@@ -18,22 +18,31 @@ from f_channel_leave import channel_leave
 from f_channels_list import channels_list
 from f_auth_logout import auth_logout
 from f_channel_addowner import channel_addowner
+from myexcept import ValueError
+from json_clean import jsonClean
+import json
+
+# retrieve data from local data base 
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
 
 
 def test_channel_addowner(): 
-    
+    jsonClean()
     # SET UP BEGIN 
-    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid9@email.com", "valid9password", "first9name", "last9name")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     channelsCreateDic = channels_create(token, "validchannel", True)
     channel_id = channelsCreateDic['channel_id']
     
-    authRegisterDicOne = auth_register("valid2@email.com", "validpassword1", "firstname1", "lastname1")
+    authRegisterDicOne = auth_register("valid6@email.com", "valid6password1", "first6name1", "last6name1")
     token_one = authRegisterDicOne['token']
     u_id_one = authRegisterDicOne['u_id']
     
-    authRegisterDicTwo = auth_register("valid3@email.com", "validpassword2", "firstname2", "lastname2")
+    authRegisterDicTwo = auth_register("valid10@email.com", "validpassword2", "firstname2", "lastname2")
     token_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     # SETUP END 
@@ -45,11 +54,25 @@ def test_channel_addowner():
     # Making token_one an owner
     channel_addowner(token, channel_id, u_id_one)
     
+    # checking output matches local data base
+    data = getData()
+    for channels in data['channels']:
+        if channels['channel_id'] == channel_id:
+            assert channels['owner_members'] == [{"u_id": u_id, "name_first": "first9name", "name_last": "last9name"}, {"u_id": u_id_one, "name_first": "first6name1", "name_last": "last6name1"}]
+            
+
     # Testing function with recently declared owner (token_one) to check if he has owner permissions
     assert channel_addowner(token_one, channel_id, u_id_two) == {}
-
-def test_channel_addowner_bad(): 
     
+    # checking output matches local data base
+    data = getData()
+    for channels in data['channels']:
+        if channels['channel_id'] == channel_id:
+            assert channels['owner_members'] == [{"u_id": u_id, "name_first": "first9name", "name_last": "last9name"}, {"u_id": u_id_one, "name_first": "first6name1", "name_last": "last6name1"}, {"u_id": u_id_two, "name_first": "firstname2", "name_last": "lastname2"}]
+            
+    
+def test_channel_addowner_bad(): 
+    jsonClean()
     # SET UP BEGIN 
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
@@ -73,7 +96,6 @@ def test_channel_addowner_bad():
     token_four = authRegisterDicFour['token']
     u_id_four = authRegisterDicFour['u_id']
     # SETUP END 
-    
     with pytest.raises(ValueError):
         # Testing function with invalid channel_id
         channel_addowner(token, "invalidchannel_id", u_id_one)
@@ -90,6 +112,3 @@ def test_channel_addowner_bad():
     with pytest.raises(ValueError): 
         # Testing function on an invalid token 
         channel_addowner(token, channel_id, u_id_four)
-    
-
-

@@ -32,7 +32,7 @@ def channels_create(token, name, is_public):
     data = getData()
     valid_user = False
     # ValueError when name is more than 20 characters long as per the specs
-    if len(channel_name) > 20:
+    if len(name) > 20:
         myexcept.channel_name_invalid()
 
     for users in data['users']:
@@ -49,7 +49,7 @@ def channels_create(token, name, is_public):
     channel_id = randint(0, 10000)
     channels_list = data['channels']
     channels_list.append({'channel_id' : channel_id,
-                          'channel_name' : channel_name,
+                          'channel_name' : name,
                           'is_public' : is_public,
                           'owner_members' : [{'u_id' : u_id, 'name_first' : name_first,
                                               'name_last' : name_last}],
@@ -58,4 +58,4 @@ def channels_create(token, name, is_public):
                           'messages' : []
                          })
     updateData(data)
-    return sendSuccess({'channel_id' : channel_id})
+    return {'channel_id' : channel_id}

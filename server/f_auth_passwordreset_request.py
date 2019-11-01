@@ -9,10 +9,20 @@ send's them a an email containing a specific secret code,
 that when entered in auth_passwordreset_reset,
 shows that the user trying to reset the password is the one who got sent this email.
 '''
-
+from flask import Flask
 from flask_mail import Mail, Message
 import json
 import myexcept
+
+APP = Flask(__name__)
+
+APP.config.update(
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=465,
+    MAIL_USE_SSL=True,
+    MAIL_USERNAME='snackathon123@gmail.com',
+    MAIL_PASSWORD="Where'smyHSP"
+)
 
 def getData():
     with open('export.json', 'r') as FILE:
@@ -57,7 +67,7 @@ def auth_passwordreset_request(email):
                 mail.send(msg)
                 user['pass_reset_code'] = reset_code
                 updateData(data)
-                return sendSuccess({})
+                return {}
             except Exception as e:
                 return str(e)
 
@@ -65,4 +75,4 @@ def auth_passwordreset_request(email):
         # raise error saying email doesn't exist in database
         myexcept.not_registered_email()
 
-    return sendSuccess({})
+    return {}

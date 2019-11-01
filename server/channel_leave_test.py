@@ -13,10 +13,18 @@ from f_channels_create import channels_create
 from f_channel_join import channel_join
 from f_channel_leave import channel_leave
 from f_auth_logout import auth_logout
+from myexcept import ValueError
+from json_clean import jsonClean
+import json
 
+# retrieve data from local data base 
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
 
 def test_channel_leave(): 
-    
+    jsonClean()
     # SET UP BEGIN 
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
@@ -32,17 +40,24 @@ def test_channel_leave():
     channel_join(token_one, channel_id)
     
     # assuming admin isn't in all_members list since admin was specifically isn't a member
-    assert channel_details(token, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{"u_id": u_id_one, "name_first": "firstname1", "name_last": "lastname1"}]}
+    assert channel_details(token, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}, {"u_id": u_id_one, "name_first": "firstname1", "name_last": "lastname1"}]}
     
     channel_leave(token_one, channel_id)
     
+    # checking output matches local data base
+    data = getData()
+    for channels in data['channels']:
+        if channels['channel_id'] == channel_id:
+            assert channels['all_members'] == [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}]
+            
+            
     # checking that token1 user left the channel
-    assert channel_details(token, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{}]}
+    assert channel_details(token, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}]}
     
     
 def test_channel_leave_bad(): 
     
-
+    jsonClean()
     # SET UP BEGIN 
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
@@ -58,7 +73,6 @@ def test_channel_leave_bad():
     token_two = authRegisterDicTwo['token']
     u_id_two = authRegisterDicTwo['u_id']
     # SETUP END 
-    
     channel_join(token_one, channel_id)
     with pytest.raises(ValueError): 
         # Testing function using invalid channel_id
@@ -70,5 +84,3 @@ def test_channel_leave_bad():
     with pytest.raises(ValueError): 
         # Testing function using invalid token
         channel_leave(token_one, channel_id)
-
-

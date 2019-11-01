@@ -15,10 +15,12 @@ from f_channels_create import channels_create
 from f_standup_start import standup_start
 from f_message_send import message_send
 from f_channel_invite import channel_invite
+from myexcept import ValueError
+from json_clean import jsonClean
 
 
 def test_standup_send():
-
+    jsonClean()
     # Generate a valid user 
     registerValidUserDict = auth_register("valid@email.com", "feelspecial", "Hwang", "Yeji")
     token = registerValidUserDict["token"]
@@ -26,7 +28,7 @@ def test_standup_send():
     createValidChannelDict = channels_create(token, "validchannel", True)
     channel_id = createValidChannelDict["channel_id"]
     message = "I Heart Hwang Yeji"
-    message_list = channelValidMessagesDict["messages"]
+    message_list = createValidChannelDict['messages']
     message_dict = message_list[0]
     message_id = message_dict["message_id"]
 
@@ -35,7 +37,7 @@ def test_standup_send():
     # Generate an invalid user
     registerInvalidUserDict = auth_register("valid2@email.com", "password", "Kang", "Daniel")
     invalid_token = registerInvalidUserDict["token"]
-    invalid_uid = registerValidUserDict["u_id"]
+    invalid_uid = registerInvalidUserDict["u_id"]
     createInvalidChannelDict = channels_create(invalid_token, "invalidchannel", True)
     invalid_channelid = createInvalidChannelDict["channel_id"]
     channel_invite(invalid_token, invalid_channelid, invalid_uid)
@@ -56,4 +58,4 @@ def test_standup_send():
         
         # Testing function with an invalid message
         standup_send(token, channel_id, invalid_message)
-
+    

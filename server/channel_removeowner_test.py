@@ -19,10 +19,18 @@ from f_channels_list import channels_list
 from f_auth_logout import auth_logout
 from f_channel_removeowner import channel_removeowner
 from f_channel_addowner import channel_addowner
+from json_clean import jsonClean
+from myexcept import ValueError
+
+# retrieve data from local data base 
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
 
 
 def test_channel_removeowner():
-    
+    jsonClean()
     # SET UP BEGIN
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
@@ -43,11 +51,23 @@ def test_channel_removeowner():
     channel_addowner(token, channel_id, u_id_one)
     # Removing user_one as an owner
     channel_removeowner(token, channel_id, u_id_one)
+    
+    # checking output matches local data base
+    data = getData()
+    for channels in data['channels']:
+        if channels['channel_id'] == channel_id:
+            assert channels['owner_members'] == [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}]
     # Calling function with recently removed owner to check he's not an owner
     channel_addowner(token_one, channel_id, u_id_two)
     
+    # checking output matches local data base
+    data = getData()
+    for channels in data['channels']:
+        if channels['channel_id'] == channel_id:
+            assert channels['owner_members'] == [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}, {"u_id": u_id_two, "name_first": "firstname2", "name_last": "lastname2"}]
 
 def test_channel_removeowner_bad():
+    jsonClean()
     # SET UP BEGIN
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
@@ -82,4 +102,3 @@ def test_channel_removeowner_bad():
     with pytest.raises(ValueError): 
         # Testing function with invalid token
         channel_removeowner(token, channel_id, u_id_one)
-

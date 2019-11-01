@@ -67,7 +67,7 @@ def message_remove(token, message_id):
                     send_Success = True
                     channel['messages'].remove(message)
                     updateData(data)
-                    return sendSuccess({})
+                    return {}
 
     if send_Success == False:
         raise ValueError("You cannot edit other users message, or message no longer exists.")

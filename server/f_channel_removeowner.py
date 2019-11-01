@@ -59,9 +59,9 @@ def channel_removeowner(token, channel_id, u_id):
                     found_User = True
 
     if found_Token == False:
-        raise ValueError("token does not belong to an owner.")
+        myexcept.authorised_member_not_admin()
     if found_User == False:
-        raise ValueError("u_id does not belong to an owner.")
+        myexcept.user_not_owner()
 
     send_Success = False
     # remove user from owner_members list
@@ -73,7 +73,7 @@ def channel_removeowner(token, channel_id, u_id):
                                             })
             send_Success = True
             updateData(data)
-            return sendSuccess({})
+            return {}
 
     if send_Success == False:
         myexcept.channel_not_found()

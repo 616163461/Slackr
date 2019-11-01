@@ -17,8 +17,11 @@ from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_standup_start import standup_start
 from f_message_send import message_send
+from myexcept import ValueError
+from json_clean import jsonClean
 
 def test_standup_start():
+    jsonClean()
     # Valid channel ID
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
@@ -31,7 +34,7 @@ def test_standup_start():
     # Invalid channel ID
     registerInvalidUserDict = auth_register("valid2@email.com", "password", "Thom", "Browne")
     invalid_token = registerInvalidUserDict["token"]
-    invalid_uid = registerValidUserDict["u_id"]
+    invalid_uid = registerInvalidUserDict["u_id"]
     createInvalidChannelDict = channels_create(invalid_token, "invalidchannel", True)
     invalid_channelid = createInvalidChannelDict["channel_id"]
     
@@ -42,3 +45,4 @@ def test_standup_start():
     	standup_start(token, invalid_channelid)
     	# Testing function with invalid token
     	standup_start(invalid_token, channelid)
+    

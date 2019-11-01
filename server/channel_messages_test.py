@@ -22,9 +22,19 @@ from f_channel_join import channel_join
 from f_channel_leave import channel_leave
 from f_auth_logout import auth_logout
 from f_message_send import message_send
+from myexcept import ValueError
+from json_clean import jsonClean
+from f_channel_messages import channel_messages
+import json
 
-def test_channel_messages(): 
+# retrieve data from local data base 
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
     
+def test_channel_messages(): 
+    jsonClean()
     # SETUP BEGIN 
     
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
@@ -38,25 +48,31 @@ def test_channel_messages():
     u_id1 = authRegisterDic1['u_id']
     
     message_send(token, channel_id, "validmessage")
-    
+    data = getData()
     # SETUP END
     
     # Couldn't assert since unable to obtain message_id also need to assert end == - 1
-    channel_messages(token, channel_id, 0)
+    for channels in data['channels']:
+        if channels['channel_id'] == channel_id:
+            assert channel_messages(token, channel_id, 0) == {'messages': channels['messages'], 'start': 0, 'end': -1}
     
     # Adding 50 more messages to the channel to make 51 total messages
     for i in range(0,50): 
         message_send(token, channel_id, "validmessage")
     
     # Should be asserting that end is not equal to -1      
-    channel_messages(token, channel_id, 0)
+    for channels in data['channels']:
+        if channels['channel_id'] == channel_id:
+            assert channel_messages(token, channel_id, 0) == {'messages': channels['messages'][:50], 'start': 0, 'end': 50}
     
-    # Checking that the start index works 
-    channel_messages(token, channel_id, 31)
+    # Checking that the start index works
+    for channels in data['channels']:
+        if channels['channel_id'] == channel_id:
+            assert channel_messages(token, channel_id, 31) == {'messages': channels['messages'][31:], 'start': 31, 'end': -1}
     
     
 def test_channel_messages_bad(): 
-
+    jsonClean()
     # SETUP BEGIN 
     
     authRegisterDic = auth_register("invalidemail", "invalidpassword", "firstname", "lastname")
@@ -72,7 +88,6 @@ def test_channel_messages_bad():
     message_send(token, channel_id, "validmessage")
     
     # SETUP END
-    
     with pytest.raises(ValueError): 
         # Testing function with invalid channel_id
         channel_messages(token, "invalidchannel_id", 0)

@@ -14,26 +14,29 @@ from f_channels_create import channels_create
 from f_channel_join import channel_join
 from f_channel_leave import channel_leave
 from f_auth_logout import auth_logout
+from f_auth_passwordreset_request import auth_passwordreset_request
+from myexcept import ValueError
+from json_clean import jsonClean
 
 def test_auth_passwordreset_request(): 
-
+    jsonClean()
     # SETUP BEGIN 
     
-    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid14@email.com", "valid14password", "first14name", "last14name")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     
     # SETUP END 
     
     # Testing function with valid email
-    auth_passwordreset_request("valid@email.com")
+    auth_passwordreset_request("valid14@email.com")
     
     
 def test_auth_passwordreset_request_bad(): 
-
+    jsonClean()
     # SETUP BEGIN 
 
-    authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
+    authRegisterDic = auth_register("valid15@email.com", "valid15password", "first15name", "last15name")
     token = authRegisterDic['token']
     u_id = authRegisterDic['u_id']
     

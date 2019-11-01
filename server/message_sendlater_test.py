@@ -13,9 +13,11 @@ from f_message_sendlater import message_sendlater
 from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_channel_invite import channel_invite
+from myexcept import ValueError, AccessError
+from json_clean import jsonClean
 
 def test_message_sendlater():
-
+    jsonClean()
     # SETUP BEGIN
     
     # Generate a valid user
@@ -26,7 +28,7 @@ def test_message_sendlater():
     channel_id = createValidChannelDict["channel_id"]
     channel_invite(token, channel_id, u_id)
     message = "I Heart Thom Browne"
-    timesent = "20/10/2020"
+    timesent = present + timedelta(minutes = 1) + tdelta
     
     # Generate an invalid user
     registerInvalidUserDict = auth_register("valid2@email.com", "password", "Thom", "Browne")
@@ -44,10 +46,18 @@ def test_message_sendlater():
     # SET UP END
     
     # Asserting that the default case works
-    assert message_sendlater(token, channel_id, message, timesent) == {}
+    message_id = message_sendlater(token, channel_id, message, timesent)
+    time.sleep(60)
+    
+    data = getData()
+    for channels in data['channels']:
+        for messages in channels['messages']:
+            if messages['message'] == message:
+                assert messages['message_id'] == message_id['message_id']
+    
     
     # Testing that ValueError is raised when invalid parameters are passed
-    with pytest.raises(ValueError, match = r"*"):
+    with pytest.raises(ValueError):
         
         # Testing function with an invalid token
         message_sendlater(invalid_token, channel_id, message, timesent)
@@ -60,3 +70,4 @@ def test_message_sendlater():
         
         # Testing function with an invalid timesent input
         message_sendlater(token, channel_id, message, invalid_timesent)
+    

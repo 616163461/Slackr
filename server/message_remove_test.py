@@ -17,10 +17,11 @@ from f_channels_create import channels_create
 from f_message_remove import message_remove
 from f_channel_messages import channel_messages
 from f_channel_invite import channel_invite
-
+from myexcept import ValueError, AccessError
+from json_clean import jsonClean
 
 def test_message_remove():
-    
+    jsonClean()
     # SETUP BEGIN
     
     # Generate a valid user
@@ -62,10 +63,11 @@ def test_message_remove():
     assert remove_message(token, message_id) == {}
     
     # Testing that ValueError is raised when invalid parameters are passed
-    with pytest.raises(ValueError, match = r"*"):
+    with pytest.raises(ValueError):
         
         # Testing function with an invalid token
         remove_message(invalid_token, message_id)
 
         # Testing function with an invalid message id
         remove_message(valid_token, invalid_messageid)
+    

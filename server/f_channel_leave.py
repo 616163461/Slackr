@@ -30,7 +30,7 @@ def channel_leave(token, channel_id):
     flag = 0
     #Test for valid token
     for i in data_new['users']:
-        if str(i['token']) == token and token != None:
+        if i['token'] == token and token != None:
             u_id = i['u_id']
             flag = 1
     if flag == 0:
@@ -39,7 +39,7 @@ def channel_leave(token, channel_id):
     member_found = 0
     channel_found = 0
     for channels in data_new['channels']:
-        if str(channels['channel_id']) == channel_id:
+        if channels['channel_id'] == channel_id:
             channel_found = 1
             for members in channels['all_members']:
                 member_count = len(channels['all_members'])
@@ -52,11 +52,11 @@ def channel_leave(token, channel_id):
                         data['channels'].remove(channels)
                     answer = {}
                     updateData(data_new)
-                    return sendSuccess(answer)
+                    return answer
     if channel_found == 0:
         myexcept.channel_not_found()
     if member_found == 0:
         myexcept.member_not_in_channel()
 
     answer = {}
-    return sendSuccess(answer)
+    return answer

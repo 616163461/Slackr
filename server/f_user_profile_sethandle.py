@@ -24,7 +24,7 @@ def updateData(data):
 
 
 def user_profile_sethandle(token, handle_str):
-    if len(handle_str) >= 20 and len(handle_str) <= 3:
+    if len(handle_str) >= 20 or len(handle_str) <= 3:
         raise myexcept.invalid_handle_str()
 
     data_new = getData()
@@ -43,7 +43,7 @@ def user_profile_sethandle(token, handle_str):
             flag = 1
             answer = {}
             updateData(data_new)
-            return sendSuccess(answer)
+            return answer
 
     if flag == 0:
         myexcept.token_error()

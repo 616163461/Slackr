@@ -43,7 +43,7 @@ def channel_invite(token, channel_id, u_id):
     # checking that u_id is a valid user
     member_exists = False
     for user in data['users']:
-        if str(user['u_id']) == u_id:
+        if user['u_id'] == u_id:
             name_first = user['first_name']
             name_last = user['last_name']
             member_exists = True
@@ -56,7 +56,7 @@ def channel_invite(token, channel_id, u_id):
     valid_channel = False
     # checking authorised user is already a member of the channel
     for channel in data['channels']:
-        if str(channel['channel_id']) == channel_id: 
+        if channel['channel_id'] == channel_id: 
             valid_channel = True
             for member in channel['all_members']:
                 if member['u_id'] == auth_u_id:
@@ -69,7 +69,7 @@ def channel_invite(token, channel_id, u_id):
         
     # adding user to channel
     for channel in data['channels']:
-        if str(channel['channel_id']) == channel_id:
+        if channel['channel_id'] == channel_id:
             add_user = {
                 'u_id' : u_id,
                 'name_first' : name_first,
@@ -79,4 +79,4 @@ def channel_invite(token, channel_id, u_id):
             if perm_id == '1' or perm_id == '2':
                 channel['owner_members'].append(add_user)
             updateData(data)
-            return sendSuccess({})
+            return {}

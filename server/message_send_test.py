@@ -11,26 +11,36 @@ from f_message_send import message_send
 from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_channel_invite import channel_invite
+from f_auth_logout import auth_logout
+from myexcept import ValueError, AccessError
+from json_clean import jsonClean
+import json
+import hashlib
+
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
 
 def test_message_send():
-
+    jsonClean()
     # SETUP BEGIN
 
     # Generate a valid user 
-    registerValidUserDict = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
-    token = registerValidUserDict["token"]
-    u_id = registerValidUserDict["u_id"]
+    registerValidUserDict = auth_register("valid6@email.com", "valid6password", "first6name", "last6name")
+    token = registerValidUserDict['token']
+    u_id = registerValidUserDict['u_id']
     createValidChannelDict = channels_create(token, "validchannel", True)
-    channel_id = createValidChannelDict["channel_id"]
+    channel_id = createValidChannelDict['channel_id']
     channel_invite(token, channel_id, u_id)
     message = "I Heart Hayden Smith"
 
     # Generate an invalid user
-    registerInvalidUserDict = auth_register("invalid1@email.com", "invalidpassword", "invalidfirstname", "invalidlastname")
-    invalid_token = registerInvalidUserDict["token"]
-    invalid_uid = registerValidUserDict["u_id"]
+    registerInvalidUserDict = auth_register("invalid6@email.com", "invalid6password", "invalid6firstname", "invalid6lastname")
+    invalid_token = registerInvalidUserDict['token']
+    invalid_uid = registerValidUserDict['u_id']
     createInvalidChannelDict = channels_create(invalid_token, "invalidchannel", True)
-    invalid_channelid = createInvalidChannelDict["channel_id"]
+    invalid_channelid = createInvalidChannelDict['channel_id']
     channel_invite(invalid_token, invalid_channelid, invalid_uid)
     invalid_message = 0
     
@@ -40,10 +50,16 @@ def test_message_send():
     # SETUP END
     
     # Asserting that the default case works
-    assert message_send(token, channel_id, message) == {}
+    message_id = message_send(token, channel_id, message)
+    
+    data = getData()
+    for channels in data['channels']:
+        for messages in channels['messages']:
+            if messages['message'] == message:
+                assert messages['message_id'] == message_id['message_id']
     
     # Testing that ValueError is raised when invalid parameters are passed
-    with pytest.raises(ValueError, match = r"*"): 
+    with pytest.raises(ValueError): 
 
         # Testing function with an invalid token
         message_send(invalid_token, channel_id, message)
@@ -53,3 +69,4 @@ def test_message_send():
         
         # Testing function with an invalid message
         message_send(token, channel_id, invalid_message)
+    

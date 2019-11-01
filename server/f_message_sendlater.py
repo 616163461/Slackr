@@ -57,7 +57,7 @@ def message_sendlater(token, channel_id, messsage, time_sent):
         myexcept.invalid_time()
 
     tdelta = send_time - present
-    sendlater_time = present + tdelta
+    sendlater_time = present + timedelta(minutes = 1) + tdelta
     delay_time = (sendlater_time - present).total_seconds()
 
     #Test if channel_id is valid and that user is in the channel_id
@@ -75,7 +75,7 @@ def message_sendlater(token, channel_id, messsage, time_sent):
                         'message_id' : 1,
                         'u_id' : u_id,
                         'message' : message,
-                        'time_created' : '12:04',
+                        'time_created' : datetime.now(),
                         'reacts' : {},
                         'is_pinned' : False
                     }
@@ -84,7 +84,7 @@ def message_sendlater(token, channel_id, messsage, time_sent):
                         'message_id' : answer['message_id']
                     }
                     updateData(data)
-                    return sendSuccess(sendlater)
+                    return sendlater
 
     if channel_found == 0:
         myexcept.channel_not_found()

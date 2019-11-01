@@ -16,12 +16,14 @@ from f_channels_create import channels_create
 from f_channel_messages import channel_messages
 from f_channel_invite import channel_invite
 from f_message_edit import message_edit
+from myexcept import ValueError
+from json_clean import jsonClean
 
 
 def test_message_edit():
     
     # SETUP BEGIN
-    
+    jsonClean()
     # Token creates the channel so it should be the owner
     registerValidUserDict = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = registerValidUserDict["token"]
@@ -53,7 +55,6 @@ def test_message_edit():
 
     # Asserting that the default case works
     assert message_edit(token, message_id, message_list[0]) == {}
-    
     # Testing that ValueError is raised when invalid parameters are passed
     with pytest.raises(ValueError):
         

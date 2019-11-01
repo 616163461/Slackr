@@ -13,11 +13,17 @@ from f_channel_details import channel_details
 from f_auth_register import auth_register
 from f_channels_create import channels_create
 from f_auth_logout import auth_logout
-
-
+from myexcept import ValueError
+from json_clean import jsonClean
+import json
+# retrieve data from local data base 
+def getData():
+    with open('export.json', 'r') as FILE:
+        data = json.load(FILE)
+    return data
 
 def test_channel_details(): 
-    
+    jsonClean()
     # SET UP BEGIN 
 
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
@@ -28,11 +34,16 @@ def test_channel_details():
     
     # SETUP END 
     
-    assert channel_details(token, channel_id) == {"name": "validchannel", "owner_members": [{"u_id": u_id, "name_first": "firstname", "name_last": "lastname"}], "all_members": [{}]}
+    # checking output of channel_details matches our data base
+    data = getData()
+    for channels in data['channels']:
+        if channels['channel_id'] == channel_id:
+            assert channel_details(token, channel_id) == channels
+    
     
     
 def test_channel_details_bad(): 
-    
+    jsonClean()
     # SET UP BEGIN
     authRegisterDic = auth_register("valid@email.com", "validpassword", "firstname", "lastname")
     token = authRegisterDic['token']
@@ -46,7 +57,6 @@ def test_channel_details_bad():
     channelsCreateDicOne = channels_create(token_one, "validchannel1", True)
     channel_id_one = channelsCreateDicOne['channel_id']
     # SETUP END 
-    
     with pytest.raises(ValueError): 
         # Testing function with invalid channel_id
         channel_details(token, "invalidchannel_id")

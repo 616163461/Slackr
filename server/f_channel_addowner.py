@@ -71,7 +71,7 @@ def channel_addowner(token, channel_id, u_id):
                                             })
             send_Success = True
             updateData(data)
-            return sendSuccess({})
+            return {}
 
     if send_Success == False:
         myexcept.channel_not_found()
