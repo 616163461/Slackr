@@ -12,5 +12,4 @@ def jsonClean():
     resetData({'users': [], 'channels': []})
     return 0
     
-    
 jsonClean()
